@@ -1,7 +1,9 @@
 import 'package:hive/hive.dart';
 
 enum DatabaseModelsEnum {
-  userProfile,
+  userProfile(true);
+
+  const DatabaseModelsEnum(bool isSingleton);
 }
 
 extension AppBoxExtension on DatabaseModelsEnum {
