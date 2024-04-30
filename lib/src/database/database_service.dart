@@ -16,11 +16,11 @@ class DatabaseService {
     await Hive.initFlutter();
   }
 
-  Future<void> saveUserID(String userId) async {
+  void saveUserID(String userId) {
     String key = _databaseModel.keysEnum.id.key;
     Box userBox = _databaseModel.box;
     if (userBox.get(key) == null) {
-      await userBox.put(key, userId);
+      userBox.put(key, userId);
     }
   }
 
