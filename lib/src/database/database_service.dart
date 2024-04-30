@@ -7,18 +7,18 @@ class DatabaseService {
 
   DatabaseService._internal();
 
-  Future<void> save<T>(DatabaseModelsEnum model, dynamic key, T value) async {
-    final box = await model.box;
-    await box.put(key, value);
+  void save<T>(DatabaseModelsEnum model, dynamic key, T value) {
+    final box = model.box;
+    box.put(key, value);
   }
 
-  Future<void> delete(DatabaseModelsEnum model, dynamic key) async {
-    final box = await model.box;
-    await box.delete(key);
+  void delete(DatabaseModelsEnum model, dynamic key) {
+    final box = model.box;
+    box.delete(key);
   }
 
   Future<T?> read<T>(DatabaseModelsEnum model, dynamic key) async {
-    final box = await model.box;
+    final box = model.box;
     return box.get(key);
   }
 }
