@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import '../user/user_model_keys_enum.dart';
 
 enum DatabaseModelsEnum {
   user("userBox");
@@ -27,5 +28,14 @@ extension DatabaseModelsEnumExtension on DatabaseModelsEnum {
 
   Box<dynamic> get box {
     return Hive.box(boxName);
+  }
+
+  dynamic get keysEnum {
+    switch (this){
+      case DatabaseModelsEnum.user:
+        return UserModelKeysEnum;
+      default:
+       throw Exception('Invalid Enum Value!');
+    }
   }
 }
