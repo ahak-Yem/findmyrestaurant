@@ -1,27 +1,31 @@
 import 'package:hive/hive.dart';
 
 enum DatabaseModelsEnum {
-  userProfile(true);
+  user("userBox");
 
-  const DatabaseModelsEnum(bool isSingleton);
+  const  DatabaseModelsEnum(String boxName);
 }
 
-extension AppBoxExtension on DatabaseModelsEnum {
+extension DatabaseModelsEnumExtension on DatabaseModelsEnum {
   String get boxName {
     switch (this) {
-      case DatabaseModelsEnum.userProfile:
-        return 'userBox';
+      case DatabaseModelsEnum.user:
+        return DatabaseModelsEnum.user.boxName;
       default:
         throw Exception('Invalid enum value');
     }
   }
 
-  Future<Box<dynamic>> get box async {
+  bool get isSingleton {
     switch (this) {
-      case DatabaseModelsEnum.userProfile:
-        return Hive.openBox(boxName);
+      case DatabaseModelsEnum.user:
+        return true;
       default:
         throw Exception('Invalid enum value');
     }
+  }
+
+  Box<dynamic> get box {
+    return Hive.box(boxName);
   }
 }
