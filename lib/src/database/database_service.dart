@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'database_models_enum.dart';
 
 class DatabaseService {
@@ -6,6 +7,21 @@ class DatabaseService {
   factory DatabaseService() => _instance;
 
   DatabaseService._internal();
+
+  final DatabaseModelsEnum _databaseModel = DatabaseModelsEnum.user;
+
+  Future<void> saveUserID(String userId) async {
+    String key = _databaseModel.keysEnum.id.key;
+    Box userBox = _databaseModel.box;
+    if (userBox.get(key) == null) {
+      await userBox.put(key, userId);
+    }
+  }
+
+  String? readUserID() {
+    String key = _databaseModel.keysEnum.id.key;
+    return _databaseModel.box.get(key);
+  }
 
   void save<T>(DatabaseModelsEnum model, dynamic key, T value) {
     final box = model.box;
