@@ -6,6 +6,8 @@ class DatabaseService {
 
   factory DatabaseService() => _instance;
 
+  static DatabaseService get instance => _instance;
+
   DatabaseService._internal();
 
   final DatabaseModelsEnum _databaseModel = DatabaseModelsEnum.user;
