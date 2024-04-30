@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'database_models_enum.dart';
 
 class DatabaseService {
@@ -11,6 +11,10 @@ class DatabaseService {
   DatabaseService._internal();
 
   final DatabaseModelsEnum _databaseModel = DatabaseModelsEnum.user;
+
+  Future<void> initialize() async {
+    await Hive.initFlutter();
+  }
 
   Future<void> saveUserID(String userId) async {
     String key = _databaseModel.keysEnum.id.key;
