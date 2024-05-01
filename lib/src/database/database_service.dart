@@ -1,4 +1,4 @@
-import 'package:findmyrestaurant/src/user/user_model.dart';
+import '../user/model/user_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'database_models_enum.dart';
 

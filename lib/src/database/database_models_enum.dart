@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import '../user/user_model_keys_enum.dart';
+import '../user/enum/user_model_keys_enum.dart';
 
 enum DatabaseModelsEnum {
   user,
