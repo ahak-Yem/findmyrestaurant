@@ -2,16 +2,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../user/user_model_keys_enum.dart';
 
 enum DatabaseModelsEnum {
-  user("userBox");
-
-  const  DatabaseModelsEnum(String boxName);
+  user,
 }
 
 extension DatabaseModelsEnumExtension on DatabaseModelsEnum {
   String get boxName {
     switch (this) {
       case DatabaseModelsEnum.user:
-        return DatabaseModelsEnum.user.boxName;
+        return 'userBox';
       default:
         throw Exception('Invalid enum value');
     }

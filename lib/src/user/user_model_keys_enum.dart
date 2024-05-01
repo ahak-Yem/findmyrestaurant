@@ -1,23 +1,21 @@
 enum UserModelKeysEnum{
-  id("id"),
-  name("name"),
-  email("email"),
-  profilePicture("picture");
-
-  const UserModelKeysEnum(String key);
+  id,
+  name,
+  email,
+  profilePicture;
 }
 
 extension UserModelKeysEnumExtension on UserModelKeysEnum {
   String get key {
     switch (this) {
       case UserModelKeysEnum.id:
-        return UserModelKeysEnum.id.key;
+        return "id";
       case UserModelKeysEnum.name:
-        return UserModelKeysEnum.name.key;
+        return "name";
       case UserModelKeysEnum.email:
-        return UserModelKeysEnum.email.key;
+        return "email";
       case UserModelKeysEnum.profilePicture:
-        return UserModelKeysEnum.profilePicture.key;
+        return "profilePicture";
     }
   }
 }
