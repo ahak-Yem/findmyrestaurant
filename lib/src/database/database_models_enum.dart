@@ -24,8 +24,8 @@ extension DatabaseModelsEnumExtension on DatabaseModelsEnum {
     }
   }
 
-  Box<dynamic> get box {
-    return Hive.box(boxName);
+  Future<Box<dynamic>> get box async{
+    return await Hive.openBox(boxName);
   }
 
   dynamic get keysEnum {

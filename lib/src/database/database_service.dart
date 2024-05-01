@@ -11,7 +11,7 @@ class DatabaseService {
 
   DatabaseService._internal();
 
-  final DatabaseModelsEnum _databaseModel = DatabaseModelsEnum.user;
+  final DatabaseModelsEnum _userDatabaseModelEnum = DatabaseModelsEnum.user;
 
   Future<void> initialize() async {
     Hive.registerAdapter(UserModelAdapter());
@@ -19,30 +19,31 @@ class DatabaseService {
   }
 
   void saveUserID(String userId) {
-    String key = _databaseModel.keysEnum.id.key;
-    Box userBox = _databaseModel.box;
+    Box userBox = _userDatabaseModelEnum.box as Box;
+    String key = _userDatabaseModelEnum.keysEnum.id.key;
     if (userBox.get(key) == null) {
       userBox.put(key, userId);
     }
   }
 
   String? readUserID() {
-    String key = _databaseModel.keysEnum.id.key;
-    return _databaseModel.box.get(key);
+    Box userBox = _userDatabaseModelEnum.box as Box;
+    String key = _userDatabaseModelEnum.keysEnum.id.key;
+    return userBox.get(key);
   }
 
   void save<T>(DatabaseModelsEnum model, dynamic key, T value) {
-    final box = model.box;
+    final box = model.box as Box;
     box.put(key, value);
   }
 
   void delete(DatabaseModelsEnum model, dynamic key) {
-    final box = model.box;
+    final box = model.box as Box;
     box.delete(key);
   }
 
   Future<T?> read<T>(DatabaseModelsEnum model, dynamic key) async {
-    final box = model.box;
+    final box = model.box as Box;
     return box.get(key);
   }
 }
