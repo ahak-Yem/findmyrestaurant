@@ -34,5 +34,12 @@ flutter:
   generate: true
 
   assets:
-    # Add assets from the images directory to the application.
     - assets/images/
+    
+android:
+  compileSdkVersion: 34
+  defaultConfig:
+    applicationId: com.example.findmyrestaurant
+    versionCode: 1
+    versionName: "1.0"
+    minSdkVersion: 28
