@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/user/user_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'database_models_enum.dart';
 
@@ -13,6 +14,7 @@ class DatabaseService {
   final DatabaseModelsEnum _databaseModel = DatabaseModelsEnum.user;
 
   Future<void> initialize() async {
+    Hive.registerAdapter(UserModelAdapter());
     await Hive.initFlutter();
   }
 
