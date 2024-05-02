@@ -36,6 +36,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/imagesPaths.json
+
     
 android:
   compileSdkVersion: 34
