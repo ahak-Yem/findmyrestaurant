@@ -8,6 +8,8 @@ class ImagesPathsReader {
 
   static bool _isLoading = false;
   static final _lock = Lock();
+  static const String jsonFileRoot = 'imagePaths';
+  static const String jsonFilePath = 'assets/imagesPaths.json';
 
   ImagesPathsReader._();
   
@@ -25,7 +27,7 @@ class ImagesPathsReader {
       await _lock.synchronized(() async {
         _isLoading = true;
         try {
-          final String jsonString = await rootBundle.loadString('assets/imagesPaths.json');
+          final String jsonString = await rootBundle.loadString(jsonFilePath);
           _config = json.decode(jsonString);
         } finally {
           _isLoading = false;
@@ -42,7 +44,7 @@ class ImagesPathsReader {
     if(_config == null || _config!.isEmpty){
       return path;
     }
-    path = _config!['imagePaths'][section.sectionString][imageName];
+    path = _config![jsonFileRoot][section.sectionString][imageName];
     return path;
   }
 }
