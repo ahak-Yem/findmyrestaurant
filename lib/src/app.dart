@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
           AppLocalizations.of(context)!.appTitle,
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
-      // Define your routes here
       initialRoute: '/',
       home: const GetStartedView(),
       // routes: {
