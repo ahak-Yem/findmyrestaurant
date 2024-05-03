@@ -40,10 +40,10 @@ class ImagesPathsReader {
     }
   }
 
-  Future<String> getImagePath(ImagesPathsSections section, String imageName) async{
+  String getImagePath(ImagesPathsSections section, String imageName){
     String path = "";
     if (_config == null) {
-      await _loadConfiguration();
+      _loadConfiguration();
     }
     if(_config == null || _config!.isEmpty){
       return path;
