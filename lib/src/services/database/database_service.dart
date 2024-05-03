@@ -1,6 +1,6 @@
-import '../../user/models/user_model.dart';
+import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'database_models_enum.dart';
+import '../../enums/database_models_enum.dart';
 
 class DatabaseService {
   static final DatabaseService _instance = DatabaseService._internal();

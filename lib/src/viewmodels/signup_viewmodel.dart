@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../services/database/database_service.dart';
+import '../services/database/database_service.dart';
 
 class SignupViewModel extends ChangeNotifier {
   final DatabaseService databaseService;

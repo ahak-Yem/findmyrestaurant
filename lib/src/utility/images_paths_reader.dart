@@ -2,7 +2,7 @@ import 'dart:convert' show json;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:synchronized/synchronized.dart';
 
-import 'images_paths_sections_enum.dart';
+import '../enums/images_paths_sections_enum.dart';
 
 class ImagesPathsReader {
 
