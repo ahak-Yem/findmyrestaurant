@@ -27,9 +27,10 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       // Define your routes here
       initialRoute: '/',
-      routes: {
-        '/getstarted': (context) => const GetStartedView(), // Custom route for GetStartedView
-      },
+      home: const GetStartedView(),
+      // routes: {
+      //   '/getstarted': (context) => const GetStartedView(),
+      // },
     );
   }
 }
