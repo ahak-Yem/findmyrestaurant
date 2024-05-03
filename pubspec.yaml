@@ -37,6 +37,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/getstarted/
+    - assets/images/tutorials/
     - assets/imagesPaths.json
 
     
