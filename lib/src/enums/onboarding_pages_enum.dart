@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/app%20string/app_strings.dart';
 import 'package:findmyrestaurant/src/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/items/app_carousel_item.dart';
@@ -21,13 +22,13 @@ extension OnboardingPagesExtension on OnboardingPages{
     switch(this){
       case OnboardingPages.intro: 
       return AppCarouselItem(
-        headerText: 'Howdy & Welcome to Find my Restaurant App',
-        subText: "Here you will find a brief overview of the app and how to use it's wonderful features.",
+        headerText: AppStrings.welcomeMessage,
+        subText: AppStrings.welcomeSubMessage,
         buttons: [
           AppDynamicButton(
             color: AppColors.primaryColor,
             textColor: AppColors.appWhite,
-            text: 'Get Started',
+            text: AppStrings.getStartedBtn,
             onPressed: (){
               _carouselController.animateToPage(pageIndex + 1);
             }
