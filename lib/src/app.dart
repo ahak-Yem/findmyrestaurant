@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/app%20string/app_strings.dart';
 import 'package:findmyrestaurant/src/views/onboarding/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Find my Restaurant",
+      title: AppStrings.appTitle,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
       localizationsDelegates: const [
