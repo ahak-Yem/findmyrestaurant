@@ -1,6 +1,5 @@
 enum ImagesNames {
-  muesli,
-  tutorial_1
+  muesli
 }
 
 extension ImagesNamesExtension on ImagesNames {
@@ -8,8 +7,6 @@ extension ImagesNamesExtension on ImagesNames {
     switch (this) {
       case ImagesNames.muesli:
         return 'muesli';
-      case ImagesNames.tutorial_1:
-        return 'tutorial_image 1';
     }
   }
 }

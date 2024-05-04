@@ -2,9 +2,6 @@
     "imagePaths": {
       "getStarted": {
         "muesli": "assets/images/getstarted/muesli.png"
-      },
-      "tutorial": {
-        "tutorial_image 1": "assets/images/tutorials/tutorial_1.gif"
       }
     }
   }
