@@ -58,7 +58,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             items: viewModel.carouselItems,
             heightPercentage: 55,
             onPageChanged: (index) {
-              // TODO:Handle page change if needed
+              viewModel.onAppCarouselItemChanged(index);
             },
           );
         } else {
