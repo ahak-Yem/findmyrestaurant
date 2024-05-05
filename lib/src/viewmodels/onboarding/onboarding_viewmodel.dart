@@ -32,6 +32,10 @@ class OnboardingViewModel extends ChangeNotifier {
     return path;
   }
 
+  void onAppCarouselItemChanged(int pageIndex){
+    _updateCarouselItems(pageIndex);
+  }
+
   void _updateCarouselItems(int pageIndex) {
     carouselItems.clear();
 
