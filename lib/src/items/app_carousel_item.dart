@@ -27,7 +27,7 @@ class AppCarouselItem extends StatelessWidget {
               headerText,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 24,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -38,7 +38,7 @@ class AppCarouselItem extends StatelessWidget {
               subText,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 14,
               ),
             ),
           ),
