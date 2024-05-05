@@ -23,7 +23,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => OnboardingViewModel(),
+      create: (context) => viewModel,
       child: Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -53,7 +53,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget _buildCarousel() {
     return Consumer<OnboardingViewModel>(
       builder: (context, viewModel, _) {
-        if (viewModel.carouselItems.isNotEmpty) {
+        if (viewModel.carouselItems.isNotEmpty && viewModel.carouselItems != []) {
           return AppCarousel(
             items: viewModel.carouselItems,
             heightPercentage: 55,

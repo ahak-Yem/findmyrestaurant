@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       home: const OnboardingView(),
       // routes: {
-      //   '/getstarted': (context) => const GetStartedView(),
+      //   '/getstarted': (context) => const OnboardingView(),
       // },
     );
   }
