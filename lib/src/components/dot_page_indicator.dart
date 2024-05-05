@@ -1,4 +1,4 @@
-import 'package:findmyrestaurant/app%20styles/app_colors.dart';
+import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PageIndicator extends StatelessWidget {
