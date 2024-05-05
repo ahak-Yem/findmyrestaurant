@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items/app_carousel_item.dart';
@@ -8,6 +9,7 @@ import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_
 class OnboardingViewModel extends ChangeNotifier {
   String designImagePath = '';
   List<AppCarouselItem> carouselItems = [];
+  final AppCarouselController appCarouselController = AppCarouselController();
 
   OnboardingViewModel() {
     _loadImages();

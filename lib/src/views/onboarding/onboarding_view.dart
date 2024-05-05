@@ -56,6 +56,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         if (viewModel.carouselItems.isNotEmpty && viewModel.carouselItems != []) {
           return AppCarousel(
             items: viewModel.carouselItems,
+            pageController: viewModel.appCarouselController,
             heightPercentage: 55,
             onPageChanged: (index) {
               viewModel.onAppCarouselItemChanged(index);
