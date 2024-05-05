@@ -11,8 +11,7 @@ class OnboardingViewModel extends ChangeNotifier {
 
   OnboardingViewModel() {
     _loadImages();
-    carouselItems = [];
-    _updateCarouselItems(OnboardingPages.intro.pageIndex);
+    _setAllCarouselItems();
   }
 
   void _loadImages() {
@@ -42,6 +41,14 @@ class OnboardingViewModel extends ChangeNotifier {
     final page = OnboardingPagesExtension.getPageByIndex(pageIndex);
     carouselItems.add(page); 
 
+    notifyListeners();
+  }
+
+  void _setAllCarouselItems(){
+    carouselItems.clear();
+    for (var page in OnboardingPages.values) {
+      carouselItems.add(page.page);
+    }
     notifyListeners();
   }
 }
