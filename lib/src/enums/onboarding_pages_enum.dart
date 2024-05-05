@@ -37,4 +37,16 @@ extension OnboardingPagesExtension on OnboardingPages{
       );
     }
   }
+
+  static Widget getPageByIndex(int index) {
+    if (OnboardingPages.values.any((page) => page.pageIndex != index)) {
+      return Container();
+    }
+    switch(index) {
+      case 0:
+        return OnboardingPages.intro.page;
+      default:
+        return Container();
+    }
+  }
 }
