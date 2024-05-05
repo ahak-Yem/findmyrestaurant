@@ -19,8 +19,9 @@ class AppCarouselItem extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           Padding(
             padding: const EdgeInsets.fromLTRB(8, 4, 8, 12),
             child: Text(
