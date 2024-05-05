@@ -1,5 +1,5 @@
 import 'package:findmyrestaurant/app%20string/app_strings.dart';
-import 'package:findmyrestaurant/src/app_carousel_controller.dart';
+import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/items/app_carousel_item.dart';
 import 'package:flutter/material.dart';
