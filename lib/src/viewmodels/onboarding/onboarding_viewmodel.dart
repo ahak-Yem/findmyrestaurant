@@ -1,7 +1,7 @@
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:flutter/foundation.dart';
-import 'package:findmyrestaurant/src/utility/images_paths_reader.dart';
+import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +28,7 @@ class OnboardingViewModel extends ChangeNotifier {
   }
 
   String _getDesignImagePath() {
-    String path = ImagesPathsReader.instance.getImagePath(ImagesPathsSections.getStarted, ImagesNames.muesli.imageName);
+    String path = ImagesReaderService.instance.getImagePath(ImagesPathsSections.getStarted, ImagesNames.muesli.imageName);
     return path;
   }
 

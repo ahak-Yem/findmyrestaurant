@@ -4,19 +4,19 @@ import 'package:synchronized/synchronized.dart';
 
 import '../enums/images enums/images_paths_sections_enum.dart';
 
-class ImagesPathsReader {
+class ImagesReaderService {
 
   static bool _isLoading = false;
   static final _lock = Lock();
   static const String _jsonFileRoot = 'imagePaths';
   static const String _jsonFilePath = 'assets/imagesPaths.json';
 
-  ImagesPathsReader._();
+  ImagesReaderService._();
   
-  static ImagesPathsReader? _instance;
+  static ImagesReaderService? _instance;
 
-  static ImagesPathsReader get instance {
-    _instance ??= ImagesPathsReader._();
+  static ImagesReaderService get instance {
+    _instance ??= ImagesReaderService._();
     return _instance!;
   }
 
