@@ -22,9 +22,10 @@ class AppCarouselItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(8, 4, 8, 12),
             child: Text(
               headerText,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -32,9 +33,10 @@ class AppCarouselItem extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(8, 2, 8, 24),
             child: Text(
               subText,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 16,
               ),
