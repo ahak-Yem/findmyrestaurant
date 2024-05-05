@@ -7,7 +7,7 @@ import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_
 
 class OnboardingViewModel extends ChangeNotifier {
   String designImagePath = '';
-  late List<AppCarouselItem> carouselItems;
+  List<AppCarouselItem> carouselItems = [];
 
   OnboardingViewModel() {
     _loadImages();
