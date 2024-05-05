@@ -1,6 +1,4 @@
 import 'package:findmyrestaurant/src/components/dot_page_indicator.dart';
-import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
-import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items/app_carousel_item.dart';
 import 'package:flutter/material.dart';
 
@@ -24,14 +22,6 @@ class AppCarousel extends StatefulWidget {
 
 class _AppCarouselState extends State<AppCarousel> {
   int _currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    if(OnboardingPagesExtension.carouselController == null && widget.pageController is AppCarouselController){
-      OnboardingPagesExtension.setAppCarouselController(widget.pageController as AppCarouselController);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -14,6 +14,7 @@ class OnboardingViewModel extends ChangeNotifier {
   OnboardingViewModel() {
     _loadImages();
     _setAllCarouselItems();
+    OnboardingPagesExtension.setAppCarouselController(appCarouselController);
   }
 
   void _loadImages() {
