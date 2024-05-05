@@ -1,7 +1,8 @@
+import 'package:findmyrestaurant/src/items/app_carousel_item.dart';
 import 'package:flutter/material.dart';
 
 class AppCarousel extends StatefulWidget {
-  final List<Widget> items;
+  final List<AppCarouselItem> items;
   final double heightPercentage;
   final Function(int) onPageChanged;
 
