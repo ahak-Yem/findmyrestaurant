@@ -17,8 +17,13 @@ enum OnboardingPages {
   final int pageIndex;
 }
 
-extension OnboardingPagesExtension on OnboardingPages {
-  static final AppCarouselController<int> _carouselController = AppCarouselController<int>();
+extension OnboardingPagesExtension on OnboardingPages {  
+  static AppCarouselController? _carouselController;
+  static AppCarouselController? get  carouselController => _carouselController;
+
+  static void setAppCarouselController(AppCarouselController controller) {
+    _carouselController = controller;
+  }
 
   AppCarouselItem get page {
     switch(this) {
@@ -32,7 +37,7 @@ extension OnboardingPagesExtension on OnboardingPages {
               textColor: AppColors.appWhite,
               text: AppStrings.getStartedBtn,
               onPressed: () {
-                _carouselController.animateToPage(pageIndex + 1);
+                _carouselController?.animateToPage(pageIndex + 1);
               }
             )
           ],
@@ -47,7 +52,7 @@ extension OnboardingPagesExtension on OnboardingPages {
               textColor: AppColors.appWhite,
               text: "Continue",
               onPressed: () {
-                _carouselController.animateToPage(pageIndex + 1);
+                _carouselController?.animateToPage(pageIndex + 1);
               }
             )
           ],
