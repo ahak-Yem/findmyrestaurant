@@ -18,7 +18,6 @@ class AppCarousel extends StatefulWidget {
 }
 
 class _AppCarouselState extends State<AppCarousel> {
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,9 @@ class _AppCarouselState extends State<AppCarousel> {
           child: PageView.builder(
             itemCount: widget.items.length,
             onPageChanged: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
+              // setState(() {
+                // TODO: Do I need it?
+              // });
               widget.onPageChanged(index);
             },
             itemBuilder: (context, index) {
