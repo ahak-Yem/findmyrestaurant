@@ -1,4 +1,5 @@
 import 'dart:convert' show json;
+import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:synchronized/synchronized.dart';
 
@@ -40,7 +41,7 @@ class ImagesReaderService {
     }
   }
 
-  String getImagePath(ImagesPathsSections section, String imageName){
+  String getImagePath(ImagesPathsSections section, ImagesNames imageName){
     String path = "";
     if (_config == null) {
       _loadConfiguration();
@@ -48,7 +49,7 @@ class ImagesReaderService {
     if(_config == null || _config!.isEmpty){
       return path;
     }
-    path = _config![_jsonFileRoot][section.sectionString][imageName];
+    path = _config![_jsonFileRoot][section.sectionString][imageName.imageNameString];
     return path;
   }
 }
