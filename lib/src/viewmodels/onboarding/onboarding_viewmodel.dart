@@ -7,6 +7,7 @@ import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
 
 class OnboardingViewModel extends ChangeNotifier {
+  List<ImagesNames> imageNames = [];
   String designImagePath = '';
   List<AppCarouselItem> carouselItems = [];
   final AppCarouselController appCarouselController = AppCarouselController();
@@ -19,7 +20,8 @@ class OnboardingViewModel extends ChangeNotifier {
 
   void _loadImages() {
     try {
-      designImagePath = _getDesignImagePath();
+      imageNames = ImagesNames.values;
+      designImagePath = _getDesignImagePath(imageNames[0]);
 
       notifyListeners();
     } catch (e) {
@@ -29,13 +31,14 @@ class OnboardingViewModel extends ChangeNotifier {
     }
   }
 
-  String _getDesignImagePath() {
-    String path = ImagesReaderService.instance.getImagePath(ImagesPathsSections.getStarted, ImagesNames.muesli.imageName);
+  String _getDesignImagePath(ImagesNames imageName) {
+    const ImagesPathsSections imagesSection = ImagesPathsSections.getStarted;
+    String path = ImagesReaderService.instance.getImagePath(imagesSection, imageName);
     return path;
   }
 
   void onAppCarouselItemChanged(int pageIndex){
-    //TODO: Set custom behaviour for changing pages
+    designImagePath = _getDesignImagePath(imageNames[pageIndex]);
     notifyListeners();
   }
 
