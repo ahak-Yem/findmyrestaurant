@@ -1,7 +1,7 @@
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
-import 'package:findmyrestaurant/src/items/app_carousel_item.dart';
+import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';

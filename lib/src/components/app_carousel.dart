@@ -1,5 +1,5 @@
 import 'package:findmyrestaurant/src/components/dot_page_indicator.dart';
-import 'package:findmyrestaurant/src/items/app_carousel_item.dart';
+import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
 import 'package:flutter/material.dart';
 
 class AppCarousel extends StatefulWidget {
