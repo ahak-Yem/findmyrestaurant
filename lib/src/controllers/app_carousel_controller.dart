@@ -11,8 +11,7 @@ class AppCarouselController extends PageController {
           keepPage: keepPage,
         );
 
-  @override
-  Future<void> animateToPage(int page, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.ease}) {
+  Future<void> _animateToPage(int page, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.ease}) {
     if (hasClients) {
       return super.animateToPage(
         page,
@@ -21,5 +20,15 @@ class AppCarouselController extends PageController {
       );
     }
     return Future(() => null);
+  }
+
+  void goNext(int currentPage) {
+      _animateToPage(currentPage + 1);
+  }
+
+  void goBack(int currentPage) {
+    if (hasClients && page != null) {
+      _animateToPage(currentPage -1);
+    }
   }
 }
