@@ -38,7 +38,8 @@ class OnboardingViewModel extends ChangeNotifier {
   }
 
   void onAppCarouselItemChanged(int pageIndex){
-    designImagePath = _getDesignImagePath(imageNames[pageIndex]);
+    int imageIndex = pageIndex % imageNames.length;
+    designImagePath = _getDesignImagePath(imageNames[imageIndex]);
     notifyListeners();
   }
 
