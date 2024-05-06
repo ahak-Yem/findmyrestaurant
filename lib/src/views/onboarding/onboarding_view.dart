@@ -57,7 +57,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           return AppCarousel(
             items: viewModel.carouselItems,
             pageController: viewModel.appCarouselController,
-            heightPercentage: 55,
+            heightPercentage: 50,
             onPageChanged: (index) {
               viewModel.onAppCarouselItemChanged(index);
             },

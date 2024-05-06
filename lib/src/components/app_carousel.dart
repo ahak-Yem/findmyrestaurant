@@ -39,18 +39,13 @@ class _AppCarouselState extends State<AppCarousel> {
               widget.onPageChanged(index);
             },
             itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  widget.items[index],
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                  PageIndicator(
-                    currentPage: _currentIndex,
-                    pageCount: widget.items.length,
-                  ),
-                ],
-              );
+              return widget.items[index];
             },
           ),
+        ),
+        PageIndicator(
+          currentPage: _currentIndex,
+          pageCount: widget.items.length,
         ),
       ],
     );
