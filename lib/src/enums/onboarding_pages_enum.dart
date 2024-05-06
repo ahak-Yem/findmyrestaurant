@@ -8,7 +8,7 @@ enum OnboardingPages {
   intro(
     pageIndex: 0
   ),
-  secondTestView(
+  getStarted(
     pageIndex: 1
   );
 
@@ -42,15 +42,15 @@ extension OnboardingPagesExtension on OnboardingPages {
             ),
           ],
         );
-      case OnboardingPages.secondTestView: 
+      case OnboardingPages.getStarted: 
         return AppCarouselItem(
-          headerText: "Second Test View Header",
-          subText: "This is the second test view subtext.",
+          headerText: AppStrings.signupHeader,
+          subText: AppStrings.signupText,
           buttons: [
             AppDynamicButton(
               color: AppColors.primaryColor,
               textColor: AppColors.appWhite,
-              text: "Continue",
+              text: AppStrings.signupBtn,
               onPressed: () {
                 _carouselController?.goNext(pageIndex);
               }
@@ -80,7 +80,7 @@ extension OnboardingPagesExtension on OnboardingPages {
       case 0:
         return OnboardingPages.intro.page;
       case 1:
-        return OnboardingPages.secondTestView.page;
+        return OnboardingPages.getStarted.page;
       default:
         return emptyItem;
     }
