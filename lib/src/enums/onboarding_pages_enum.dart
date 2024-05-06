@@ -37,7 +37,7 @@ extension OnboardingPagesExtension on OnboardingPages {
               textColor: AppColors.appWhite,
               text: AppStrings.getStartedBtn,
               onPressed: () {
-                _carouselController?.animateToPage(pageIndex + 1);
+                _carouselController?.goNext(pageIndex);
               }
             ),
           ],
@@ -52,15 +52,15 @@ extension OnboardingPagesExtension on OnboardingPages {
               textColor: AppColors.appWhite,
               text: "Continue",
               onPressed: () {
-                _carouselController?.animateToPage(pageIndex + 1);
+                _carouselController?.goNext(pageIndex);
               }
             ),
             AppDynamicButton(
               color: AppColors.appWhite,
               textColor: AppColors.primaryColor,
-              text: AppStrings.goBack,
+              text: AppStrings.goBackBtn,
               onPressed: () {
-                _carouselController?.animateToPage(pageIndex - 1);
+                _carouselController?.goBack(pageIndex);
               }
             ),
           ],
