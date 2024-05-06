@@ -1,3 +1,5 @@
+import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/getstarted_page.dart';
+import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/intro_page.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
@@ -28,43 +30,9 @@ extension OnboardingPagesExtension on OnboardingPages {
   AppCarouselItem get page {
     switch(this) {
       case OnboardingPages.intro: 
-        return AppCarouselItem(
-          headerText: AppStrings.welcomeMessage,
-          subText: AppStrings.welcomeSubMessage,
-          buttons: [
-            AppDynamicButton(
-              color: AppColors.primaryColor,
-              textColor: AppColors.appWhite,
-              text: AppStrings.getStartedBtn,
-              onPressed: () {
-                _carouselController?.goNext(pageIndex);
-              }
-            ),
-          ],
-        );
+        return IntroPage.page;
       case OnboardingPages.getStarted: 
-        return AppCarouselItem(
-          headerText: AppStrings.signupHeader,
-          subText: AppStrings.signupText,
-          buttons: [
-            AppDynamicButton(
-              color: AppColors.primaryColor,
-              textColor: AppColors.appWhite,
-              text: AppStrings.signupBtn,
-              onPressed: () {
-                _carouselController?.goNext(pageIndex);
-              }
-            ),
-            AppDynamicButton(
-              color: AppColors.appWhite,
-              textColor: AppColors.primaryColor,
-              text: AppStrings.goBackBtn,
-              onPressed: () {
-                _carouselController?.goBack(pageIndex);
-              }
-            ),
-          ],
-        );
+        return GetstartedPage.page;
     }
   }
 
