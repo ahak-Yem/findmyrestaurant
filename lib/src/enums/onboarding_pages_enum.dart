@@ -39,7 +39,7 @@ extension OnboardingPagesExtension on OnboardingPages {
               onPressed: () {
                 _carouselController?.animateToPage(pageIndex + 1);
               }
-            )
+            ),
           ],
         );
       case OnboardingPages.secondTestView: 
@@ -54,7 +54,15 @@ extension OnboardingPagesExtension on OnboardingPages {
               onPressed: () {
                 _carouselController?.animateToPage(pageIndex + 1);
               }
-            )
+            ),
+            AppDynamicButton(
+              color: AppColors.appWhite,
+              textColor: AppColors.primaryColor,
+              text: AppStrings.goBack,
+              onPressed: () {
+                _carouselController?.animateToPage(pageIndex - 1);
+              }
+            ),
           ],
         );
     }
