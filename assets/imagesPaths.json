@@ -1,7 +1,11 @@
 {
     "imagePaths": {
       "getStarted": {
-        "muesli": "assets/images/getstarted/muesli.png"
+        "muesli" : "assets/images/getstarted/muesli.png",
+        "egg sandwish" : "assets/images/getstarted/egg sandwish.png",
+        "salad" : "assets/images/getstarted/salad.png",
+        "salmon eggs" : "assets/images/getstarted/salmon eggs.png",
+        "tomatoes pesto" : "assets/images/getstarted/tomatoes pesto.png"
       }
     }
   }
