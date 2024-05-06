@@ -7,7 +7,7 @@ enum ImagesNames {
 }
 
 extension ImagesNamesExtension on ImagesNames {
-  String get imageName {
+  String get imageNameString {
     switch (this) {
       case ImagesNames.muesli:
         return 'muesli';
