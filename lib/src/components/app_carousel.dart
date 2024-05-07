@@ -43,9 +43,12 @@ class _AppCarouselState extends State<AppCarousel> {
             },
           ),
         ),
-        PageIndicator(
-          currentPage: _currentIndex,
-          pageCount: widget.items.length,
+        Container(
+          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+          child: PageIndicator(
+            currentPage: _currentIndex,
+            pageCount: widget.items.length,
+          ),
         ),
       ],
     );
