@@ -17,7 +17,7 @@ class IntroPage {
           textColor: AppColors.appWhite,
           text: AppStrings.getStartedBtn,
           onPressed: () {
-            OnboardingPagesExtension.carouselController?.goNext(OnboardingPages.intro.pageIndex);
+            OnboardingPagesExtension.carouselController?.goNext(currentPage: OnboardingPages.intro.pageIndex);
           },
         ),
       ],

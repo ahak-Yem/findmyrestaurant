@@ -17,7 +17,7 @@ class GetstartedPage {
           textColor: AppColors.appWhite,
           text: AppStrings.signupBtn,
           onPressed: () {
-            OnboardingPagesExtension.carouselController?.goNext(OnboardingPages.getStarted.pageIndex);
+            OnboardingPagesExtension.carouselController?.goNext(currentPage: OnboardingPages.getStarted.pageIndex);
           },
         ),
         AppDynamicButton(
@@ -25,7 +25,7 @@ class GetstartedPage {
           textColor: AppColors.primaryColor,
           text: AppStrings.goBackBtn,
           onPressed: () {
-            OnboardingPagesExtension.carouselController?.goBack(OnboardingPages.getStarted.pageIndex);
+            OnboardingPagesExtension.carouselController?.goBack(currentPage: OnboardingPages.getStarted.pageIndex);
           },
         ),
       ],

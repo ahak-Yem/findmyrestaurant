@@ -22,11 +22,11 @@ class AppCarouselController extends PageController {
     return Future(() => null);
   }
 
-  void goNext(int currentPage) {
+  void goNext({ required int currentPage}) {
       _animateToPage(currentPage + 1);
   }
 
-  void goBack(int currentPage) {
+  void goBack({required int currentPage}) {
     if (hasClients && page != null) {
       _animateToPage(currentPage -1);
     }
