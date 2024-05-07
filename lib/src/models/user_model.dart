@@ -16,5 +16,8 @@ class UserModel {
   @HiveField(3)
   String? profilePicture;
 
-  UserModel(this.id, {required this.name, required this.email, this.profilePicture});
+  @HiveField(4)
+  String password;
+
+  UserModel(this.id, {required this.name, required this.email, required this.password, this.profilePicture});
 }
