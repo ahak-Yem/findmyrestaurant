@@ -12,6 +12,23 @@ class SignupPage {
     return AppCarouselItem(
       headerText: AppStrings.signupHeader,
       subText: AppStrings.signupSubtext,
+      textFields: const [
+        TextField(
+          decoration: InputDecoration(
+            labelText: AppStrings.nameFieldLabel,
+          ),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: AppStrings.emailFieldLabel,
+          ),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: AppStrings.passwordFieldLabel,
+          ),
+        ),
+      ],
       buttons: [
         AppDynamicButton(
           color: AppColors.primaryColor,
@@ -28,23 +45,6 @@ class SignupPage {
           onPressed: () {
             OnboardingPagesExtension.carouselController?.goBack(currentPage: OnboardingPages.signUp.pageIndex);
           },
-        ),
-      ],
-      textFields: const [
-        TextField(
-          decoration: InputDecoration(
-            labelText: AppStrings.nameFieldLabel,
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: AppStrings.emailFieldLabel,
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: AppStrings.passwordFieldLabel,
-          ),
         ),
       ],
     );
