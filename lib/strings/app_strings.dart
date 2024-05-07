@@ -3,10 +3,16 @@ class AppStrings {
   static const String welcomeMessage = "Welcome to Find my Restaurant!";
   static const String welcomeSubMessage = "Here you will find a brief overview of the app and how to use it's wonderful features.";
   static const String getStartedBtn = "Get Started";
-  static const String signupHeader = "Sign Up to Get Started!";
-  static const String signupText = "Click on signup and fill all the required fields. We don't collect any data. All personal data will be stored locally on your device and will be used for the app functionality";
+  static const String getStartedHeader = "Sign Up to Get Started!";
+  static const String getStartedSubtext = "Click on signup and fill all the required fields. We don't collect any data. All personal data will be stored locally on your device and will be used for the app functionality";
   static const String signupBtn = "Sign Up";
   static const String goBackBtn = "Go Back";
+  static const String signupHeader = "";
+  static const String signupSubtext = "";
+  static const String nameFieldLabel = "Enter your name";
+  static const String emailFieldLabel = "Enter your Email Address";
+  static const String passwordFieldLabel = "Create a Password";
+  static const String confirmPasswordFieldLabel = "Confirm Your Password";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';

@@ -9,8 +9,8 @@ class GetstartedPage {
 
   static AppCarouselItem get page {
     return AppCarouselItem(
-      headerText: AppStrings.signupHeader,
-      subText: AppStrings.signupText,
+      headerText: AppStrings.getStartedHeader,
+      subText: AppStrings.getStartedSubtext,
       buttons: [
         AppDynamicButton(
           color: AppColors.primaryColor,
