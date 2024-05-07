@@ -11,7 +11,7 @@ class SignupPage {
   static AppCarouselItem get page {
     return AppCarouselItem(
       headerText: AppStrings.signupHeader,
-      subText: AppStrings.signupText,
+      subText: AppStrings.signupSubtext,
       buttons: [
         AppDynamicButton(
           color: AppColors.primaryColor,
@@ -33,17 +33,17 @@ class SignupPage {
       textFields: const [
         TextField(
           decoration: InputDecoration(
-            labelText: 'Name',
+            labelText: AppStrings.nameFieldLabel,
           ),
         ),
         TextField(
           decoration: InputDecoration(
-            labelText: 'Email',
+            labelText: AppStrings.emailFieldLabel,
           ),
         ),
         TextField(
           decoration: InputDecoration(
-            labelText: 'Password',
+            labelText: AppStrings.passwordFieldLabel,
           ),
         ),
       ],
