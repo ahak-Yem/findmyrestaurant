@@ -43,8 +43,8 @@ class AppCarouselItem extends StatelessWidget {
               ),
             ),
           ),
-          if (buttons != null) ...buttons!,
           if (textFields != null) ...textFields!,
+          if (buttons != null) ...buttons!,
         ],
       ),
     );
