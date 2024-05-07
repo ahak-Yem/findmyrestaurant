@@ -48,6 +48,7 @@ class AppCarouselItem extends StatelessWidget {
             ),
           ],
           if (textFields != null) ...textFields!,
+          const SizedBox(height: 16),
           if (buttons != null) ...buttons!,
         ],
       ),
