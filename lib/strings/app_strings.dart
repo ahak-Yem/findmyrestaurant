@@ -7,8 +7,8 @@ class AppStrings {
   static const String getStartedSubtext = "Click on signup and fill all the required fields. We don't collect any data. All personal data will be stored locally on your device and will be used for the app functionality";
   static const String signupBtn = "Sign Up";
   static const String goBackBtn = "Go Back";
-  static const String signupHeader = "";
-  static const String signupSubtext = "";
+  static const String signupHeader = "Sign up form";
+  static const String signupSubtext = "Please fill all fields to sign up";
   static const String nameFieldLabel = "Enter your name";
   static const String emailFieldLabel = "Enter your Email Address";
   static const String passwordFieldLabel = "Create a Password";
