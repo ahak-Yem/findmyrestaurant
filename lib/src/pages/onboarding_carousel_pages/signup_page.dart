@@ -29,6 +29,11 @@ class SignupPage {
             labelText: AppStrings.passwordFieldLabel,
           ),
         ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: AppStrings.confirmPasswordFieldLabel,
+          ),
+        ),
       ],
       buttons: [
         AppDynamicButton(
