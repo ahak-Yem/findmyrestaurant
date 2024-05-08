@@ -25,6 +25,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
