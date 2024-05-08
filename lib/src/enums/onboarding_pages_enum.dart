@@ -40,10 +40,8 @@ extension OnboardingPagesExtension on OnboardingPages {
   }
 
   static AppCarouselItem getPageByIndex(int index) {
-    AppCarouselItem emptyItem = const AppCarouselItem(
-      headerText: "",
-      subText: "",
-    );
+    AppCarouselItem emptyItem = const AppCarouselItem(page: OnboardingPages.intro,);
+
     if (!OnboardingPages.values.any((page) => page.pageIndex == index)) {
       return emptyItem;
     }

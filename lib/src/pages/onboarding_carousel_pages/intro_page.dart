@@ -9,6 +9,7 @@ class IntroPage {
 
   static AppCarouselItem get page {
     return AppCarouselItem(
+      page: OnboardingPages.intro,
       headerText: AppStrings.welcomeMessage,
       subText: AppStrings.welcomeSubMessage,
       buttons: [

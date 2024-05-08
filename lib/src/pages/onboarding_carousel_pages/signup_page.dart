@@ -10,6 +10,7 @@ class SignupPage {
 
   static AppCarouselItem get page {
     return AppCarouselItem(
+      page: OnboardingPages.signUp,
       headerText: AppStrings.signupHeader,
       subText: AppStrings.signupSubtext,
       textFields: const [

@@ -9,6 +9,7 @@ class GetstartedPage {
 
   static AppCarouselItem get page {
     return AppCarouselItem(
+      page: OnboardingPages.getStarted,
       headerText: AppStrings.getStartedHeader,
       subText: AppStrings.getStartedSubtext,
       buttons: [
