@@ -8,31 +8,42 @@ import 'package:flutter/material.dart';
 class SignupPage {
   SignupPage._();
 
+  static final TextEditingController nameController = TextEditingController();
+  static final TextEditingController emailController = TextEditingController();
+  static final TextEditingController passwordController = TextEditingController();
+  static final TextEditingController confirmPasswordController = TextEditingController();
+
   static AppCarouselItem get page {
     return AppCarouselItem(
       page: OnboardingPages.signUp,
       headerText: AppStrings.signupHeader,
       subText: AppStrings.signupSubtext,
-      textFields: const [
+      textFields: [
         TextField(
-          decoration: InputDecoration(
+          controller: nameController,
+          decoration: const InputDecoration(
             labelText: AppStrings.nameFieldLabel,
           ),
         ),
         TextField(
-          decoration: InputDecoration(
+          controller: emailController,
+          decoration: const InputDecoration(
             labelText: AppStrings.emailFieldLabel,
           ),
         ),
         TextField(
-          decoration: InputDecoration(
+            controller: passwordController,
+          decoration: const InputDecoration(
             labelText: AppStrings.passwordFieldLabel,
           ),
+          obscureText: true,
         ),
         TextField(
-          decoration: InputDecoration(
+          controller: confirmPasswordController,
+          decoration: const InputDecoration(
             labelText: AppStrings.confirmPasswordFieldLabel,
           ),
+          obscureText: true,
         ),
       ],
       buttons: [
@@ -42,6 +53,10 @@ class SignupPage {
           text: AppStrings.signupBtn,
           onPressed: () {
             OnboardingPagesExtension.carouselController?.goNext(currentPage: OnboardingPages.signUp.pageIndex);
+            final String name = nameController.text;
+            final String email = emailController.text;
+            final String password = passwordController.text;
+            final String confirmPassword = confirmPasswordController.text;
           },
         ),
         AppDynamicButton(
