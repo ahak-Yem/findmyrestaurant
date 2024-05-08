@@ -16,9 +16,10 @@ class AppCarouselItem extends StatelessWidget {
     this.buttons,
     this.textFields,
   }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
+    final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return ListView(
       children: [
         Container(
@@ -60,13 +61,17 @@ class AppCarouselItem extends StatelessWidget {
                 child: textField,
               )),
               const SizedBox(height: 36),
-              if (buttons != null) ...buttons!,
+              if (buttons != null)...buttons!.map((button) => Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                child: button,
+              )),
+              const SizedBox(height: 16),      
             ],
           ),
         ),
-        if(page == OnboardingPages.signUp)...
+        if(page == OnboardingPages.signUp && keyboardHeight > 0)...
         [
-          SizedBox(height: MediaQuery.of(context).size.height * 0.3,),
+          SizedBox(height: keyboardHeight),
         ]
       ],
     );
