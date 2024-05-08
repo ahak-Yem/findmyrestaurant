@@ -55,8 +55,11 @@ class AppCarouselItem extends StatelessWidget {
                   ),
                 ),
               ],
-              if (textFields != null) ...textFields!,
-              const SizedBox(height: 16),
+              if (textFields != null)...textFields!.map((textField) => Padding(
+                padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                child: textField,
+              )),
+              const SizedBox(height: 36),
               if (buttons != null) ...buttons!,
             ],
           ),
