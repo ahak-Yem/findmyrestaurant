@@ -52,11 +52,12 @@ class SignupPage {
           textColor: AppColors.appWhite,
           text: AppStrings.signupBtn,
           onPressed: () {
-            OnboardingPagesExtension.carouselController?.goNext(currentPage: OnboardingPages.signUp.pageIndex);
             final String name = nameController.text;
             final String email = emailController.text;
             final String password = passwordController.text;
             final String confirmPassword = confirmPasswordController.text;
+            OnboardingPagesExtension.carouselController?.handleSignup(name: name, email: email, password: password, confirmPassword: confirmPassword);
+            OnboardingPagesExtension.carouselController?.goNext(currentPage: OnboardingPages.signUp.pageIndex);
           },
         ),
         AppDynamicButton(
