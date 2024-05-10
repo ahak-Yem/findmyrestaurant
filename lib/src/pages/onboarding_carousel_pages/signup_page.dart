@@ -1,4 +1,5 @@
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
+import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 class SignupPage {
   SignupPage._();
 
+  static final AppCarouselController appCarouselController = AppCarouselController();
   static final TextEditingController nameController = TextEditingController();
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController = TextEditingController();
@@ -32,7 +34,7 @@ class SignupPage {
           ),
         ),
         TextField(
-            controller: passwordController,
+          controller: passwordController,
           decoration: const InputDecoration(
             labelText: AppStrings.passwordFieldLabel,
           ),
@@ -52,12 +54,7 @@ class SignupPage {
           textColor: AppColors.appWhite,
           text: AppStrings.signupBtn,
           onPressed: () {
-            final String name = nameController.text;
-            final String email = emailController.text;
-            final String password = passwordController.text;
-            final String confirmPassword = confirmPasswordController.text;
-            OnboardingPagesExtension.carouselController?.handleSignup(name: name, email: email, password: password, confirmPassword: confirmPassword);
-            OnboardingPagesExtension.carouselController?.goNext(currentPage: OnboardingPages.signUp.pageIndex);
+            _checkSignup();
           },
         ),
         AppDynamicButton(
@@ -65,10 +62,29 @@ class SignupPage {
           textColor: AppColors.primaryColor,
           text: AppStrings.goBackBtn,
           onPressed: () {
-            OnboardingPagesExtension.carouselController?.goBack(currentPage: OnboardingPages.signUp.pageIndex);
+            appCarouselController.goBack(currentPage: OnboardingPages.signUp.pageIndex);
           },
         ),
       ],
     );
+  }
+
+  static void _checkSignup() {
+    final String name = nameController.text;
+    final String email = emailController.text;
+    final String password = passwordController.text;
+    final String confirmPassword = confirmPasswordController.text;
+    final Map<bool, String> validationResult = appCarouselController.validateSignup(
+      name: name,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+    );
+    if (!validationResult.keys.first) {
+      // TODO:Handle validation error
+    } 
+    else {
+      appCarouselController.goNext(currentPage: OnboardingPages.signUp.pageIndex);
+    }
   }
 }
