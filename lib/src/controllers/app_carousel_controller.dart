@@ -33,7 +33,7 @@ class AppCarouselController extends PageController {
     }
   }
 
-  Map<bool, String> handleSignup({
+  Map<bool, String> validateSignup({
     required String name,
     required String email,
     required String password,
