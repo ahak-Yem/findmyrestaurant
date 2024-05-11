@@ -22,7 +22,7 @@ class _ShowPasswordButtonState extends State<ShowPasswordButton> {
         setState(() {
           _obscureText = !_obscureText;
         });
-        widget.onPressed(_obscureText); // Pass the current visibility state
+        widget.onPressed(_obscureText);
       },
     );
   }
