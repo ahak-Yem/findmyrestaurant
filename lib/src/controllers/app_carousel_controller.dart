@@ -43,11 +43,13 @@ class AppCarouselController extends PageController {
       return {false: AppStrings.emptyFieldsErrorText};
     }
 
-    name.trim().toLowerCase();
-    email.trim().toLowerCase();
-    password.trim().toLowerCase();
-    confirmPassword = confirmPassword.trim().toLowerCase(); 
-
+    name = name.trim();
+    email = email.trim().toLowerCase();
+    password = password.trim();
+    confirmPassword = confirmPassword = confirmPassword.trim(); 
+    
+    //TODO: Try this later:
+    // r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
     RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     
     if (!emailRegExp.hasMatch(email)) {
