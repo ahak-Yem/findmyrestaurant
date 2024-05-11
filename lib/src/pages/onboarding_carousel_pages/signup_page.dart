@@ -1,4 +1,5 @@
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
+import 'package:findmyrestaurant/src/components/text%20fields/password_text_field.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
@@ -33,19 +34,13 @@ class SignupPage {
             labelText: AppStrings.emailFieldLabel,
           ),
         ),
-        TextField(
+        PasswordTextField(
           controller: passwordController,
-          decoration: const InputDecoration(
-            labelText: AppStrings.passwordFieldLabel,
-          ),
-          obscureText: true,
+          labelText: AppStrings.passwordFieldLabel,
         ),
-        TextField(
+        PasswordTextField(
           controller: confirmPasswordController,
-          decoration: const InputDecoration(
-            labelText: AppStrings.confirmPasswordFieldLabel,
-          ),
-          obscureText: true,
+          labelText: AppStrings.confirmPasswordFieldLabel,
         ),
       ],
       buttons: [
@@ -74,6 +69,10 @@ class SignupPage {
     final String email = emailController.text;
     final String password = passwordController.text;
     final String confirmPassword = confirmPasswordController.text;
+    
+    if(appCarouselController == null){
+      return;
+    }
 
     final Map<bool, String> validationResult = appCarouselController!.validateSignup(
       name: name,
@@ -81,9 +80,6 @@ class SignupPage {
       password: password,
       confirmPassword: confirmPassword,
     );
-    if(appCarouselController == null){
-      return;
-    }
     if (!validationResult.keys.first) {
       // TODO:Handle validation error
     } 
