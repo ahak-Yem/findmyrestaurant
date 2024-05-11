@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class SignupPage {
   SignupPage._();
 
-  static final AppCarouselController appCarouselController = AppCarouselController();
+  static final AppCarouselController? appCarouselController = OnboardingPagesExtension.carouselController;
   static final TextEditingController nameController = TextEditingController();
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController = TextEditingController();
@@ -62,7 +62,7 @@ class SignupPage {
           textColor: AppColors.primaryColor,
           text: AppStrings.goBackBtn,
           onPressed: () {
-            appCarouselController.goBack(currentPage: OnboardingPages.signUp.pageIndex);
+            appCarouselController?.goBack(currentPage: OnboardingPages.signUp.pageIndex);
           },
         ),
       ],
@@ -74,17 +74,21 @@ class SignupPage {
     final String email = emailController.text;
     final String password = passwordController.text;
     final String confirmPassword = confirmPasswordController.text;
-    final Map<bool, String> validationResult = appCarouselController.validateSignup(
+
+    final Map<bool, String> validationResult = appCarouselController!.validateSignup(
       name: name,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
     );
+    if(appCarouselController == null){
+      return;
+    }
     if (!validationResult.keys.first) {
       // TODO:Handle validation error
     } 
     else {
-      appCarouselController.goNext(currentPage: OnboardingPages.signUp.pageIndex);
+      appCarouselController?.goNext(currentPage: OnboardingPages.signUp.pageIndex);
     }
   }
 }
