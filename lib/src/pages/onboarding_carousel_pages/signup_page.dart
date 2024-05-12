@@ -49,7 +49,7 @@ class SignupPage {
           textColor: AppColors.appWhite,
           text: AppStrings.signupBtn,
           onPressed: () {
-            _checkSignup();
+            appCarouselController?.goNext(currentPage: OnboardingPages.signUp.pageIndex);
           },
         ),
         AppDynamicButton(
@@ -62,29 +62,5 @@ class SignupPage {
         ),
       ],
     );
-  }
-
-  static void _checkSignup() {
-    final String name = nameController.text;
-    final String email = emailController.text;
-    final String password = passwordController.text;
-    final String confirmPassword = confirmPasswordController.text;
-    
-    if(appCarouselController == null){
-      return;
-    }
-
-    final Map<bool, String> validationResult = appCarouselController!.validateSignup(
-      name: name,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-    );
-    if (!validationResult.keys.first) {
-      // TODO:Handle validation error
-    } 
-    else {
-      appCarouselController?.goNext(currentPage: OnboardingPages.signUp.pageIndex);
-    }
   }
 }

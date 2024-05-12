@@ -39,11 +39,16 @@ class OnboardingViewModel extends ChangeNotifier {
   }
 
   void onAppCarouselItemChanged(int pageIndex){
+    //TODO Find a better solution
+    if(OnboardingPages.signUp.pageIndex + 1 == pageIndex){
+      Map<bool, String> isValid = _validateSignUp();
+      if(!isValid.keys.first){
+        appCarouselController.goBack(currentPage: pageIndex);
+        return;
+      }
+    }
     int imageIndex = pageIndex % imageNames.length;
     designImagePath = _getDesignImagePath(imageNames[imageIndex]);
-    if(OnboardingPages.signUp.pageIndex + 1 == pageIndex){
-      _validateSignUp();
-    }
     notifyListeners();
   }
 
