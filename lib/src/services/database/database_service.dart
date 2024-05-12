@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/enums/user_model_keys_enum.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/services/device%20info/device_info_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -22,17 +23,17 @@ class DatabaseService {
     _saveUserID(userId);
   }
 
-  void _saveUserID(String userId) {
-    Box userBox = _userDatabaseModelEnum.box as Box;
-    String key = _userDatabaseModelEnum.keysEnum.id.key;
+  void _saveUserID(String userId) async{
+    Box userBox = await _userDatabaseModelEnum.box;
+    String key = UserModelKeysEnum.id.key;
     if (userBox.get(key) == null) {
       userBox.put(key, userId);
     }
   }
 
-  String? readUserID() {
-    Box userBox = _userDatabaseModelEnum.box as Box;
-    String key = _userDatabaseModelEnum.keysEnum.id.key;
+  Future<String?> readUserID() async{
+    Box userBox = await _userDatabaseModelEnum.box;
+    String key = UserModelKeysEnum.id.key;
     return userBox.get(key);
   }
 
