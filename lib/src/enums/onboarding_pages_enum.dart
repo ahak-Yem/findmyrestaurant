@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/extra_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/getstarted_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/intro_page.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
@@ -13,6 +14,9 @@ enum OnboardingPages {
   ),
   signUp(
     pageIndex: 2,
+  ),
+  extra(
+    pageIndex: 3,
   );
 
   const OnboardingPages({required this.pageIndex});
@@ -36,6 +40,8 @@ extension OnboardingPagesExtension on OnboardingPages {
         return GetstartedPage.page;
       case OnboardingPages.signUp:
         return SignupPage.page; 
+      case OnboardingPages.extra:
+        return ExtraPage.page;
     }
   }
 
@@ -52,6 +58,9 @@ extension OnboardingPagesExtension on OnboardingPages {
         return OnboardingPages.getStarted.page;
       case 2:
         return OnboardingPages.signUp.page;
+      // Add case for the new page
+      case 3:
+        return OnboardingPages.extra.page;
       default:
         return emptyItem;
     }
