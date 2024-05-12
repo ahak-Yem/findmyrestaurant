@@ -18,7 +18,7 @@ class AppStrings {
   static const String passwordLengthErrorText = "Password should be at least 8 characters long.";
   static const String passwordUnmatchErrorText = "The entered passwords do not match.";
   static const String signupSuccessfulText = "Signup successful.";
-  
+  static const String dismissString = "Dismiss";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
