@@ -1,10 +1,14 @@
 import 'dart:async';
 import 'package:findmyrestaurant/src/components/app_toast.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
+import 'package:findmyrestaurant/src/enums/database_models_enum.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
+import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
+import 'package:findmyrestaurant/src/services/database/database_service.dart';
+import 'package:findmyrestaurant/src/services/device%20info/device_info_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
@@ -14,6 +18,8 @@ class OnboardingViewModel extends ChangeNotifier {
   String designImagePath = '';
   List<AppCarouselItem> carouselItems = [];
   final AppCarouselController appCarouselController = AppCarouselController();
+  DatabaseService database = DatabaseService.instance;
+  String? _userID;
 
   final StreamController<String> _signupFailureStreamController = StreamController<String>();
   Stream<String> get signupFailureStream => _signupFailureStreamController.stream;
@@ -22,6 +28,11 @@ class OnboardingViewModel extends ChangeNotifier {
     _loadImages();
     _setAllCarouselItems();
     OnboardingPagesExtension.setAppCarouselController(appCarouselController);
+    _setUserId();
+  }
+
+  Future<void> _setUserId() async{
+    _userID = await DeviceInfoService.instance.deviceID;
   }
 
   void _loadImages() {
@@ -79,6 +90,10 @@ class OnboardingViewModel extends ChangeNotifier {
       _notifySignupFailure(validationResult.values.first);
     }
     else{
+      if(_userID != null){
+        UserModel user = UserModel(_userID!, name: name, email: email, password: password);
+        database.save(DatabaseModelsEnum.user, _userID, user);
+      }
       AppToast.showToast(validationResult.values.first);
       int imageIndex = pageIndex % imageNames.length;
       designImagePath = _getDesignImagePath(imageNames[imageIndex]);
