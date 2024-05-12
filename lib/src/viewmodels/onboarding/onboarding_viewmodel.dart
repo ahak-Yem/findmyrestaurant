@@ -37,29 +37,6 @@ class OnboardingViewModel extends ChangeNotifier {
     }
   }
 
-  String _getDesignImagePath(ImagesNames imageName) {
-    const ImagesPathsSections imagesSection = ImagesPathsSections.getStarted;
-    String path = ImagesReaderService.instance.getImagePath(imagesSection, imageName);
-    return path;
-  }
-
-  void onAppCarouselItemChanged(int pageIndex){
-    if(OnboardingPages.signUp.pageIndex + 1 == pageIndex){
-      Map<bool, String> isValid = _validateSignUp();
-      if(!isValid.keys.first){
-        appCarouselController.goBack(currentPage: pageIndex);
-        _notifySignupFailure(isValid.values.first);
-        return;
-      }
-      else{
-        AppToast.showToast(isValid.values.first);
-      }
-    }
-    int imageIndex = pageIndex % imageNames.length;
-    designImagePath = _getDesignImagePath(imageNames[imageIndex]);
-    notifyListeners();
-  }
-
   void _setAllCarouselItems(){
     carouselItems.clear();
     for (var page in OnboardingPages.values) {
@@ -68,7 +45,23 @@ class OnboardingViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Map<bool, String> _validateSignUp(){
+  String _getDesignImagePath(ImagesNames imageName) {
+    const ImagesPathsSections imagesSection = ImagesPathsSections.getStarted;
+    String path = ImagesReaderService.instance.getImagePath(imagesSection, imageName);
+    return path;
+  }
+
+  void onAppCarouselItemChanged(int pageIndex){
+    if(OnboardingPages.signUp.pageIndex + 1 == pageIndex){
+      onSignupPageChanged(pageIndex);
+      return;
+    }
+    int imageIndex = pageIndex % imageNames.length;
+    designImagePath = _getDesignImagePath(imageNames[imageIndex]);
+    notifyListeners();
+  }
+
+  void onSignupPageChanged(int pageIndex) {
     String name = SignupPage.nameController.text;
     String email = SignupPage.emailController.text;
     String password = SignupPage.passwordController.text;
@@ -81,7 +74,16 @@ class OnboardingViewModel extends ChangeNotifier {
       confirmPassword: confirmPassword,
     );
 
-    return validationResult;
+    if(!validationResult.keys.first){
+      appCarouselController.goBack(currentPage: pageIndex);
+      _notifySignupFailure(validationResult.values.first);
+    }
+    else{
+      AppToast.showToast(validationResult.values.first);
+      int imageIndex = pageIndex % imageNames.length;
+      designImagePath = _getDesignImagePath(imageNames[imageIndex]);
+      notifyListeners();
+    }
   }
 
   void _notifySignupFailure(String errorMessage) {
