@@ -13,6 +13,7 @@ class AppStrings {
   static const String emailFieldLabel = "Enter your Email Address";
   static const String passwordFieldLabel = "Create a Password";
   static const String confirmPasswordFieldLabel = "Confirm Your Password";
+  static const String signupFailedHeader = "Signup Failed";
   static const String emptyFieldsErrorText = "Please fill all the fields to continue.";
   static const String invalidEmailErrorText = "Invalid Email Format.";
   static const String passwordLengthErrorText = "Password should be at least 8 characters long.";
