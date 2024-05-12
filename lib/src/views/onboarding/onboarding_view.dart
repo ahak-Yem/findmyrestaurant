@@ -1,3 +1,5 @@
+import 'package:findmyrestaurant/src/components/app_alert_dialog.dart';
+import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:findmyrestaurant/src/components/images_container.dart';
@@ -18,6 +20,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   void initState() {
     super.initState();
     viewModel = OnboardingViewModel();
+    _setupSignupFailureListener();
   }
 
   @override
@@ -68,5 +71,16 @@ class _OnboardingViewState extends State<OnboardingView> {
         }
       },
     );
+  }
+  
+  void _setupSignupFailureListener() {
+    viewModel.signupFailureStream.listen((String errorMessage) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AppAlertDialog.buildDialog(context, AppStrings.signupFailedHeader, errorMessage);
+        },
+      );
+    });
   }
 }

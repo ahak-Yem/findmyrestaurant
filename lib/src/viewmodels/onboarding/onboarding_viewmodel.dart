@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
@@ -12,6 +13,9 @@ class OnboardingViewModel extends ChangeNotifier {
   String designImagePath = '';
   List<AppCarouselItem> carouselItems = [];
   final AppCarouselController appCarouselController = AppCarouselController();
+
+  final StreamController<String> _signupFailureStreamController = StreamController<String>();
+  Stream<String> get signupFailureStream => _signupFailureStreamController.stream;
 
   OnboardingViewModel() {
     _loadImages();
@@ -39,11 +43,11 @@ class OnboardingViewModel extends ChangeNotifier {
   }
 
   void onAppCarouselItemChanged(int pageIndex){
-    //TODO Find a better solution
     if(OnboardingPages.signUp.pageIndex + 1 == pageIndex){
       Map<bool, String> isValid = _validateSignUp();
       if(!isValid.keys.first){
         appCarouselController.goBack(currentPage: pageIndex);
+        _notifySignupFailure(isValid.values.first);
         return;
       }
     }
@@ -74,5 +78,9 @@ class OnboardingViewModel extends ChangeNotifier {
     );
 
     return validationResult;
+  }
+
+  void _notifySignupFailure(String errorMessage) {
+    _signupFailureStreamController.add(errorMessage);
   }
 }
