@@ -18,7 +18,8 @@ class DatabaseService {
     DeviceInfoService deviceInfoService = DeviceInfoService.instance;
     Hive.registerAdapter(UserModelAdapter());
     await Hive.initFlutter();
-    _saveUserID(await deviceInfoService.deviceID);
+    String userId = await deviceInfoService.deviceID;
+    _saveUserID(userId);
   }
 
   void _saveUserID(String userId) {
