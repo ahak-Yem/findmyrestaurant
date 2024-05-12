@@ -24,6 +24,9 @@ class DatabaseService {
   }
 
   void _saveUserID(String userId) async{
+    if(await readUserID() == userId){
+      return;
+    }
     Box userBox = await _userDatabaseModelEnum.box;
     String key = UserModelKeysEnum.id.key;
     if (userBox.get(key) == null) {
@@ -37,18 +40,18 @@ class DatabaseService {
     return userBox.get(key);
   }
 
-  void save<T>(DatabaseModelsEnum model, dynamic key, T value) {
-    final box = model.box as Box;
+  Future<void> save<T>(DatabaseModelsEnum model, dynamic key, T value) async {
+    final box = await model.box;
     box.put(key, value);
   }
 
-  void delete(DatabaseModelsEnum model, dynamic key) {
-    final box = model.box as Box;
+  Future<void> delete(DatabaseModelsEnum model, dynamic key) async {
+    final box = await model.box;
     box.delete(key);
   }
 
   Future<T?> read<T>(DatabaseModelsEnum model, dynamic key) async {
-    final box = model.box as Box;
+    final box = await model.box;
     return box.get(key);
   }
 }
