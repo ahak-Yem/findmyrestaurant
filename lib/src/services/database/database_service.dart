@@ -1,4 +1,5 @@
 import 'package:findmyrestaurant/src/models/user_model.dart';
+import 'package:findmyrestaurant/src/services/device%20info/device_info_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../enums/database_models_enum.dart';
 
@@ -14,11 +15,13 @@ class DatabaseService {
   final DatabaseModelsEnum _userDatabaseModelEnum = DatabaseModelsEnum.user;
 
   Future<void> initialize() async {
+    DeviceInfoService deviceInfoService = DeviceInfoService.instance;
     Hive.registerAdapter(UserModelAdapter());
     await Hive.initFlutter();
+    _saveUserID(await deviceInfoService.deviceID);
   }
 
-  void saveUserID(String userId) {
+  void _saveUserID(String userId) {
     Box userBox = _userDatabaseModelEnum.box as Box;
     String key = _userDatabaseModelEnum.keysEnum.id.key;
     if (userBox.get(key) == null) {
