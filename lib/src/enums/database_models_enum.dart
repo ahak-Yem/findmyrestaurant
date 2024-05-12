@@ -28,10 +28,15 @@ extension DatabaseModelsEnumExtension on DatabaseModelsEnum {
     return await Hive.openBox(boxName);
   }
 
-  dynamic get keysEnum {
+  List<String> get keysEnum {
     switch (this){
       case DatabaseModelsEnum.user:
-        return UserModelKeysEnum;
+        return [
+          UserModelKeysEnum.id.key, 
+          UserModelKeysEnum.name.key,
+          UserModelKeysEnum.email.key,
+          UserModelKeysEnum.profilePicture.key
+        ].toList();
       default:
        throw Exception('Invalid Enum Value!');
     }
