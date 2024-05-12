@@ -42,6 +42,9 @@ class DatabaseService {
 
   Future<void> save<T>(DatabaseModelsEnum model, dynamic key, T value) async {
     final box = await model.box;
+    if(model.isSingleton && box.get(key) != null){
+      delete(model, key);
+    }
     box.put(key, value);
   }
 
