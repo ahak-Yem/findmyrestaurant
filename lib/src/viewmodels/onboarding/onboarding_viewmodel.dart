@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:findmyrestaurant/src/components/app_toast.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
@@ -49,6 +50,9 @@ class OnboardingViewModel extends ChangeNotifier {
         appCarouselController.goBack(currentPage: pageIndex);
         _notifySignupFailure(isValid.values.first);
         return;
+      }
+      else{
+        AppToast.showToast(isValid.values.first);
       }
     }
     int imageIndex = pageIndex % imageNames.length;
