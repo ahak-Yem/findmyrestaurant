@@ -1,7 +1,8 @@
 enum DotenvKeys {
   smtpHost,
   smtpUser,
-  smtpPassword;
+  smtpPassword,
+  brevoApi;
 }
 
 extension EnvKeysExtension on DotenvKeys {
@@ -13,8 +14,8 @@ extension EnvKeysExtension on DotenvKeys {
         return 'SMTP_USER';
       case DotenvKeys.smtpPassword:
         return 'SMTP_PASSWORD';
-      default:
-        return '';
+      case DotenvKeys.brevoApi:
+        return 'BREVO_API';
     }
   }
 }
