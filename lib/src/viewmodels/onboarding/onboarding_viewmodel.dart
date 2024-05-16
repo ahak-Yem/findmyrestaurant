@@ -9,6 +9,7 @@ import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
 import 'package:findmyrestaurant/src/services/database/database_service.dart';
 import 'package:findmyrestaurant/src/services/device%20info/device_info_service.dart';
+import 'package:findmyrestaurant/src/services/email_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
@@ -20,6 +21,7 @@ class OnboardingViewModel extends ChangeNotifier {
   final AppCarouselController appCarouselController = AppCarouselController();
   DatabaseService database = DatabaseService.instance;
   String? _userID;
+  EmailService otpService = EmailService.instance;
 
   final StreamController<String> _signupFailureStreamController = StreamController<String>();
   Stream<String> get signupFailureStream => _signupFailureStreamController.stream;

@@ -1,12 +1,12 @@
 import 'package:findmyrestaurant/src/services/dotenv_service.dart';
-class EmailOtpService {
-  EmailOtpService._();
+class EmailService {
+  EmailService._();
 
-  static final EmailOtpService _instance = EmailOtpService._();
+  static final EmailService _instance = EmailService._();
 
-  factory EmailOtpService() => _instance;
+  factory EmailService() => _instance;
 
-  static EmailOtpService get instance => _instance;
+  static EmailService get instance => _instance;
 
   final DotenvService _dotenvService = DotenvService.instance; 
 
