@@ -1,5 +1,3 @@
-import 'package:email_otp/email_otp.dart';
-
 class EmailOtpService {
   EmailOtpService._();
 
@@ -8,8 +6,6 @@ class EmailOtpService {
   factory EmailOtpService() => _instance;
 
   static EmailOtpService get instance => _instance;
-
-  final EmailOTP _emailOTP = EmailOTP();
 
   final String _appEmail = "findmyrestaurantde@gmail.com";
   final String _appName = "Find My Restaurant";
@@ -22,46 +18,14 @@ class EmailOtpService {
   
   Future<bool> sendOTP(String userEmail) async {
     bool isSent = false;
-    if(!_isConfigured){
-      _emailOTP.setConfig(
-        appEmail: _appEmail,
-        appName: _appName,
-        userEmail: userEmail,
-        otpLength: 6,
-        otpType: OTPType.mixed,
-      );
-      
-      _emailOTP.setSMTP(
-        host: _smtpHost,
-        auth: true,
-        username: _smtpUser,
-        password: _smtpPassword,
-        secure: SmtpSecure.tls.secType,
-        port: 587
-      );
-
-      _emailOTP.setTheme(theme: "v3");
-
+    if(!_isConfigured){  
       _isConfigured=true;  
-    }
-    try{
-      isSent = await _emailOTP.sendOTP();
-    }
-    catch(e){
-      return isSent;
     }
     return isSent;
   }
 
-  Future<bool> verifyOTP(String enteredOTP) async {
-    bool result = await _emailOTP.verifyOTP(otp: enteredOTP);
+  bool verifyOTP(String enteredOTP) {
+    bool result = false;
     return result;
   }
-}
-enum SmtpSecure{
-  tls(secType: "TLS"),
-  ssl(secType: "SSL");
-
-  const SmtpSecure({required this.secType});
-  final String secType;
 }
