@@ -1,17 +1,17 @@
-enum EnvKeys {
+enum DotenvKeys {
   smtpHost,
   smtpUser,
   smtpPassword;
 }
 
-extension EnvKeysExtension on EnvKeys {
+extension EnvKeysExtension on DotenvKeys {
   String get keyString {
     switch (this) {
-      case EnvKeys.smtpHost:
+      case DotenvKeys.smtpHost:
         return 'SMTP_HOST';
-      case EnvKeys.smtpUser:
+      case DotenvKeys.smtpUser:
         return 'SMTP_USER';
-      case EnvKeys.smtpPassword:
+      case DotenvKeys.smtpPassword:
         return 'SMTP_PASSWORD';
       default:
         return '';
