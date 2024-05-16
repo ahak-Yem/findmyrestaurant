@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/services/dotenv_service.dart';
 class EmailOtpService {
   EmailOtpService._();
 
@@ -7,12 +8,10 @@ class EmailOtpService {
 
   static EmailOtpService get instance => _instance;
 
+  final DotenvService _dotenvService = DotenvService.instance; 
+
   final String _appEmail = "findmyrestaurantde@gmail.com";
   final String _appName = "Find My Restaurant";
-
-  final String _smtpHost = "smtp-relay.brevo.com";
-  final String _smtpUser = "74af05001@smtp-brevo.com";
-  final String _smtpPassword = "DK8XHFqL1NcbZ9v4";
   
   bool _isConfigured = false;
   
