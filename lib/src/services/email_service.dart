@@ -9,9 +9,6 @@ class EmailService {
   static EmailService get instance => _instance;
 
   final DotenvService _dotenvService = DotenvService.instance; 
-
-  final String _appEmail = "findmyrestaurantde@gmail.com";
-  final String _appName = "Find My Restaurant";
   
   bool _isConfigured = false;
   
