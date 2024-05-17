@@ -58,9 +58,4 @@ class EmailService {
     bool isSent = false;
     return isSent;
   }
-
-  bool verifyOTP(String enteredOTP) {
-    bool result = false;
-    return result;
-  }
 }
