@@ -32,11 +32,11 @@ class EmailModel {
 
   Map<String, dynamic> toJSON() {
     final Map<String, dynamic> data = {};
-    Map<String, String> receiversJSON = {};
+    List<Map<String, String>> receiversJSON = [];
 
     data['sender'] = sender.toJSON();
     for (var receiver in receivers) { 
-      receiversJSON.addAll(receiver.toJSON());
+      receiversJSON.add(receiver.toJSON());
     }
     data['to'] = receiversJSON;
     if (replyTo != null) {
