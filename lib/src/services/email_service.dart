@@ -1,6 +1,6 @@
 import 'package:findmyrestaurant/src/enums/dotenv_keys_enum.dart';
+import 'package:findmyrestaurant/src/services/confirmation_code_service.dart';
 import 'package:findmyrestaurant/src/services/dotenv_service.dart';
-import 'dart:math';
 import 'package:flutter/services.dart';
 
 class EmailService {
@@ -10,12 +10,13 @@ class EmailService {
   factory EmailService() => _instance;
   static EmailService get instance => _instance;
 
-  final DotenvService _dotenvService = DotenvService.instance; 
+  final DotenvService _dotenvService = DotenvService.instance;
   
   String? _htmlText; 
   
   String _confirmationCode = "";
-  String get confirmationCode => _confirmationCode;
+  ConfirmationCodeService confirmationCodeService = ConfirmationCodeService();
+
   bool isEmailReady = false;
 
   final String _brevoApiEndpoint = "https://api.brevo.com/v3/";
@@ -44,14 +45,13 @@ class EmailService {
     _setConfiramtionCode();
     final RegExp regex = RegExp(r'<p id="confirmationCode" class="default-button"></p>');
     String htmlContent = htmlString.replaceAllMapped(regex, (match) {
-      return '<p id="confirmationCode" class="default-button">$confirmationCode</p>';
+      return '<p id="confirmationCode" class="default-button">$_confirmationCode</p>';
     });
     return htmlContent;
   }
   
-  void _setConfiramtionCode({final int codeLength = 6}){
-    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    _confirmationCode = List.generate(codeLength, (index) => chars[Random().nextInt(chars.length)]).join();
+  void _setConfiramtionCode() {
+    _confirmationCode = confirmationCodeService.generateCode();
   }
   
   Future<bool> sendOTP(String userEmail) async {
