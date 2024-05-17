@@ -32,18 +32,20 @@ class EmailModel {
 
   Map<String, dynamic> toJSON() {
     final Map<String, dynamic> data = {};
+    Map<String, String> receiversJSON = {};
 
     data['sender'] = sender.toJSON();
     for (var receiver in receivers) { 
-      data['receiver'] = receiver.toJSON();
+      receiversJSON.addAll(receiver.toJSON());
     }
+    data['to'] = receiversJSON;
     if (replyTo != null) {
       data['replyTo'] = replyTo?.toJSON();
     }
-    data['emailHtml'] = emailHtml;
+    data['htmlContent'] = emailHtml;
     data['subject'] = subject;
     if (previewText != null) {
-      data['previewText'] = previewText;
+      data['textContent'] = previewText;
     }
     if (tags != null && tags!.isNotEmpty) {
       data['tags'] = tags;
