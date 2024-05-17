@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/enums/dotenv_keys_enum.dart';
 import 'package:findmyrestaurant/src/services/dotenv_service.dart';
 import 'dart:math';
 import 'package:flutter/services.dart';
@@ -17,8 +18,12 @@ class EmailService {
   String get confirmationCode => _confirmationCode;
   bool isEmailReady = false;
 
+  final String _brevoApiEndpoint = "https://api.brevo.com/v3/";
+  String? _brevoApiKey;
+
   Future<void> initialize() async{
     _htmlText = await _setConfirmEmailTemplate();
+    _brevoApiKey = await _dotenvService.getEnvValue(DotenvKeys.brevoApi);
   }
 
   Future<String> _setConfirmEmailTemplate() async{
