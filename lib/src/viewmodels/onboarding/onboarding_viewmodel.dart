@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:findmyrestaurant/src/components/app_toast.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
-import 'package:findmyrestaurant/src/enums/database_models_enum.dart';
+import 'package:findmyrestaurant/src/enums/database%20enums/database_models_enum.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
