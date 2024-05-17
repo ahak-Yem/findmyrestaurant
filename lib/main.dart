@@ -1,4 +1,4 @@
-import 'package:findmyrestaurant/src/services/database/database_service.dart';
+import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/dotenv_service.dart';
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:flutter/material.dart';
