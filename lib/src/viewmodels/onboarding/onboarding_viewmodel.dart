@@ -7,7 +7,7 @@ import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
-import 'package:findmyrestaurant/src/services/database/database_service.dart';
+import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/device%20info/device_info_service.dart';
 import 'package:findmyrestaurant/src/services/email_service.dart';
 import 'package:flutter/foundation.dart';
