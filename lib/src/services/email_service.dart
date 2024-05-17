@@ -76,7 +76,8 @@ class EmailService {
   }
   
   Future<bool> sendEmail(EmailModel emailModel) async {
-    // Don't send email when debuging
+    // Don't send email when debuging 
+    // Comment this block when testing
     if (kDebugMode) {
       return false;
     }
