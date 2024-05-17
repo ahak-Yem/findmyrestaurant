@@ -1,5 +1,5 @@
 class AppStrings {
-  static const String appTitle = "Find my Restaurant";
+  static const String appTitle = "Find My Restaurant";
   static const String welcomeMessage = "Welcome to Find my Restaurant!";
   static const String welcomeSubMessage = "Here you will find a brief overview of the app and how to use it's wonderful features.";
   static const String getStartedBtn = "Get Started";
@@ -20,6 +20,9 @@ class AppStrings {
   static const String passwordUnmatchErrorText = "The entered passwords do not match.";
   static const String signupSuccessfulText = "Signup successful.";
   static const String dismissString = "Dismiss";
+  static const String emailConfirmationSubject = "Confirm Your Email";
+  static const String replyToEmailName = "Confirm Your Email";
+  static const String emailConfirmationPreviewText = "Please confirm your Email";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
