@@ -15,8 +15,11 @@ enum OnboardingPages {
   signUp(
     pageIndex: 2,
   ),
+  confirmEmail(
+    pageIndex: 3
+  ),
   extra(
-    pageIndex: 3,
+    pageIndex: 4,
   );
 
   const OnboardingPages({required this.pageIndex});
@@ -39,7 +42,9 @@ extension OnboardingPagesExtension on OnboardingPages {
       case OnboardingPages.getStarted: 
         return GetstartedPage.page;
       case OnboardingPages.signUp:
-        return SignupPage.page; 
+        return SignupPage.page;
+      case OnboardingPages.confirmEmail:
+        //TODO: return page when ready
       case OnboardingPages.extra:
         return ExtraPage.page;
     }
@@ -58,8 +63,9 @@ extension OnboardingPagesExtension on OnboardingPages {
         return OnboardingPages.getStarted.page;
       case 2:
         return OnboardingPages.signUp.page;
-      // Add case for the new page
       case 3:
+        return OnboardingPages.confirmEmail.page;
+      case 4:
         return OnboardingPages.extra.page;
       default:
         return emptyItem;
