@@ -1,16 +1,16 @@
 import 'dart:math';
 
 class ConfirmationCodeService {
-  final int codeLength;
+  final int _codeLength = 6;
   final Duration codeValidityDuration;
 
   final Map<String, DateTime> _codes = {};
 
-  ConfirmationCodeService({this.codeLength = 6, this.codeValidityDuration = const Duration(minutes: 10)});
+  ConfirmationCodeService({this.codeValidityDuration = const Duration(minutes: 15)});
 
   String generateCode() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    final code = List.generate(codeLength, (index) => chars[Random().nextInt(chars.length)]).join();
+    final code = List.generate(_codeLength, (index) => chars[Random().nextInt(chars.length)]).join();
     
     _codes[code] = DateTime.now().add(codeValidityDuration);
     return code;
