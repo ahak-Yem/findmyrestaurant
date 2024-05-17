@@ -16,7 +16,7 @@ class HttpService {
       Uri.parse(_buildUrl(endpoint)),
       headers: {..._defaultHeaders, if (headers != null) ...headers},
     );
-    return _processResponse(response);
+    return response.statusCode;
   }
 
   Future<dynamic> post(String endpoint, {Map<String, String>? headers, dynamic body}) async {
@@ -25,7 +25,7 @@ class HttpService {
       headers: {..._defaultHeaders, if (headers != null) ...headers},
       body: json.encode(body),
     );
-    return _processResponse(response);
+    return response.statusCode;
   }
 
   Future<dynamic> put(String endpoint, {Map<String, String>? headers, dynamic body}) async {
@@ -34,7 +34,7 @@ class HttpService {
       headers: {..._defaultHeaders, if (headers != null) ...headers},
       body: json.encode(body),
     );
-    return _processResponse(response);
+    return response.statusCode;
   }
 
   Future<dynamic> delete(String endpoint, {Map<String, String>? headers}) async {
@@ -42,25 +42,7 @@ class HttpService {
       Uri.parse(_buildUrl(endpoint)),
       headers: {..._defaultHeaders, if (headers != null) ...headers},
     );
-    return _processResponse(response);
-  }
-
-  dynamic _processResponse(http.Response response) {
-    final responseBody = response.body;
-    final statusCode = response.statusCode;
-
-    if (statusCode >= 200 && statusCode < 300) {
-      if (responseBody.isNotEmpty) {
-        return json.decode(responseBody);
-      } else {
-        return null;
-      }
-    } else {
-      throw HttpException(
-        'Request failed with status: $statusCode',
-        uri: response.request?.url,
-      );
-    }
+    return response.statusCode;
   }
 }
 
