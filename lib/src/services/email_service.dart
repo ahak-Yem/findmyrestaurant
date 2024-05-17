@@ -11,14 +11,11 @@ class EmailService {
   static EmailService get instance => _instance;
 
   final DotenvService _dotenvService = DotenvService.instance;
+  final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService();
   
   String? _confirmationEmailHtml; 
-  
   String _confirmationCode = "";
-  ConfirmationCodeService confirmationCodeService = ConfirmationCodeService();
-
   bool isEmailReady = false;
-
   final String _brevoApiEndpoint = "https://api.brevo.com/v3/";
   String? _brevoApiKey;
 
