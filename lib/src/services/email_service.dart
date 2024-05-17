@@ -6,6 +6,7 @@ import 'package:findmyrestaurant/src/services/confirmation_code_service.dart';
 import 'package:findmyrestaurant/src/services/dotenv_service.dart';
 import 'package:findmyrestaurant/src/services/html_service.dart';
 import 'package:findmyrestaurant/src/services/http_service.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 
 class EmailService {
   // Singleton Section
@@ -75,6 +76,10 @@ class EmailService {
   }
   
   Future<bool> sendEmail(EmailModel emailModel) async {
+    // Don't send email when debuging
+    if (kDebugMode) {
+      return false;
+    }
     String endpoint = "smtp/email";
     try{
       _confirmationEmailHtml ??= await _setConfirmEmailTemplate();
