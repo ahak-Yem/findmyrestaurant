@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/enums/brevo_api_responses_enum.dart';
 import 'package:findmyrestaurant/src/enums/dotenv_keys_enum.dart';
 import 'package:findmyrestaurant/src/enums/html_files_enum.dart';
 import 'package:findmyrestaurant/src/models/email_model.dart';
@@ -75,18 +76,18 @@ class EmailService {
   }
   
   Future<bool> sendEmail(EmailModel emailModel) async {
-    bool isSent = false;
     String endpoint = "smtp/email";
     try{
       _confirmationEmailHtml ??= await _setConfirmEmailTemplate();
       if(emailModel.emailHtml.isEmpty && _confirmationEmailHtml != null){
         emailModel.emailHtml = _confirmationEmailHtml!;
       }
-      await _httpService.post(endpoint, body: emailModel.toJSON());
+      final int responseCode = await _httpService.post(endpoint, body: emailModel.toJSON());
+      BrevoApiResponses brevoResponse = BrevoApiResponsesExtension.mapCodeToBrevoApiResponses(responseCode);
+      return brevoResponse.isSuccess;
     }
     catch(e){
-      isSent = false;
+      return false;
     }
-    return isSent;
   }
 }
