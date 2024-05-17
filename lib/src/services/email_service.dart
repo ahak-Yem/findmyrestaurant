@@ -3,18 +3,14 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 
 class EmailService {
+  // Singleton Section
   EmailService._();
-
   static final EmailService _instance = EmailService._();
-
   factory EmailService() => _instance;
-
   static EmailService get instance => _instance;
 
   final DotenvService _dotenvService = DotenvService.instance; 
   
-  bool _isConfigured = false;
-
   String? _htmlText; 
 
   Future<void> initialize() async{
@@ -39,9 +35,6 @@ class EmailService {
   
   Future<bool> sendOTP(String userEmail) async {
     bool isSent = false;
-    if(!_isConfigured){  
-      _isConfigured=true;  
-    }
     return isSent;
   }
 
