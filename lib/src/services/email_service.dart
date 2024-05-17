@@ -36,7 +36,6 @@ class EmailService {
       _brevoApiKey = await _dotenvService.getEnvValue(DotenvKeys.brevoApi);
       _httpService = _setHttpService();
     }
-    _httpService = _setHttpService();
   }
 
   Future<String> _setConfirmEmailTemplate() async{
