@@ -5,11 +5,13 @@ import 'package:findmyrestaurant/src/enums/database_models_enum.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
+import 'package:findmyrestaurant/src/models/email_model.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/device_info_service.dart';
 import 'package:findmyrestaurant/src/services/email_service.dart';
+import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
@@ -18,10 +20,11 @@ class OnboardingViewModel extends ChangeNotifier {
   List<ImagesNames> imageNames = [];
   String designImagePath = '';
   List<AppCarouselItem> carouselItems = [];
-  final AppCarouselController appCarouselController = AppCarouselController();
-  DatabaseService database = DatabaseService.instance;
   String? _userID;
-  EmailService otpService = EmailService.instance;
+  final AppCarouselController appCarouselController = AppCarouselController();
+
+  final DatabaseService _database = DatabaseService.instance;
+  final EmailService _emailService = EmailService.instance;
 
   final StreamController<String> _signupFailureStreamController = StreamController<String>();
   Stream<String> get signupFailureStream => _signupFailureStreamController.stream;
@@ -80,6 +83,9 @@ class OnboardingViewModel extends ChangeNotifier {
     String password = SignupPage.passwordController.text;
     String confirmPassword = SignupPage.confirmPasswordController.text;
 
+    const String senderEmail = "no-reply@findmyrestaurant.de";
+    const String replyToEmail = "contact@findmyrestaurant.de";
+
     final Map<bool, String> validationResult = appCarouselController.validateSignup(
       name: name,
       email: email,
@@ -94,8 +100,18 @@ class OnboardingViewModel extends ChangeNotifier {
     else{
       if(_userID != null){
         UserModel user = UserModel(_userID!, name: name, email: email, password: password);
-        database.save(DatabaseModelsEnum.user, _userID, user);
+        _database.save(DatabaseModelsEnum.user, _userID, user);
       }
+      EmailModel emailModel = EmailModel(
+        sender: ContactModel(email: senderEmail, name: AppStrings.appTitle), 
+        receivers: [ContactModel(email: email, name: name)], 
+        replyTo: ContactModel(email: replyToEmail, name: AppStrings.replyToEmailName),
+        emailHtml: "", 
+        subject: AppStrings.emailConfirmationSubject,
+        previewText: AppStrings.emailConfirmationPreviewText,
+        tags: ["Signup Confirmation Email"],
+      );
+      _emailService.sendEmail(emailModel);
       AppToast.showToast(validationResult.values.first);
       int imageIndex = pageIndex % imageNames.length;
       designImagePath = _getDesignImagePath(imageNames[imageIndex]);
