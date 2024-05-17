@@ -12,7 +12,7 @@ class EmailService {
 
   final DotenvService _dotenvService = DotenvService.instance;
   
-  String? _htmlText; 
+  String? _confirmationEmailHtml; 
   
   String _confirmationCode = "";
   ConfirmationCodeService confirmationCodeService = ConfirmationCodeService();
@@ -23,7 +23,7 @@ class EmailService {
   String? _brevoApiKey;
 
   Future<void> initialize() async{
-    _htmlText = await _setConfirmEmailTemplate();
+    _confirmationEmailHtml = await _setConfirmEmailTemplate();
     _brevoApiKey = await _dotenvService.getEnvValue(DotenvKeys.brevoApi);
   }
 
