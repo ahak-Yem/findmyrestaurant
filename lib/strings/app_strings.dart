@@ -23,6 +23,9 @@ class AppStrings {
   static const String emailConfirmationSubject = "Confirm Your Email";
   static const String replyToEmailName = "Confirm Your Email";
   static const String emailConfirmationPreviewText = "Please confirm your Email";
+  static const String confirmationEmailHeader = "Confirm Your Email";
+  static const String confirmationEmailSubtext = "Please enter the code sent to your email address to confirm your signup";
+  static const String resendBtn = "Resend Code";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
