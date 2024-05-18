@@ -69,7 +69,7 @@ class AppCarouselItem extends StatelessWidget {
             ],
           ),
         ),
-        if(page == OnboardingPages.signUp && keyboardHeight > 0)...
+        if(page == OnboardingPages.signUp || page == OnboardingPages.confirmEmail && keyboardHeight > 0)...
         [
           SizedBox(height: keyboardHeight),
         ]
