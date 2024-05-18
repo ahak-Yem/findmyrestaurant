@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/confirm_email_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/extra_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/getstarted_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/intro_page.dart';
@@ -44,7 +45,7 @@ extension OnboardingPagesExtension on OnboardingPages {
       case OnboardingPages.signUp:
         return SignupPage.page;
       case OnboardingPages.confirmEmail:
-        //TODO: return page when ready
+        return ConfirmEmailPage.page;
       case OnboardingPages.extra:
         return ExtraPage.page;
     }
