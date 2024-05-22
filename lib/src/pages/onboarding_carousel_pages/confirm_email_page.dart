@@ -3,6 +3,7 @@ import 'package:findmyrestaurant/src/components/text%20fields/code_boxes_text_fi
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
+import 'package:findmyrestaurant/src/services/email_service.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class ConfirmEmailPage {
   static final AppCarouselController? appCarouselController = OnboardingPagesExtension.carouselController;
   static final TextEditingController confirmationCodeController = TextEditingController();
   static List<String> textCharacters = List.filled(6, '');
+  static final EmailService emailService = EmailService.instance;
 
   static void _handleBoxValueChange(int index, int boxesAmount, String value) {
      if (index < textCharacters.length && index < boxesAmount) {
@@ -42,8 +44,8 @@ class ConfirmEmailPage {
           color: AppColors.primaryColor,
           textColor: AppColors.appWhite,
           text: AppStrings.resendBtn,
-          onPressed: () {
-            // TODO:Implement resending code logic
+          onPressed: () async {
+            await emailService.sendAnotherConfirmationEmail();
           },
         ),
         AppDynamicButton(
