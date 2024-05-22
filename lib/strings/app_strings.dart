@@ -26,6 +26,11 @@ class AppStrings {
   static const String confirmationEmailHeader = "Confirm Your Email";
   static const String confirmationEmailSubtext = "Please enter the code sent to your email address to confirm your signup";
   static const String resendCodeBtn = "Send Another Code";
+  static const String emptyCodeErrorText = "The code field is empty.";
+  static const String shortCodeErrorText = "The entered code is too short.";
+  static const String falseCodeErrorText = "The entered code is false.";
+  static const String expiredCodeErrorText = "The entered code is expired.";
+  static const String codeSuccessfulText = "Nice, you confirmed your email successfully!";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
