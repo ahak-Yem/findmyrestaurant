@@ -57,15 +57,11 @@ class EmailService {
   }
 
   String _injectConfirmationCodeInHtml(String htmlString,) {
-    _setConfiramtionCode();
+    _confirmationCode = confirmationCodeService.generateCode();
     const String oldHtmlStr = '<p id="confirmationCode" class="default-button"></p>';
     String newHtmlStr = '<p id="confirmationCode" class="default-button">$_confirmationCode</p>';
     String htmlContent = _htmlService.injectInHtml(htmlCode: htmlString, oldHtmlString: oldHtmlStr, newHtmlString: newHtmlStr);
     return htmlContent;
-  }
-
-  void _setConfiramtionCode() {
-    _confirmationCode = confirmationCodeService.generateCode();
   }
 
   HttpService _setHttpService(){
