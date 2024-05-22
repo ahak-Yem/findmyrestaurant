@@ -26,6 +26,9 @@ class EmailService {
   String _confirmationCode = "";
   bool isEmailReady = false;
 
+  // Last Email Model
+  EmailModel? _lastEmailModel;
+
   // Brevo API Variables
   String? _brevoApiKey;
 
@@ -76,15 +79,16 @@ class EmailService {
   }
   
   Future<bool> sendEmail(EmailModel emailModel) async {
-    // Don't send email when debuging 
+    // Prevents sending email when debuging 
     // Comment this block when testing
     if (kDebugMode) {
       return false;
     }
+    _lastEmailModel = emailModel;
     String endpoint = "smtp/email";
     try{
-      _confirmationEmailHtml ??= await _setConfirmEmailTemplate();
-      if(emailModel.emailHtml.isEmpty && _confirmationEmailHtml != null){
+      _confirmationEmailHtml = await _setConfirmEmailTemplate();
+      if(_confirmationEmailHtml != null){
         emailModel.emailHtml = _confirmationEmailHtml!;
       }
       final int responseCode = await _httpService.post(endpoint, body: emailModel.toJSON());
@@ -92,6 +96,15 @@ class EmailService {
       return brevoResponse.isSuccess;
     }
     catch(e){
+      return false;
+    }
+  }
+
+  Future<bool> sendAnotherConfirmationEmail() async{
+    if(_lastEmailModel != null){
+      return await sendEmail(_lastEmailModel!);
+    }
+    else{
       return false;
     }
   }
