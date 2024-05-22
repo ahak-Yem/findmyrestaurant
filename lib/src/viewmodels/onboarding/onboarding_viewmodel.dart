@@ -7,6 +7,7 @@ import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
 import 'package:findmyrestaurant/src/models/email_model.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
+import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/confirm_email_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/device_info_service.dart';
@@ -28,6 +29,9 @@ class OnboardingViewModel extends ChangeNotifier {
 
   final StreamController<String> _signupFailureStreamController = StreamController<String>();
   Stream<String> get signupFailureStream => _signupFailureStreamController.stream;
+
+  final StreamController<String> _confirmationCodeStreamController = StreamController<String>();
+  Stream<String> get confirmationCodeStreamController => _confirmationCodeStreamController.stream;
 
   OnboardingViewModel() {
     _loadImages();
@@ -70,6 +74,10 @@ class OnboardingViewModel extends ChangeNotifier {
   void onAppCarouselItemChanged(int pageIndex){
     if(OnboardingPages.signUp.pageIndex + 1 == pageIndex){
       onSignupPageChanged(pageIndex);
+      return;
+    }
+    if(OnboardingPages.confirmEmail.pageIndex + 1 == pageIndex){
+      onConfirmEmailPageChanged(pageIndex);
       return;
     }
     int imageIndex = pageIndex % imageNames.length;
@@ -119,7 +127,25 @@ class OnboardingViewModel extends ChangeNotifier {
     }
   }
 
+  void onConfirmEmailPageChanged(int pageIndex){
+    String code = ConfirmEmailPage.confirmationCodeController.text;
+    Map<bool, String> validationResult = appCarouselController.validateConfirmationCode(code: code);
+    if(!validationResult.keys.first){
+      appCarouselController.goBack(currentPage: pageIndex);
+    }
+    else{
+      int imageIndex = pageIndex % imageNames.length;
+      designImagePath = _getDesignImagePath(imageNames[imageIndex]);
+      notifyListeners();
+    }
+    _notifyConfirmationCode(validationResult.values.first);
+  }
+
   void _notifySignupFailure(String errorMessage) {
     _signupFailureStreamController.add(errorMessage);
+  }
+
+  void _notifyConfirmationCode(String message) {
+    _confirmationCodeStreamController.add(message);
   }
 }
