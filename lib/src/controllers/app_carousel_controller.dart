@@ -67,7 +67,7 @@ class AppCarouselController extends PageController {
   }
 
   Map<bool, String> validateConfirmationCode({required String code}){
-    final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService();
+    final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService.instance;
     if (code.isEmpty) {
       return {false: AppStrings.emptyCodeErrorText};
     }
@@ -78,11 +78,11 @@ class AppCarouselController extends PageController {
 
     Map<bool, DateTime?> isCodeValid = confirmationCodeService.verifyCode(code);
 
-    if(isCodeValid[false] == null){
+    if(isCodeValid.values.first == null){
       return {false: AppStrings.falseCodeErrorText};
     }
 
-    if(DateTime.now().isAfter(isCodeValid[false]!)){
+    if(DateTime.now().isAfter(isCodeValid.values.first!)){
       return {false: AppStrings.expiredCodeErrorText};
     }
 
