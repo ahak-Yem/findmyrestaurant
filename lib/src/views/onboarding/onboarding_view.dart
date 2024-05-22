@@ -21,6 +21,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     super.initState();
     viewModel = OnboardingViewModel();
     _setupSignupFailureListener();
+    _setupCodeConfirmationListener();
   }
 
   @override
@@ -79,6 +80,17 @@ class _OnboardingViewState extends State<OnboardingView> {
         context: context,
         builder: (BuildContext context) {
           return AppAlertDialog.buildDialog(context, AppStrings.signupFailedHeader, errorMessage);
+        },
+      );
+    });
+  }
+
+  void _setupCodeConfirmationListener() {
+    viewModel.confirmationCodeStreamController.listen((String message) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AppAlertDialog.buildDialog(context, AppStrings.confirmationEmailHeader, message);
         },
       );
     });
