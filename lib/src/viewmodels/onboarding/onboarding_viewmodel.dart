@@ -22,6 +22,8 @@ class OnboardingViewModel extends ChangeNotifier {
   String designImagePath = '';
   List<AppCarouselItem> carouselItems = [];
   String? _userID;
+  bool isBackToCofirmEmail = false;
+
   final AppCarouselController appCarouselController = AppCarouselController();
 
   final DatabaseService _database = DatabaseService.instance;
@@ -86,6 +88,10 @@ class OnboardingViewModel extends ChangeNotifier {
   }
 
   void onSignupPageChanged(int pageIndex) {
+    if(isBackToCofirmEmail){
+      isBackToCofirmEmail = false;
+      return;
+    }
     String name = SignupPage.nameController.text;
     String email = SignupPage.emailController.text;
     String password = SignupPage.passwordController.text;
@@ -131,6 +137,7 @@ class OnboardingViewModel extends ChangeNotifier {
     String code = ConfirmEmailPage.confirmationCodeController.text;
     Map<bool, String> validationResult = appCarouselController.validateConfirmationCode(code: code);
     if(!validationResult.keys.first){
+      isBackToCofirmEmail = true;
       appCarouselController.goBack(currentPage: pageIndex);
     }
     else{
