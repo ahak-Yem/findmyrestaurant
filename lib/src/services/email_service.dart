@@ -17,7 +17,7 @@ class EmailService {
 
   // Services
   final DotenvService _dotenvService = DotenvService.instance;
-  final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService();
+  final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService.instance;
   final HtmlService _htmlService = HtmlService.instance;
   late HttpService _httpService;
   
