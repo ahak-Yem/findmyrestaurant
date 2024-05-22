@@ -21,7 +21,7 @@ class AppStrings {
   static const String signupSuccessfulText = "Signup successful.";
   static const String dismissString = "Dismiss";
   static const String emailConfirmationSubject = "Confirm Your Email";
-  static const String replyToEmailName = "Confirm Your Email";
+  static const String replyToEmailName = "Reply to Find Your Restaurant";
   static const String emailConfirmationPreviewText = "Please confirm your Email";
   static const String confirmationEmailHeader = "Confirm Your Email";
   static const String confirmationEmailSubtext = "Please enter the code sent to your email address to confirm your signup";
