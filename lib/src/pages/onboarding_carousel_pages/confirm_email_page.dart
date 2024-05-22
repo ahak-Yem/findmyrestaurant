@@ -43,7 +43,7 @@ class ConfirmEmailPage {
         AppDynamicButton(
           color: AppColors.primaryColor,
           textColor: AppColors.appWhite,
-          text: AppStrings.resendBtn,
+          text: AppStrings.resendCodeBtn,
           onPressed: () async {
             await emailService.sendAnotherConfirmationEmail();
           },
