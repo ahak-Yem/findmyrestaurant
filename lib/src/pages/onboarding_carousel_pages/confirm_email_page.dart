@@ -14,6 +14,17 @@ class ConfirmEmailPage {
   static final TextEditingController confirmationCodeController = TextEditingController();
   static List<String> textCharacters = List.filled(6, '');
 
+  static void _handleBoxValueChange(int index, int boxesAmount, String value) {
+     if (index < textCharacters.length && index < boxesAmount) {
+      textCharacters[index] = value;
+    }
+    confirmationCodeController.text = textCharacters.join();
+    if(confirmationCodeController.text.length == boxesAmount) {
+      //TODO: Verify code before going to next page :)
+      appCarouselController?.goNext(currentPage: OnboardingPages.confirmEmail.pageIndex);
+    }
+  }
+
   static AppCarouselItem get page {
     const boxesAmount = 6;
     return AppCarouselItem(
@@ -22,16 +33,7 @@ class ConfirmEmailPage {
       subText: AppStrings.confirmationEmailSubtext,
       textFields: [
         CodeBoxesTextField(
-          onChanged: (value, index) {
-            if (index < textCharacters.length && index < boxesAmount) {
-              textCharacters[index] = value;
-            }
-            confirmationCodeController.text = textCharacters.join();
-            if(confirmationCodeController.text.length == boxesAmount) {
-              //TODO: Verify code before going to next page :)
-              appCarouselController?.goNext(currentPage: OnboardingPages.confirmEmail.pageIndex);
-            }
-          },
+          onChanged: (value, index) => _handleBoxValueChange(index, boxesAmount, value),
           boxesAmount: boxesAmount,
         ),
       ],
