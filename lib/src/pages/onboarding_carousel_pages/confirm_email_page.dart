@@ -1,4 +1,5 @@
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
+import 'package:findmyrestaurant/src/components/app_timer.dart';
 import 'package:findmyrestaurant/src/components/text%20fields/code_boxes_text_field.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
@@ -8,7 +9,6 @@ import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
-//TODO: Add code expiration timmer 
 class ConfirmEmailPage {
   ConfirmEmailPage._();
 
@@ -29,6 +29,7 @@ class ConfirmEmailPage {
 
   static AppCarouselItem get page {
     const boxesAmount = 6;
+    const initialTimerSeconds = 890;
     return AppCarouselItem(
       page: OnboardingPages.confirmEmail,
       headerText: AppStrings.confirmationEmailHeader,
@@ -37,6 +38,9 @@ class ConfirmEmailPage {
         CodeBoxesTextField(
           onChanged: (value, index) => _handleBoxValueChange(index, boxesAmount, value),
           boxesAmount: boxesAmount,
+        ),
+        const TimerWidget(
+          initialSeconds: initialTimerSeconds,
         ),
       ],
       buttons: [
