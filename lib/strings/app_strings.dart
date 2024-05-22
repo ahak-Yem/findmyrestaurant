@@ -31,6 +31,7 @@ class AppStrings {
   static const String falseCodeErrorText = "The entered code is false.";
   static const String expiredCodeErrorText = "The entered code is expired.";
   static const String codeSuccessfulText = "Nice, you confirmed your email successfully!";
+  static const String codeExpiresInLabel = "Code expires in ";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
