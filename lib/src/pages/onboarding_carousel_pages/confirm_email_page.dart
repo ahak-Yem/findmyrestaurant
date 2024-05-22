@@ -8,6 +8,7 @@ import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
+//TODO: Add code expiration timmer 
 class ConfirmEmailPage {
   ConfirmEmailPage._();
 
