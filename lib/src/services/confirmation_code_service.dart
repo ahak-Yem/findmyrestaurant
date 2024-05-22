@@ -1,12 +1,14 @@
 import 'dart:math';
 
 class ConfirmationCodeService {
-  final int _codeLength = 6;
+  ConfirmationCodeService._();
+  static final ConfirmationCodeService _instance = ConfirmationCodeService._();
+  factory ConfirmationCodeService() => _instance;
+  static ConfirmationCodeService get instance => _instance;  final int _codeLength = 6;
+
   final Duration _codeValidityDuration = const Duration(minutes: 15);
 
   final Map<String, DateTime> _codes = {};
-
-  ConfirmationCodeService();
 
   String generateCode() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
