@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/services/confirmation_code_service.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -48,8 +49,6 @@ class AppCarouselController extends PageController {
     password = password.trim();
     confirmPassword = confirmPassword = confirmPassword.trim(); 
     
-    //TODO: Try this later:
-    // r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"
     RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     
     if (!emailRegExp.hasMatch(email)) {
@@ -65,5 +64,28 @@ class AppCarouselController extends PageController {
     }
 
     return {true: "Signup successful"};
+  }
+
+  Map<bool, String> validateConfirmationCode({required String code}){
+    final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService();
+    if (code.isEmpty) {
+      return {false: AppStrings.emptyCodeErrorText};
+    }
+    
+    if(code.length < 6) {
+      return {false: AppStrings.shortCodeErrorText};
+    }
+
+    Map<bool, DateTime?> isCodeValid = confirmationCodeService.verifyCode(code);
+
+    if(isCodeValid[false] == null){
+      return {false: AppStrings.falseCodeErrorText};
+    }
+
+    if(DateTime.now().isAfter(isCodeValid[false]!)){
+      return {false: AppStrings.expiredCodeErrorText};
+    }
+
+    return {true: AppStrings.codeSuccessfulText};
   }
 }
