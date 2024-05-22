@@ -23,7 +23,6 @@ class ConfirmEmailPage {
     }
     confirmationCodeController.text = textCharacters.join();
     if(confirmationCodeController.text.length == boxesAmount) {
-      //TODO: Verify code before going to next page :)
       appCarouselController?.goNext(currentPage: OnboardingPages.confirmEmail.pageIndex);
     }
   }
