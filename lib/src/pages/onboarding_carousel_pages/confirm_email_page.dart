@@ -30,6 +30,10 @@ class ConfirmEmailPage {
     }
   }
 
+  static void resetTimer(){
+    timerService.resetTimer();
+  }
+
   static AppCarouselItem get page {
     const boxesAmount = 6;
     const initialTimerSeconds = 890;
@@ -59,6 +63,7 @@ class ConfirmEmailPage {
           text: AppStrings.resendCodeBtn,
           onPressed: () async {
             await emailService.sendAnotherConfirmationEmail();
+            resetTimer();
           },
         ),
         AppDynamicButton(
