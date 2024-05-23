@@ -4,6 +4,7 @@ import 'package:findmyrestaurant/src/components/text%20fields/code_boxes_text_fi
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
+import 'package:findmyrestaurant/src/services/confirmation_code_service.dart';
 import 'package:findmyrestaurant/src/services/email_service.dart';
 import 'package:findmyrestaurant/src/services/timer_service.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
@@ -19,6 +20,7 @@ class ConfirmEmailPage {
   static List<String> textCharacters = List.filled(6, '');
   static final EmailService emailService = EmailService.instance;
   static final TimerService timerService = TimerService();
+  static final ConfirmationCodeService codeService = ConfirmationCodeService.instance;
 
   static void _handleBoxValueChange(int index, int boxesAmount, String value) {
     if (index < textCharacters.length && index < boxesAmount) {
@@ -36,8 +38,7 @@ class ConfirmEmailPage {
 
   static AppCarouselItem get page {
     const boxesAmount = 6;
-    const initialTimerSeconds = 890;
-    timerService.startTimer(seconds: initialTimerSeconds);
+    timerService.startTimer(seconds: codeService.codeValidityDuration.inSeconds);
 
     return AppCarouselItem(
       page: OnboardingPages.confirmEmail,
