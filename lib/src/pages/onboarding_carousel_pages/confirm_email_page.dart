@@ -21,11 +21,11 @@ class ConfirmEmailPage {
   static final TimerService timerService = TimerService();
 
   static void _handleBoxValueChange(int index, int boxesAmount, String value) {
-     if (index < textCharacters.length && index < boxesAmount) {
+    if (index < textCharacters.length && index < boxesAmount) {
       textCharacters[index] = value;
     }
     confirmationCodeController.text = textCharacters.join();
-    if(confirmationCodeController.text.length == boxesAmount) {
+    if (confirmationCodeController.text.length == boxesAmount) {
       appCarouselController?.goNext(currentPage: OnboardingPages.confirmEmail.pageIndex);
     }
   }
