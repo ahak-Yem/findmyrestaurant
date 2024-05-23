@@ -4,9 +4,11 @@ class ConfirmationCodeService {
   ConfirmationCodeService._();
   static final ConfirmationCodeService _instance = ConfirmationCodeService._();
   factory ConfirmationCodeService() => _instance;
-  static ConfirmationCodeService get instance => _instance;  final int _codeLength = 6;
-
-  final Duration _codeValidityDuration = const Duration(minutes: 15);
+  static ConfirmationCodeService get instance => _instance;  
+  
+  final int _codeLength = 6;
+  final Duration _codeValidityDuration = const Duration(minutes: 10);
+  Duration get codeValidityDuration => _codeValidityDuration;
 
   final Map<String, DateTime> _codes = {};
 
