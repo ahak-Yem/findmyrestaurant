@@ -68,6 +68,7 @@ class ConfirmEmailPage {
           textColor: AppColors.appWhite,
           text: AppStrings.resendCodeBtn,
           onPressed: () async {
+            //TODO:Add another timer for resending code
             await emailService.sendAnotherConfirmationEmail();
             resetTimer();
           },
