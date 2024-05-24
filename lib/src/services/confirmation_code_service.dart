@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/confirm_email_page.dart';
 
 class ConfirmationCodeService {
   ConfirmationCodeService._();
@@ -17,6 +18,7 @@ class ConfirmationCodeService {
     final code = List.generate(_codeLength, (index) => chars[Random().nextInt(chars.length)]).join();
     
     _codes[code] = DateTime.now().add(_codeValidityDuration);
+    ConfirmEmailPage.resetTimer();
     return code;
   }
 
@@ -29,7 +31,7 @@ class ConfirmationCodeService {
       _codes.remove(code);
       return {false: expirationTime};
     }
-    _codes.remove(code);
+    _codes.clear();
     return {true: expirationTime};
   }
 }
