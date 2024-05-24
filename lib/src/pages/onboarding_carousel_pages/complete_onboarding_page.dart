@@ -14,6 +14,7 @@ class CompleteOnboardingPage {
       subText: 
       '''
         ${AppStrings.confirmationEmailSubtext}
+        
         ${AppStrings.completeSignupConfirmationMsg}
       ''' ,
       buttons: [
