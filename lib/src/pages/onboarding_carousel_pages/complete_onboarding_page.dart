@@ -13,8 +13,8 @@ class CompleteOnboardingPage {
       headerText: AppStrings.completeSignupHeader,
       subText: 
       '''
-        ${AppStrings.confirmationEmailSubtext}
-        
+        ${AppStrings.completeSignupSubtext}
+
         ${AppStrings.completeSignupConfirmationMsg}
       ''' ,
       buttons: [
