@@ -36,6 +36,11 @@ class ConfirmEmailPage {
     timerService.resetTimer();
   }
 
+  static void emptyConfirmationCodeController(){
+    confirmationCodeController.text = '';
+    textCharacters = List.filled(6, '');
+  }
+
   static AppCarouselItem get page {
     const boxesAmount = 6;
     timerService.startTimer(seconds: codeService.codeValidityDuration.inSeconds);

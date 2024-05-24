@@ -140,6 +140,7 @@ class OnboardingViewModel extends ChangeNotifier {
       appCarouselController.goBack(currentPage: pageIndex);
     }
     else{
+      ConfirmEmailPage.emptyConfirmationCodeController();
       int imageIndex = pageIndex % imageNames.length;
       designImagePath = _getDesignImagePath(imageNames[imageIndex]);
       notifyListeners();
