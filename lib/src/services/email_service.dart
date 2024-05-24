@@ -17,7 +17,7 @@ class EmailService {
 
   // Services
   final DotenvService _dotenvService = DotenvService.instance;
-  final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService.instance;
+  final ConfirmationCodeService _confirmationCodeService = ConfirmationCodeService.instance;
   final HtmlService _htmlService = HtmlService.instance;
   late HttpService _httpService;
   
@@ -57,7 +57,7 @@ class EmailService {
   }
 
   String _injectConfirmationCodeInHtml(String htmlString,) {
-    _confirmationCode = confirmationCodeService.generateCode();
+    _confirmationCode = _confirmationCodeService.generateCode();
     const String oldHtmlStr = '<p id="confirmationCode" class="default-button"></p>';
     String newHtmlStr = '<p id="confirmationCode" class="default-button">$_confirmationCode</p>';
     String htmlContent = _htmlService.injectInHtml(htmlCode: htmlString, oldHtmlString: oldHtmlStr, newHtmlString: newHtmlStr);
