@@ -1,5 +1,5 @@
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/confirm_email_page.dart';
-import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/extra_page.dart';
+// import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/extra_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/getstarted_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/intro_page.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
@@ -22,6 +22,9 @@ enum OnboardingPages {
   extra(
     pageIndex: 4,
   );
+  // extra(
+  //   pageIndex: 4,
+  // );
 
   const OnboardingPages({required this.pageIndex});
 
@@ -46,8 +49,8 @@ extension OnboardingPagesExtension on OnboardingPages {
         return SignupPage.page;
       case OnboardingPages.confirmEmail:
         return ConfirmEmailPage.page;
-      case OnboardingPages.extra:
-        return ExtraPage.page;
+      // case OnboardingPages.extra:
+      //   return ExtraPage.page;
     }
   }
 
@@ -66,8 +69,8 @@ extension OnboardingPagesExtension on OnboardingPages {
         return OnboardingPages.signUp.page;
       case 3:
         return OnboardingPages.confirmEmail.page;
-      case 4:
-        return OnboardingPages.extra.page;
+      // case 4:
+      //   return OnboardingPages.extra.page;
       default:
         return emptyItem;
     }
