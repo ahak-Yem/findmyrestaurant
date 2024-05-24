@@ -77,9 +77,9 @@ class EmailService {
   Future<bool> sendEmail(EmailModel emailModel) async {
     // Prevents sending email when debuging 
     // Comment this block when testing
-    if (kDebugMode) {
-      return false;
-    }
+    // if (kDebugMode) {
+    //   return false;
+    // }
     _lastEmailModel = emailModel;
     String endpoint = "smtp/email";
     try{
