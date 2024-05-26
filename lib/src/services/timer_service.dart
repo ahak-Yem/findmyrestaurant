@@ -2,11 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class TimerService with ChangeNotifier {
-  // static final TimerService _instance = TimerService._internal();
-  // static TimerService get instance => _instance;
-  // factory TimerService() => _instance;
-  // TimerService._internal();
-
   Timer? _timer;
   late int _remainingSeconds;
   int _initialSeconds = 0;
