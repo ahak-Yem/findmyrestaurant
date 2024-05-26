@@ -37,15 +37,15 @@ class ConfirmEmailPage {
     }
   }
 
-  static void resetCodeTimer(){
+  static void resetCodeTimer() {
     codeTimer.resetTimer();
   }
 
-  static void resetResendTimer(){
+  static void resetResendTimer() {
     resendTimer.resetTimer();
   }
 
-  static void emptyConfirmationCodeController(){
+  static void emptyConfirmationCodeController() {
     confirmationCodeController.text = '';
     textCharacters = List.filled(6, '');
   }
