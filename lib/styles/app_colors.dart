@@ -5,5 +5,6 @@ class AppColors {
   static const Color appWhite = Color(0xFFFFFFFF);
   static const Color darkGray = Color.fromARGB(255, 59, 59, 59);
   static const Color gray = Colors.grey;
+  static const Color disabledBtnColor = Color.fromARGB(255, 233, 233, 230);
   static const Color red = Color.fromARGB(255, 255, 0, 34);
 }
