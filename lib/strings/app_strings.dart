@@ -32,6 +32,7 @@ class AppStrings {
   static const String expiredCodeErrorText = "The entered code is expired.";
   static const String codeSuccessfulText = "Nice, you confirmed your email successfully!";
   static const String codeExpiresInLabel = "Code expires in ";
+  static const String resendIn = "Send Another Code in ";
   static const String completeSignupHeader = "You signed up successfully";
   static const String completeSignupSubtext = "Click the button below to be navigated to our dietary survey.";
   static const String completeSignupConfirmationMsg = "Your signup data are now saved in your device and you will not need to do the signup process again.";
