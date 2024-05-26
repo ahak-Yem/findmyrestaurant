@@ -32,6 +32,7 @@ class DatabaseService {
     if (userBox.get(key) == null) {
       userBox.put(key, userId);
     }
+    userBox.close();
   }
 
   Future<String?> readUserID() async{
@@ -46,6 +47,7 @@ class DatabaseService {
       delete(model, key);
     }
     box.put(key, value);
+    box.close();
   }
 
   Future<void> delete(DatabaseModelsEnum model, dynamic key) async {
