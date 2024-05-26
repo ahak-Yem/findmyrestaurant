@@ -6,7 +6,7 @@ import 'package:findmyrestaurant/src/services/confirmation_code_service.dart';
 import 'package:findmyrestaurant/src/services/dotenv_service.dart';
 import 'package:findmyrestaurant/src/services/html_service.dart';
 import 'package:findmyrestaurant/src/services/http_service.dart';
-import 'package:flutter/foundation.dart' show kDebugMode;
+// import 'package:flutter/foundation.dart' show kDebugMode;
 
 class EmailService {
   // Singleton Section
