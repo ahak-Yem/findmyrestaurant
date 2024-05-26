@@ -14,13 +14,18 @@ import 'package:provider/provider.dart';
 
 class ConfirmEmailPage {
   ConfirmEmailPage._();
+  
+  static bool canResend = true;
+  static List<String> textCharacters = List.filled(6, '');
 
   static final AppCarouselController? appCarouselController = OnboardingPagesExtension.carouselController;
   static final TextEditingController confirmationCodeController = TextEditingController();
-  static List<String> textCharacters = List.filled(6, '');
+  
   static final EmailService emailService = EmailService.instance;
-  static final TimerService codeTimer = TimerService();
   static final ConfirmationCodeService codeService = ConfirmationCodeService.instance;
+  
+  static final TimerService codeTimer = TimerService();
+  static final TimerService resendTimer = TimerService();
 
   static void _handleBoxValueChange(int index, int boxesAmount, String value) {
     if (index < textCharacters.length && index < boxesAmount) {
@@ -34,6 +39,10 @@ class ConfirmEmailPage {
 
   static void resetCodeTimer(){
     codeTimer.resetTimer();
+  }
+
+  static void resetResendTimer(){
+    resendTimer.resetTimer();
   }
 
   static void emptyConfirmationCodeController(){
@@ -63,15 +72,28 @@ class ConfirmEmailPage {
         ),
       ],
       buttons: [
-        AppDynamicButton(
-          color: AppColors.primaryColor,
-          textColor: AppColors.appWhite,
-          text: AppStrings.resendCodeBtn,
-          onPressed: () async {
-            //TODO:Add another timer for resending code
-            await emailService.sendAnotherConfirmationEmail();
-            resetCodeTimer();
-          },
+        ChangeNotifierProvider<TimerService>.value(
+          value: resendTimer,
+          child:  AppDynamicButton(
+            color: canResend ? AppColors.primaryColor : AppColors.disabledBtnColor,
+            textColor: AppColors.appWhite,
+            text: canResend ? 
+              AppStrings.resendCodeBtn 
+              : TimerWidget(
+                text: AppStrings.resendIn, 
+                textColor: AppColors.appWhite,
+                onTimerFinished: () {
+                  canResend = true;
+                },
+              ).text,
+            onPressed: () async {
+              if(canResend){
+                canResend = false;
+                await emailService.sendAnotherConfirmationEmail();
+                resetCodeTimer();
+              }
+            },
+          ),
         ),
         AppDynamicButton(
           color: AppColors.appWhite,
