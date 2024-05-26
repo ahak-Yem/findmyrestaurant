@@ -18,7 +18,7 @@ class ConfirmationCodeService {
     final code = List.generate(_codeLength, (index) => chars[Random().nextInt(chars.length)]).join();
     
     _codes[code] = DateTime.now().add(_codeValidityDuration);
-    ConfirmEmailPage.resetTimer();
+    ConfirmEmailPage.resetCodeTimer();
     return code;
   }
 

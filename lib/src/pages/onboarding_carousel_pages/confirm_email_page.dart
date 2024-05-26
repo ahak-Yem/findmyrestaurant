@@ -32,7 +32,7 @@ class ConfirmEmailPage {
     }
   }
 
-  static void resetTimer(){
+  static void resetCodeTimer(){
     codeTimer.resetTimer();
   }
 
@@ -70,7 +70,7 @@ class ConfirmEmailPage {
           onPressed: () async {
             //TODO:Add another timer for resending code
             await emailService.sendAnotherConfirmationEmail();
-            resetTimer();
+            resetCodeTimer();
           },
         ),
         AppDynamicButton(
