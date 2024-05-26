@@ -19,7 +19,7 @@ class ConfirmEmailPage {
   static final TextEditingController confirmationCodeController = TextEditingController();
   static List<String> textCharacters = List.filled(6, '');
   static final EmailService emailService = EmailService.instance;
-  static final TimerService timerService = TimerService();
+  static final TimerService codeTimer = TimerService();
   static final ConfirmationCodeService codeService = ConfirmationCodeService.instance;
 
   static void _handleBoxValueChange(int index, int boxesAmount, String value) {
@@ -33,7 +33,7 @@ class ConfirmEmailPage {
   }
 
   static void resetTimer(){
-    timerService.resetTimer();
+    codeTimer.resetTimer();
   }
 
   static void emptyConfirmationCodeController(){
@@ -43,7 +43,7 @@ class ConfirmEmailPage {
 
   static AppCarouselItem get page {
     const boxesAmount = 6;
-    timerService.startTimer(seconds: codeService.codeValidityDuration.inSeconds);
+    codeTimer.startTimer(seconds: codeService.codeValidityDuration.inSeconds);
 
     return AppCarouselItem(
       page: OnboardingPages.confirmEmail,
@@ -55,7 +55,7 @@ class ConfirmEmailPage {
           boxesAmount: boxesAmount,
         ),
         ChangeNotifierProvider<TimerService>.value(
-          value: timerService,
+          value: codeTimer,
           child: const TimerWidget(
             text: AppStrings.codeExpiresInLabel, 
             textColor: AppColors.red,
