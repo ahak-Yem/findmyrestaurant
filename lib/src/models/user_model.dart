@@ -19,5 +19,8 @@ class UserModel {
   @HiveField(4)
   String password;
 
-  UserModel(this.id, {required this.name, required this.email, required this.password, this.profilePicture});
+  @HiveField(5)
+  bool isEmailConfirmed;
+
+  UserModel(this.id, {required this.name, required this.email, required this.password, this.profilePicture, required this.isEmailConfirmed});
 }
