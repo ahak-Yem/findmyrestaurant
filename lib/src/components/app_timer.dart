@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TimerWidget extends StatelessWidget {
-  const TimerWidget({super.key, required this.text, required this.textColor});
+  const TimerWidget({super.key, required this.text, required this.textColor, this.onTimerFinished});
 
   final String text;
   final Color textColor;
+  final VoidCallback? onTimerFinished;
 
   @override
   Widget build(BuildContext context) {
