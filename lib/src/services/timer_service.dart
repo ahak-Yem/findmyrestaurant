@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class TimerService with ChangeNotifier {
   Timer? _timer;
-  late int _remainingSeconds;
+  int _remainingSeconds = 0;
   int _initialSeconds = 0;
-
   int get remainingSeconds => _remainingSeconds;
+
+  bool _isActive = false;
+  bool get isActive => _isActive;
 
   String get formattedTime {
     int minutes = _remainingSeconds ~/ 60;
@@ -18,19 +20,21 @@ class TimerService with ChangeNotifier {
     _initialSeconds = seconds;
     _remainingSeconds = seconds;
     _timer?.cancel();
+    _isActive = true;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingSeconds > 0) {
         _remainingSeconds--;
         notifyListeners();
       } else {
-        timer.cancel();
+        _isActive = false;
         notifyListeners();
+        timer.cancel();
       }
     });
   }
 
-  void resetTimer() {
-    startTimer(seconds: _initialSeconds);
+  void resetTimer({int? resetSeconds}) {
+    startTimer(seconds: resetSeconds ?? _initialSeconds);
   }
 
   @override
