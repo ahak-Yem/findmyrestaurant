@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 class ConfirmEmailPage {
   ConfirmEmailPage._();
   
-  static bool canResend = true;
   static List<String> textCharacters = List.filled(6, '');
 
   static final AppCarouselController? appCarouselController = OnboardingPagesExtension.carouselController;
@@ -41,10 +40,6 @@ class ConfirmEmailPage {
     codeTimer.resetTimer();
   }
 
-  static void resetResendTimer() {
-    resendTimer.resetTimer();
-  }
-
   static void emptyConfirmationCodeController() {
     confirmationCodeController.text = '';
     textCharacters = List.filled(6, '');
@@ -52,8 +47,9 @@ class ConfirmEmailPage {
 
   static AppCarouselItem get page {
     const boxesAmount = 6;
-    codeTimer.startTimer(seconds: codeService.codeValidityDuration.inSeconds);
+    const resendCodeTimerValue = 180;
 
+    codeTimer.startTimer(seconds: codeService.codeValidityDuration.inSeconds);
     return AppCarouselItem(
       page: OnboardingPages.confirmEmail,
       headerText: AppStrings.confirmationEmailHeader,
@@ -74,24 +70,25 @@ class ConfirmEmailPage {
       buttons: [
         ChangeNotifierProvider<TimerService>.value(
           value: resendTimer,
-          child:  AppDynamicButton(
-            color: canResend ? AppColors.primaryColor : AppColors.disabledBtnColor,
-            textColor: AppColors.appWhite,
-            text: canResend ? 
-              AppStrings.resendCodeBtn 
-              : TimerWidget(
-                text: AppStrings.resendIn, 
+          child: Consumer<TimerService>(
+            builder: (context, resendTimer, child) {
+              bool isResendEnabled = !resendTimer.isActive;
+              return AppDynamicButton(
+                color: AppColors.primaryColor,
                 textColor: AppColors.appWhite,
-                onTimerFinished: () {
-                  canResend = true;
+                text: AppStrings.resendCodeBtn,
+                disabledColor: AppColors.disabledBtnColor,
+                disabledTextColor: AppColors.red,
+                disabledText: '${AppStrings.resendIn} ${resendTimer.formattedTime}',
+                isEnabled: isResendEnabled,
+                onPressed: () async {
+                  if (isResendEnabled) {
+                    resendTimer.resetTimer(resetSeconds: resendCodeTimerValue);
+                    resetCodeTimer();
+                    await emailService.sendAnotherConfirmationEmail();
+                  }
                 },
-              ).text,
-            onPressed: () async {
-              if(canResend){
-                canResend = false;
-                await emailService.sendAnotherConfirmationEmail();
-                resetCodeTimer();
-              }
+              );
             },
           ),
         ),
