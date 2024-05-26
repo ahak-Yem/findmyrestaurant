@@ -23,6 +23,7 @@ class OnboardingViewModel extends ChangeNotifier {
   List<AppCarouselItem> carouselItems = [];
   String? _userID;
   bool isBackToConfirmEmail = false;
+  UserModel? _user;
 
   final AppCarouselController appCarouselController = AppCarouselController();
   final DatabaseService _database = DatabaseService.instance;
@@ -112,8 +113,8 @@ class OnboardingViewModel extends ChangeNotifier {
     }
     else{
       if(_userID != null){
-        UserModel user = UserModel(_userID!, name: name, email: email, password: password);
-        _database.save(DatabaseModelsEnum.user, _userID, user);
+        _user = UserModel(_userID!, name: name, email: email, password: password, isEmailConfirmed: false);
+        _database.save(DatabaseModelsEnum.user, _userID, _user);
       }
       EmailModel emailModel = EmailModel(
         sender: ContactModel(email: senderEmail, name: AppStrings.appTitle), 
@@ -143,6 +144,8 @@ class OnboardingViewModel extends ChangeNotifier {
       ConfirmEmailPage.emptyConfirmationCodeController();
       int imageIndex = pageIndex % imageNames.length;
       designImagePath = _getDesignImagePath(imageNames[imageIndex]);
+      _user?.isEmailConfirmed = true;
+      _database.save(DatabaseModelsEnum.user, _userID, _user);
       notifyListeners();
     }
     _notifyConfirmationCode(validationResult.values.first);
