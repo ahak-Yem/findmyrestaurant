@@ -25,6 +25,7 @@ class OnboardingViewModel extends ChangeNotifier {
   String? _userID;
   bool isBackToConfirmEmail = false;
   UserModel? _user;
+  bool _useSavedUser = false; //TODO: Use to trigger logic for using saved user
 
   final AppCarouselController appCarouselController = AppCarouselController();
 
@@ -47,6 +48,10 @@ class OnboardingViewModel extends ChangeNotifier {
     OnboardingPagesExtension.setAppCarouselController(appCarouselController);
     _checkAndNotifyUserSaved();
     _setUserId();
+  }
+
+  set useSavedUser(bool useUser) {
+    _useSavedUser = useUser;
   }
 
   Future<void> _setUserId() async{
