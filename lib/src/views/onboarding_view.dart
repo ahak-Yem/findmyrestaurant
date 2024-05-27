@@ -3,7 +3,7 @@ import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:findmyrestaurant/src/components/images_container.dart';
-import 'package:findmyrestaurant/src/viewmodels/onboarding/onboarding_viewmodel.dart';
+import 'package:findmyrestaurant/src/viewmodels/onboarding_viewmodel.dart';
 import 'package:findmyrestaurant/src/components/app_carousel.dart';
 
 class OnboardingView extends StatefulWidget {
