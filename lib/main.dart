@@ -13,5 +13,6 @@ void main() async {
   await DotenvService.instance.initialize();
   await DatabaseService.instance.initialize();
   await EmailService.instance.initialize();
-  runApp(MyApp(appLaunchService: AppLaunchService.instance,));
+  await AppLaunchService.instance.initialize();
+  runApp(const MyApp());
 }
