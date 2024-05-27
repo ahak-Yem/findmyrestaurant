@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/services/app_launch_service.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/dotenv_service.dart';
 import 'package:findmyrestaurant/src/services/email_service.dart';
@@ -12,5 +13,5 @@ void main() async {
   await DotenvService.instance.initialize();
   await DatabaseService.instance.initialize();
   await EmailService.instance.initialize();
-  runApp(const MyApp());
+  runApp(MyApp(appLaunchService: AppLaunchService.instance,));
 }
