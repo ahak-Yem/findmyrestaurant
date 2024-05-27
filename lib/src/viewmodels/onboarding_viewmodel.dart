@@ -149,11 +149,15 @@ class OnboardingViewModel extends ChangeNotifier {
       _database.save(DatabaseModelsEnum.user, _userID, _user);
       notifyListeners();
     }
-    _notifyConfirmationCode(validationResult.values.first);
+    _notifyConfirmationCodeState(validationResult.values.first);
   }
 
   void _notifySignupFailure(String errorMessage) {
     _signupFailureStreamController.add(errorMessage);
+  }
+
+  void _notifyConfirmationCodeState(String message) {
+    _confirmationCodeStreamController.add(message);
   }
 
   void _notifyConfirmationCode(String message) {
