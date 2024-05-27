@@ -42,10 +42,10 @@ class OnboardingViewModel extends ChangeNotifier {
   Stream<String> get userSavedStreamController => _userSavedStreamController.stream;
 
   OnboardingViewModel() {
-    _checkAndNotifyUserSaved();
     _loadImages();
     _setAllCarouselItems();
     OnboardingPagesExtension.setAppCarouselController(appCarouselController);
+    _checkAndNotifyUserSaved();
     _setUserId();
   }
 
