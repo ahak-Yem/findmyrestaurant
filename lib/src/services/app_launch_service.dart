@@ -10,10 +10,8 @@ class AppLaunchService {
 
   factory AppLaunchService() => _instance;
 
-  AppLaunchService._internal() {
-    _initialize();
-  }
-
+  AppLaunchService._internal();
+  
   final DatabaseService _databaseService = DatabaseService.instance;
 
   UserModel? _user;
@@ -28,7 +26,7 @@ class AppLaunchService {
   bool _isUserEmailConfirmed = false;
   bool get isUserEmailConfirmed => _isUserEmailConfirmed;
 
-  Future<void> _initialize() async {
+  Future<void> initialize() async {
     try {
       _userId = await _databaseService.readUserID();
       if (_userId != null) {
