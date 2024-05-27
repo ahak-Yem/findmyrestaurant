@@ -9,6 +9,7 @@ import 'package:findmyrestaurant/src/models/email_model.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/confirm_email_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
+import 'package:findmyrestaurant/src/services/app_launch_service.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/device_info_service.dart';
 import 'package:findmyrestaurant/src/services/email_service.dart';
@@ -29,12 +30,16 @@ class OnboardingViewModel extends ChangeNotifier {
 
   final DatabaseService _database = DatabaseService.instance;
   final EmailService _emailService = EmailService.instance;
+  final AppLaunchService _appLaunchService = AppLaunchService.instance;
 
   final StreamController<String> _signupFailureStreamController = StreamController<String>();
   Stream<String> get signupFailureStream => _signupFailureStreamController.stream;
 
   final StreamController<String> _confirmationCodeStreamController = StreamController<String>();
   Stream<String> get confirmationCodeStreamController => _confirmationCodeStreamController.stream;
+
+  final StreamController<String> _userSavedStreamController = StreamController<String>();
+  Stream<String> get userSavedStreamController => _userSavedStreamController.stream;
 
   OnboardingViewModel() {
     _loadImages();
@@ -62,6 +67,9 @@ class OnboardingViewModel extends ChangeNotifier {
 
   void _setAllCarouselItems(){
     carouselItems.clear();
+    if(_appLaunchService.isUserSaved) {
+      _notifyUserIsSaved();
+    }
     for (var page in OnboardingPages.values) {
       carouselItems.add(page.page);
     }
@@ -160,7 +168,7 @@ class OnboardingViewModel extends ChangeNotifier {
     _confirmationCodeStreamController.add(message);
   }
 
-  void _notifyConfirmationCode(String message) {
-    _confirmationCodeStreamController.add(message);
+  void _notifyUserIsSaved() {
+    _userSavedStreamController.add(AppStrings.userSavedText);
   }
 }
