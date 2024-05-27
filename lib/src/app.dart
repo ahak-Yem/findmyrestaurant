@@ -7,11 +7,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key,  required this.appLaunchService}) : super(key: key);
-
-  final AppLaunchService appLaunchService; 
+  const MyApp({Key? key,}) : super(key: key);
 
   Widget _determineHomeView(){
+    final AppLaunchService appLaunchService = AppLaunchService.instance; 
     return appLaunchService.isUserEmailConfirmed ? const SurveyView() : const OnboardingView();
   }
 
