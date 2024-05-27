@@ -38,7 +38,7 @@ class AppStrings {
   static const String completeSignupConfirmationMsg = "Your signup data are now saved in your device and you will not need to do the signup process again.";
   static const String userSavedHeader = "Saved User Data";
   static const String userSavedText = "We detected user data saved in your device.\n\nDo you want to continue signing up with the saved user?";
-  static const String useSavedUserBtn = "Continue With Saved User";
+  static const String useSavedUserBtn = "Use Saved User";
   static const String toSurveyBtn = "Open Survey";
 
   static const String errorTitle = 'Error';
