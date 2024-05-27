@@ -1,5 +1,8 @@
+import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/components/app_alert_dialog.dart';
+import 'package:findmyrestaurant/src/components/dialogs/muliple_buttons_alert_dialog.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
+import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:findmyrestaurant/src/components/images_container.dart';
@@ -22,6 +25,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     viewModel = OnboardingViewModel();
     _setupSignupFailureListener();
     _setupCodeConfirmationListener();
+    _setupSavedUserListener();
   }
 
   @override
@@ -91,6 +95,40 @@ class _OnboardingViewState extends State<OnboardingView> {
         context: context,
         builder: (BuildContext context) {
           return AppAlertDialog.buildDialog(context, AppStrings.confirmationEmailHeader, message);
+        },
+      );
+    });
+  }
+
+  void _setupSavedUserListener() {
+    viewModel.userSavedStreamController.listen((String message) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return MulipleButtonsAlertDialog.buildDialog(
+            context,
+            AppStrings.userSavedHeader, 
+            message,
+            [
+              AppDynamicButton(
+                text: AppStrings.useSavedUserBtn,
+                color: AppColors.primaryColor,
+                textColor: AppColors.appWhite,
+                onPressed: () {
+                  viewModel.useSavedUser = true;
+                  Navigator.of(context).pop();
+                },
+              ),
+              AppDynamicButton(
+                text: AppStrings.dismissString,
+                color: AppColors.appWhite,
+                textColor: AppColors.primaryColor,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ]
+          );
         },
       );
     });
