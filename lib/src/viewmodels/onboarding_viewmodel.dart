@@ -41,6 +41,7 @@ class OnboardingViewModel extends ChangeNotifier {
   Stream<String> get userSavedStreamController => _userSavedStreamController.stream;
 
   OnboardingViewModel() {
+    _checkAndNotifyUserSaved();
     _loadImages();
     _setAllCarouselItems();
     OnboardingPagesExtension.setAppCarouselController(appCarouselController);
@@ -49,6 +50,12 @@ class OnboardingViewModel extends ChangeNotifier {
 
   Future<void> _setUserId() async{
     _userID = await DeviceInfoService.instance.deviceID;
+  }
+  
+  void _checkAndNotifyUserSaved() {
+    if(_appLaunchService.isUserSaved) {
+      _notifyUserIsSaved();
+    }
   }
 
   void _loadImages() {
@@ -66,9 +73,6 @@ class OnboardingViewModel extends ChangeNotifier {
 
   void _setAllCarouselItems(){
     carouselItems.clear();
-    if(_appLaunchService.isUserSaved) {
-      _notifyUserIsSaved();
-    }
     for (var page in OnboardingPages.values) {
       carouselItems.add(page.page);
     }
