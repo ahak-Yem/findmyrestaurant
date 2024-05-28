@@ -117,6 +117,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 textColor: AppColors.appWhite,
                 onPressed: () {
                   viewModel.useSavedUser = true;
+                  viewModel.navigateToSignupWithKnownUser();
                   Navigator.of(context).pop();
                 },
               ),
