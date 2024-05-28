@@ -26,7 +26,7 @@ class OnboardingViewModel extends ChangeNotifier {
   String? _userID;
   bool isBackToConfirmEmail = false;
   UserModel? _user;
-  bool _useSavedUser = false; //TODO: Use to trigger logic for using saved user
+  bool _useSavedUser = false;
 
   final AppCarouselController appCarouselController = AppCarouselController();
   final DatabaseService _database = DatabaseService.instance;
