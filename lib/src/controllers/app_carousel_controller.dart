@@ -34,4 +34,14 @@ class AppCarouselController extends PageController {
       _animateToPage(currentPage - 1);
     }
   }
+
+  Future<void> animatedJumpToPage({required int page}) async {
+    const animationSpeed = 2000;
+    const delayDuration = 1500;
+
+    for(int otherPages = 1; otherPages <= page; otherPages++) {
+      _animateToPage(otherPages, duration: const Duration(milliseconds: animationSpeed));
+      await Future.delayed(const Duration(milliseconds: delayDuration));
+    }
+  }
 }
