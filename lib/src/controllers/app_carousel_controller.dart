@@ -14,7 +14,7 @@ class AppCarouselController extends PageController {
     _currentPageIndex = pageIndex;
   }
 
-  Future<void> _animateToPage(int page, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.ease}) {
+  Future<void> _animateToPage(int page, {Duration duration = const Duration(milliseconds: 1000), Curve curve = Curves.ease}) {
     if (hasClients) {
       return super.animateToPage(
         page,
