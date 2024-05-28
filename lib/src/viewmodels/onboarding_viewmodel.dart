@@ -102,6 +102,7 @@ class OnboardingViewModel extends ChangeNotifier {
     }
     int imageIndex = pageIndex % imageNames.length;
     designImagePath = _getDesignImagePath(imageNames[imageIndex]);
+    appCarouselController.setCurrentPageIndex(pageIndex);
     notifyListeners();
   }
 
@@ -147,6 +148,7 @@ class OnboardingViewModel extends ChangeNotifier {
       AppToast.showToast(validationResult.values.first);
       int imageIndex = pageIndex % imageNames.length;
       designImagePath = _getDesignImagePath(imageNames[imageIndex]);
+      appCarouselController.setCurrentPageIndex(pageIndex);
       notifyListeners();
     }
   }
@@ -164,6 +166,7 @@ class OnboardingViewModel extends ChangeNotifier {
       designImagePath = _getDesignImagePath(imageNames[imageIndex]);
       _user?.isEmailConfirmed = true;
       _database.save(DatabaseModelsEnum.user, _userID, _user);
+      appCarouselController.setCurrentPageIndex(pageIndex);
       notifyListeners();
     }
     _notifyConfirmationCodeState(validationResult.values.first);
