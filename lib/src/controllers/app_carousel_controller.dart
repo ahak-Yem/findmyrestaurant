@@ -37,38 +37,6 @@ class AppCarouselController extends PageController {
     }
   }
 
-  Map<bool, String> validateSignup({
-    required String name,
-    required String email,
-    required String password,
-    required String confirmPassword,
-  }) {
-    if (name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
-      return {false: AppStrings.emptyFieldsErrorText};
-    }
-
-    name = name.trim();
-    email = email.trim().toLowerCase();
-    password = password.trim();
-    confirmPassword = confirmPassword = confirmPassword.trim(); 
-    
-    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    
-    if (!emailRegExp.hasMatch(email)) {
-      return {false: AppStrings.invalidEmailErrorText};
-    }
-
-    if (password.length < 8) {
-      return {false: AppStrings.passwordLengthErrorText};
-    }
-
-    if (password != confirmPassword) {
-      return {false: AppStrings.passwordUnmatchErrorText};
-    }
-
-    return {true: "Signup successful"};
-  }
-
   Map<bool, String> validateConfirmationCode({required String code}){
     final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService.instance;
     if (code.isEmpty) {

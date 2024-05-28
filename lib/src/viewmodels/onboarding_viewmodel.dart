@@ -119,7 +119,7 @@ class OnboardingViewModel extends ChangeNotifier {
     const String senderEmail = "no-reply@findmyrestaurant.de";
     const String replyToEmail = "contact@findmyrestaurant.de";
 
-    final Map<bool, String> validationResult = appCarouselController.validateSignup(
+    final Map<bool, String> validationResult = _validateSignup(
       name: name,
       email: email,
       password: password,
@@ -151,6 +151,38 @@ class OnboardingViewModel extends ChangeNotifier {
       appCarouselController.setCurrentPageIndex(pageIndex);
       notifyListeners();
     }
+  }
+
+  Map<bool, String> _validateSignup({
+    required String name,
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) {
+    if (name.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      return {false: AppStrings.emptyFieldsErrorText};
+    }
+
+    name = name.trim();
+    email = email.trim().toLowerCase();
+    password = password.trim();
+    confirmPassword = confirmPassword = confirmPassword.trim(); 
+    
+    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    
+    if (!emailRegExp.hasMatch(email)) {
+      return {false: AppStrings.invalidEmailErrorText};
+    }
+
+    if (password.length < 8) {
+      return {false: AppStrings.passwordLengthErrorText};
+    }
+
+    if (password != confirmPassword) {
+      return {false: AppStrings.passwordUnmatchErrorText};
+    }
+
+    return {true: "Signup successful"};
   }
 
   void onConfirmEmailPageChanged(int pageIndex){
