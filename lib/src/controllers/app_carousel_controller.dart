@@ -1,5 +1,3 @@
-import 'package:findmyrestaurant/src/services/confirmation_code_service.dart';
-import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class AppCarouselController extends PageController {
@@ -35,28 +33,5 @@ class AppCarouselController extends PageController {
     if (hasClients && page != null) {
       _animateToPage(currentPage - 1);
     }
-  }
-
-  Map<bool, String> validateConfirmationCode({required String code}){
-    final ConfirmationCodeService confirmationCodeService = ConfirmationCodeService.instance;
-    if (code.isEmpty) {
-      return {false: AppStrings.emptyCodeErrorText};
-    }
-    
-    if(code.length < 6) {
-      return {false: AppStrings.shortCodeErrorText};
-    }
-
-    Map<bool, DateTime?> isCodeValid = confirmationCodeService.verifyCode(code);
-
-    if(isCodeValid.values.first == null){
-      return {false: AppStrings.falseCodeErrorText};
-    }
-
-    if(DateTime.now().isAfter(isCodeValid.values.first!)){
-      return {false: AppStrings.expiredCodeErrorText};
-    }
-
-    return {true: AppStrings.codeSuccessfulText};
   }
 }
