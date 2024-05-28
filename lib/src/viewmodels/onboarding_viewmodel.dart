@@ -56,6 +56,16 @@ class OnboardingViewModel extends ChangeNotifier {
     _useSavedUser = useUser;
   }
 
+  void navigateToSignupWithKnownUser(){
+    if(_useSavedUser) {
+      UserModel? user = _appLaunchService.user;
+      if(user != null) {
+        SignupPage.setSavedUser(user);
+      }
+      appCarouselController.animatedJumpToPage(page: OnboardingPages.signUp.pageIndex);
+    }
+  }
+
   Future<void> _setUserId() async{
     _userID = await DeviceInfoService.instance.deviceID;
   }
