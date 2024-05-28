@@ -10,6 +10,7 @@ import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/confirm_email_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
 import 'package:findmyrestaurant/src/services/app_launch_service.dart';
+import 'package:findmyrestaurant/src/services/confirmation_code_service.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/device_info_service.dart';
 import 'package:findmyrestaurant/src/services/email_service.dart';
@@ -32,6 +33,7 @@ class OnboardingViewModel extends ChangeNotifier {
   final DatabaseService _database = DatabaseService.instance;
   final EmailService _emailService = EmailService.instance;
   final AppLaunchService _appLaunchService = AppLaunchService.instance;
+  final ConfirmationCodeService _confirmationCodeService = ConfirmationCodeService.instance;
 
   final StreamController<String> _signupFailureStreamController = StreamController<String>();
   Stream<String> get signupFailureStream => _signupFailureStreamController.stream;
@@ -187,7 +189,7 @@ class OnboardingViewModel extends ChangeNotifier {
 
   void onConfirmEmailPageChanged(int pageIndex){
     String code = ConfirmEmailPage.confirmationCodeController.text;
-    Map<bool, String> validationResult = appCarouselController.validateConfirmationCode(code: code);
+    Map<bool, String> validationResult = _validateConfirmationCode(code: code);
     if(!validationResult.keys.first){
       isBackToConfirmEmail = true;
       appCarouselController.goBack(currentPage: pageIndex);
@@ -202,6 +204,28 @@ class OnboardingViewModel extends ChangeNotifier {
       notifyListeners();
     }
     _notifyConfirmationCodeState(validationResult.values.first);
+  }
+
+  Map<bool, String> _validateConfirmationCode({required String code}){
+    if (code.isEmpty) {
+      return {false: AppStrings.emptyCodeErrorText};
+    }
+    
+    if(code.length < 6) {
+      return {false: AppStrings.shortCodeErrorText};
+    }
+
+    Map<bool, DateTime?> isCodeValid = _confirmationCodeService.verifyCode(code);
+
+    if(isCodeValid.values.first == null){
+      return {false: AppStrings.falseCodeErrorText};
+    }
+
+    if(DateTime.now().isAfter(isCodeValid.values.first!)){
+      return {false: AppStrings.expiredCodeErrorText};
+    }
+
+    return {true: AppStrings.codeSuccessfulText};
   }
 
   void _notifySignupFailure(String errorMessage) {
