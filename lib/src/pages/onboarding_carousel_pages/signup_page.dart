@@ -3,6 +3,7 @@ import 'package:findmyrestaurant/src/components/text%20fields/password_text_fiel
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
+import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,13 @@ class SignupPage {
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController = TextEditingController();
   static final TextEditingController confirmPasswordController = TextEditingController();
+
+  static void setSavedUser(UserModel userModel) {
+    nameController.text = userModel.name;
+    emailController.text = userModel.email;
+    passwordController.text = userModel.password;
+    confirmPasswordController.text = userModel.password;
+  }
 
   static AppCarouselItem get page {
     return AppCarouselItem(
