@@ -7,11 +7,14 @@ class AppCarouselController extends PageController {
     int initialPage = 0,
     double viewportFraction = 1.0,
     bool keepPage = true,
-  }) : super(
-          initialPage: initialPage,
-          viewportFraction: viewportFraction,
-          keepPage: keepPage,
-        );
+  }) : super( initialPage: initialPage, viewportFraction: viewportFraction, keepPage: keepPage, );
+
+  int _currentPageIndex = 0;
+  int get currentPageIndex => _currentPageIndex;
+  
+  void setCurrentPageIndex(int pageIndex) {
+    _currentPageIndex = pageIndex;
+  }
 
   Future<void> _animateToPage(int page, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.ease}) {
     if (hasClients) {
