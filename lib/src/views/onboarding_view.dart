@@ -45,6 +45,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     );
   }
 
+  //TODO: Adjust this to make photo appear smoother
   Widget _buildDesignImage() {
     return Consumer<OnboardingViewModel>(
       builder: (context, viewModel, _) {
