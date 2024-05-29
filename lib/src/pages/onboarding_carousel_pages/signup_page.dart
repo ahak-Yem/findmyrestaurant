@@ -8,6 +8,7 @@ import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
+//TODO: Implement keyboard dismiss onNavigation to next screen.
 class SignupPage {
   SignupPage._();
 

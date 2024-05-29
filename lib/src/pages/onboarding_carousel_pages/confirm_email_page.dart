@@ -12,6 +12,7 @@ import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+//TODO: Implement keyboard dismiss onNavigation to next screen.
 class ConfirmEmailPage {
   ConfirmEmailPage._();
   
