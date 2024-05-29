@@ -7,6 +7,12 @@ import 'package:findmyrestaurant/styles/app_colors.dart';
 class CompleteOnboardingPage {
   CompleteOnboardingPage._();
 
+  static void Function()? _onSurveyButtonPressedCallback;
+  
+  static set onSurveyButtonPressedCallback(void Function()? callback) {
+    _onSurveyButtonPressedCallback = callback;
+  }
+
   static AppCarouselItem get page {
     return AppCarouselItem(
       page: OnboardingPages.completeOnboarding,
@@ -23,7 +29,9 @@ class CompleteOnboardingPage {
           textColor: AppColors.appWhite,
           text: AppStrings.toSurveyBtn,
           onPressed: () {
-            //TODO:Build logic to end signup process and navigate to survey.
+            if (_onSurveyButtonPressedCallback != null) {
+              _onSurveyButtonPressedCallback!();
+            }
           },
         ),
       ],
