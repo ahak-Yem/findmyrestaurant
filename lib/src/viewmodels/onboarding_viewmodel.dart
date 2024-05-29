@@ -52,6 +52,15 @@ class OnboardingViewModel extends ChangeNotifier {
     _setUserId();
   }
 
+  Future<bool> onDeviceBackPressed() {
+    final currentPage = appCarouselController.currentPageIndex;
+    if (currentPage == 0) {
+      return Future.value(false);
+    }
+    appCarouselController.goBack(currentPage: currentPage);
+    return Future.value(false);
+  }
+
   set useSavedUser(bool useUser) {
     _useSavedUser = useUser;
   }
