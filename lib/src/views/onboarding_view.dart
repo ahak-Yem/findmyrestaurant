@@ -27,6 +27,12 @@ class _OnboardingViewState extends State<OnboardingView> {
     _setupCodeConfirmationListener();
     _setupSavedUserListener();
   }
+  
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
