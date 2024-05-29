@@ -30,7 +30,7 @@ class AppStrings {
   static const String shortCodeErrorText = "The entered code is too short.";
   static const String falseCodeErrorText = "The entered code is false.";
   static const String expiredCodeErrorText = "The entered code is expired.";
-  static const String codeSuccessfulText = "Nice, you confirmed your email successfully!";
+  static const String codeSuccessfulText = "Email confirmation was successful";
   static const String codeExpiresInLabel = "Code expires in ";
   static const String resendIn = "Send Another Code in ";
   static const String completeSignupHeader = "You signed up successfully";
