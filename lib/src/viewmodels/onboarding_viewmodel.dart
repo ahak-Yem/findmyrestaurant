@@ -258,4 +258,14 @@ class OnboardingViewModel extends ChangeNotifier {
   void _notifyUserIsSaved() {
     _userSavedStreamController.add(AppStrings.userSavedText);
   }
+
+  @override
+  void dispose() {
+    _signupFailureStreamController.close();
+    _confirmationCodeStreamController.close();
+    _userSavedStreamController.close();
+    imageNames.clear();
+    carouselItems.clear();
+    super.dispose();
+  }
 }
