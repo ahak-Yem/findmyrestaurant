@@ -7,6 +7,7 @@ import 'package:findmyrestaurant/src/enums/onboarding_pages_enum.dart';
 import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
 import 'package:findmyrestaurant/src/models/email_model.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
+import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/complete_onboarding_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/confirm_email_page.dart';
 import 'package:findmyrestaurant/src/pages/onboarding_carousel_pages/signup_page.dart';
 import 'package:findmyrestaurant/src/services/app_launch_service.dart';
@@ -50,6 +51,7 @@ class OnboardingViewModel extends ChangeNotifier {
     _loadImages();
     _setAllCarouselItems();
     OnboardingPagesExtension.setAppCarouselController(appCarouselController);
+    CompleteOnboardingPage.onSurveyButtonPressedCallback = _notifyToSurveyBtnPressed;
     _checkAndNotifyUserSaved();
     _setUserId();
   }
