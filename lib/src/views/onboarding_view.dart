@@ -26,6 +26,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     _setupSignupFailureListener();
     _setupCodeConfirmationListener();
     _setupSavedUserListener();
+    _setupOnToSurveyBtnPressedListener();
   }
   
   @override
@@ -108,6 +109,14 @@ class _OnboardingViewState extends State<OnboardingView> {
           return AppAlertDialog.buildDialog(context, AppStrings.confirmationEmailHeader, message);
         },
       );
+    });
+  }
+
+  void _setupOnToSurveyBtnPressedListener() {
+    viewModel.toSurveyBtnStreamController.listen((event) {
+      if (event) {
+        Navigator.pushReplacementNamed(context, '/survey');
+      }
     });
   }
 
