@@ -44,6 +44,9 @@ class OnboardingViewModel extends ChangeNotifier {
   final StreamController<String> _userSavedStreamController = StreamController<String>();
   Stream<String> get userSavedStreamController => _userSavedStreamController.stream;
 
+  final StreamController<bool> _toSurveyBtnStreamController = StreamController<bool>();
+  Stream<bool> get toSurveyBtnStreamController => _toSurveyBtnStreamController.stream;
+
   OnboardingViewModel() {
     _loadImages();
     _setAllCarouselItems();
@@ -260,11 +263,16 @@ class OnboardingViewModel extends ChangeNotifier {
     _userSavedStreamController.add(AppStrings.userSavedText);
   }
 
+  void _notifyToSurveyBtnPressed() {
+    _toSurveyBtnStreamController.add(true);
+  }
+
   @override
   void dispose() {
     _signupFailureStreamController.close();
     _confirmationCodeStreamController.close();
     _userSavedStreamController.close();
+    _toSurveyBtnStreamController.close();
     imageNames.clear();
     carouselItems.clear();
     super.dispose();
