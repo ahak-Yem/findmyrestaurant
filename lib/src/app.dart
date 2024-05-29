@@ -35,6 +35,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
       initialRoute: '/',
+      routes: {        
+        '/survey': (context) => const SurveyView(),
+      },
       home: _determineHomeView(),
     );
   }
