@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+//TODO: Build app routes enum or class for clear route management
 class MyApp extends StatelessWidget {
   const MyApp({Key? key,}) : super(key: key);
 
