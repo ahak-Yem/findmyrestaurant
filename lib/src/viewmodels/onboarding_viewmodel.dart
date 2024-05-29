@@ -212,6 +212,7 @@ class OnboardingViewModel extends ChangeNotifier {
     if(!validationResult.keys.first){
       isBackToConfirmEmail = true;
       appCarouselController.goBack(currentPage: pageIndex);
+      _notifyConfirmationCodeState(validationResult.values.first);
     }
     else{
       ConfirmEmailPage.emptyConfirmationCodeController();
@@ -220,9 +221,9 @@ class OnboardingViewModel extends ChangeNotifier {
       _user?.isEmailConfirmed = true;
       _database.save(DatabaseModelsEnum.user, _userID, _user);
       appCarouselController.setCurrentPageIndex(pageIndex);
+      AppToast.showToast(validationResult.values.first);
       notifyListeners();
     }
-    _notifyConfirmationCodeState(validationResult.values.first);
   }
 
   Map<bool, String> _validateConfirmationCode({required String code}){
