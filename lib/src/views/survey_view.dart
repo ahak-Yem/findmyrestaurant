@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SurveyView extends StatefulWidget {
-  const SurveyView({super.key});
+  const SurveyView({Key? key}) : super(key: key);
 
   @override
   State<SurveyView> createState() => _SurveyViewState();
@@ -40,7 +40,7 @@ class _SurveyViewState extends State<SurveyView> {
                 )
               else
                 DropdownButton<String>(
-                  value: _surveyResponses[question] as String,
+                  value: _surveyResponses[question] != null ? _surveyResponses[question] as String : null,
                   items: const [
                     DropdownMenuItem(value: 'Very satisfied', child: Text('Very satisfied')),
                     DropdownMenuItem(value: 'Satisfied', child: Text('Satisfied')),
