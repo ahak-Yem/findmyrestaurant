@@ -23,9 +23,6 @@ enum OnboardingPages {
   completeOnboarding(
     pageIndex: 4
   );
-  // extra(
-  //   pageIndex: 5,
-  // );
 
   const OnboardingPages({required this.pageIndex});
 
@@ -52,8 +49,6 @@ extension OnboardingPagesExtension on OnboardingPages {
         return ConfirmEmailPage.page;
       case OnboardingPages.completeOnboarding:
         return CompleteOnboardingPage.page;
-      // case OnboardingPages.extra:
-      //   return ExtraPage.page;
     }
   }
 
@@ -74,8 +69,6 @@ extension OnboardingPagesExtension on OnboardingPages {
         return OnboardingPages.confirmEmail.page;
       case 4:
         return OnboardingPages.completeOnboarding.page;
-      // case 5:
-      //   return OnboardingPages.extra.page;
       default:
         return emptyItem;
     }
