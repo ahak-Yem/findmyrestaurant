@@ -4,6 +4,7 @@ import 'package:findmyrestaurant/src/items_templates/app_carousel_item.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 
+//TODO: Implement warning dialog onNavigation back
 class CompleteOnboardingPage {
   CompleteOnboardingPage._();
 
