@@ -1,3 +1,5 @@
+import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
+
 enum ImagesNames {
   muesli,
   eggSandwish,
@@ -22,6 +24,23 @@ extension ImagesNamesExtension on ImagesNames {
         return 'tomatoes pesto';
       case ImagesNames.loadingPlaceholder:
       return 'loading placeholder';
+    }
+  }
+
+  ImagesPathsSections get section {
+    switch (this) {
+      case ImagesNames.muesli:
+        return ImagesPathsSections.getStarted;
+      case ImagesNames.eggSandwish:
+        return ImagesPathsSections.getStarted;
+      case ImagesNames.salad:
+        return ImagesPathsSections.getStarted;
+      case ImagesNames.salmonEggs:
+        return ImagesPathsSections.getStarted;
+      case ImagesNames.tomatoesPesto:
+        return ImagesPathsSections.getStarted;
+      case ImagesNames.loadingPlaceholder:
+        return ImagesPathsSections.extra;
     }
   }
 }
