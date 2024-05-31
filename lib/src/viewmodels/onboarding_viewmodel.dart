@@ -91,7 +91,7 @@ class OnboardingViewModel extends ChangeNotifier {
   }
 
   void _setImages() {
-    for(var imageName in ImagesNames.values) {
+    for(var imageName in ImagesNames.values.where((imageName) => imageName.section == ImagesPathsSections.getStarted)) {
       String path = ImagesReaderService.instance.getImagePath(ImagesPathsSections.getStarted, imageName);
       var image = ImagesContainer(imagePath: path, heightPercentage: 45);
       _images.add(image);
