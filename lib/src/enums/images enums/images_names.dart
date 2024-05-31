@@ -3,7 +3,8 @@ enum ImagesNames {
   eggSandwish,
   salad,
   salmonEggs,
-  tomatoesPesto
+  tomatoesPesto,
+  loadingPlaceholder
 }
 
 extension ImagesNamesExtension on ImagesNames {
@@ -19,6 +20,8 @@ extension ImagesNamesExtension on ImagesNames {
         return 'salmon eggs';
       case ImagesNames.tomatoesPesto:
         return 'tomatoes pesto';
+      case ImagesNames.loadingPlaceholder:
+      return 'loading placeholder';
     }
   }
 }

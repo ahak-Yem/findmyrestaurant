@@ -6,6 +6,9 @@
         "salad" : "assets/images/getstarted/salad.png",
         "salmon eggs" : "assets/images/getstarted/salmon eggs.png",
         "tomatoes pesto" : "assets/images/getstarted/tomatoes pesto.png"
+      },
+      "extra" :{
+        "loading placeholder" : "assets/images/loading placeholder.gif"
       }
     }
   }

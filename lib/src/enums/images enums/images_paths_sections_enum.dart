@@ -1,5 +1,6 @@
 enum ImagesPathsSections {
-  getStarted
+  getStarted,
+  extra
 }
 
 extension ImagesPathsSectionsExtension on ImagesPathsSections {
@@ -7,6 +8,8 @@ extension ImagesPathsSectionsExtension on ImagesPathsSections {
     switch (this) {
       case ImagesPathsSections.getStarted:
         return 'getStarted';
+      case ImagesPathsSections.extra:
+        return 'extra';
     }
   }
 }
