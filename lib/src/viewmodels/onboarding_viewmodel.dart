@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:findmyrestaurant/src/components/app_toast.dart';
+import 'package:findmyrestaurant/src/components/images_container.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/database%20enums/database_models_enum.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
@@ -21,8 +22,8 @@ import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
 
 class OnboardingViewModel extends ChangeNotifier {
-  List<ImagesNames> imageNames = [];
-  String designImagePath = '';
+  final List<ImagesContainer> _images = [];
+  List<ImagesContainer> get images => _images;
   List<AppCarouselItem> carouselItems = [];
   String? _userID;
   bool isBackToConfirmEmail = false;
@@ -48,7 +49,7 @@ class OnboardingViewModel extends ChangeNotifier {
   Stream<bool> get toSurveyBtnStreamController => _toSurveyBtnStreamController.stream;
 
   OnboardingViewModel() {
-    _loadImages();
+    _setImages();
     _setAllCarouselItems();
     OnboardingPagesExtension.setAppCarouselController(appCarouselController);
     CompleteOnboardingPage.onSurveyButtonPressedCallback = _notifyToSurveyBtnPressed;
@@ -89,16 +90,11 @@ class OnboardingViewModel extends ChangeNotifier {
     }
   }
 
-  void _loadImages() {
-    try {
-      imageNames = ImagesNames.values;
-      designImagePath = _getDesignImagePath(imageNames[0]);
-
-      notifyListeners();
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error loading images: $e');
-      }
+  void _setImages() {
+    for(var imageName in ImagesNames.values) {
+      String path = ImagesReaderService.instance.getImagePath(ImagesPathsSections.getStarted, imageName);
+      var image = ImagesContainer(imagePath: path, heightPercentage: 45);
+      _images.add(image);
     }
   }
 
@@ -110,12 +106,6 @@ class OnboardingViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _getDesignImagePath(ImagesNames imageName) {
-    const ImagesPathsSections imagesSection = ImagesPathsSections.getStarted;
-    String path = ImagesReaderService.instance.getImagePath(imagesSection, imageName);
-    return path;
-  }
-
   void onAppCarouselItemChanged(int pageIndex){
     if(OnboardingPages.signUp.pageIndex + 1 == pageIndex){
       onSignupPageChanged(pageIndex);
@@ -125,8 +115,6 @@ class OnboardingViewModel extends ChangeNotifier {
       onConfirmEmailPageChanged(pageIndex);
       return;
     }
-    int imageIndex = pageIndex % imageNames.length;
-    designImagePath = _getDesignImagePath(imageNames[imageIndex]);
     appCarouselController.setCurrentPageIndex(pageIndex);
     notifyListeners();
   }
@@ -171,8 +159,6 @@ class OnboardingViewModel extends ChangeNotifier {
       );
       _emailService.sendEmail(emailModel);
       AppToast.showToast(validationResult.values.first);
-      int imageIndex = pageIndex % imageNames.length;
-      designImagePath = _getDesignImagePath(imageNames[imageIndex]);
       appCarouselController.setCurrentPageIndex(pageIndex);
       notifyListeners();
     }
@@ -220,8 +206,6 @@ class OnboardingViewModel extends ChangeNotifier {
     }
     else{
       ConfirmEmailPage.emptyConfirmationCodeController();
-      int imageIndex = pageIndex % imageNames.length;
-      designImagePath = _getDesignImagePath(imageNames[imageIndex]);
       _user?.isEmailConfirmed = true;
       _database.save(DatabaseModelsEnum.user, _userID, _user);
       appCarouselController.setCurrentPageIndex(pageIndex);
@@ -274,7 +258,7 @@ class OnboardingViewModel extends ChangeNotifier {
     _confirmationCodeStreamController.close();
     _userSavedStreamController.close();
     _toSurveyBtnStreamController.close();
-    imageNames.clear();
+    _images.clear();
     carouselItems.clear();
     super.dispose();
   }
