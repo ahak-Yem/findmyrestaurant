@@ -60,11 +60,8 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget _buildDesignImage() {
     return Consumer<OnboardingViewModel>(
       builder: (context, viewModel, _) {
-        if(viewModel.designImagePath.isNotEmpty && viewModel.designImagePath != ""){
-          return ImagesContainer(
-            imagePath: viewModel.designImagePath, 
-            heightPercentage: 45,
-          );
+        if(viewModel.images.isNotEmpty){
+          return viewModel.images[viewModel.appCarouselController.currentPageIndex];
         }
         return const SizedBox(height: 0, width: 0,);
       },
