@@ -3,21 +3,21 @@ import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:flutter/material.dart';
 
-class ImagesContainer extends StatefulWidget {
+class FadeImagesContainer extends StatefulWidget {
   final String imagePath;
   final double heightPercentage;
 
-  const ImagesContainer({
+  const FadeImagesContainer({
     super.key,
     required this.imagePath,
     required this.heightPercentage,
   });
 
   @override
-  createState() => _ImagesContainerState();
+  createState() => _FadeImagesContainerState();
 }
 
-class _ImagesContainerState extends State<ImagesContainer> {
+class _FadeImagesContainerState extends State<FadeImagesContainer> {
   bool _isLoaded = false;
   late String _imagePlaceholder;
 
@@ -31,7 +31,7 @@ class _ImagesContainerState extends State<ImagesContainer> {
   }
 
   @override
-  void didUpdateWidget(covariant ImagesContainer oldWidget) {
+  void didUpdateWidget(covariant FadeImagesContainer oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.imagePath != oldWidget.imagePath) {
       setState(() {
