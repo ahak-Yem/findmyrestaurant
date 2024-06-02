@@ -1,7 +1,5 @@
+import 'package:findmyrestaurant/src/components/loading_placeholder.dart';
 import 'package:findmyrestaurant/src/controllers/fade_images_controller.dart';
-import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
-import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
-import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:flutter/material.dart';
 
 class FadeImagesContainer extends StatefulWidget {
@@ -19,17 +17,12 @@ class FadeImagesContainer extends StatefulWidget {
 }
 
 class _FadeImagesContainerState extends State<FadeImagesContainer> with SingleTickerProviderStateMixin {
-  late String _imagePlaceholder;
   late Map<String, bool> _imagePathExists;
   late FadeImagesController _controller;
 
   @override
   void initState() {
     super.initState();
-    _imagePlaceholder = ImagesReaderService.instance.getImagePath(
-      ImagesPathsSections.extra,
-      ImagesNames.loadingPlaceholder,
-    );
     _imagePathExists = {widget.imagePath: false};
     _controller = FadeImagesController(this);
     _controller.startAnimation();
@@ -50,22 +43,15 @@ class _FadeImagesContainerState extends State<FadeImagesContainer> with SingleTi
     }
   }
 
-  Widget loadingPlaceholderWidget() {
-    return Positioned.fill(
-      child: Image.asset(
-        _imagePlaceholder,
-        fit: BoxFit.contain,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * widget.heightPercentage / 100,
       child: Stack(
         children: [
-          loadingPlaceholderWidget(),
+          Positioned.fill(
+            child: LoadingPlaceholder()
+          ),
           Positioned.fill(
             child: AnimatedBuilder(
               animation: _controller.opacityAnimation,
