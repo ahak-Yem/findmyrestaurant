@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:findmyrestaurant/src/components/app_toast.dart';
-import 'package:findmyrestaurant/src/components/images_container.dart';
+import 'package:findmyrestaurant/src/components/fade_images_container.dart';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/database%20enums/database_models_enum.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
@@ -22,8 +22,8 @@ import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
 
 class OnboardingViewModel extends ChangeNotifier {
-  final List<ImagesContainer> _images = [];
-  List<ImagesContainer> get images => _images;
+  final List<FadeImagesContainer> _images = [];
+  List<FadeImagesContainer> get images => _images;
   List<AppCarouselItem> carouselItems = [];
   String? _userID;
   bool isBackToConfirmEmail = false;
@@ -94,7 +94,7 @@ class OnboardingViewModel extends ChangeNotifier {
   void _setImages() {
     for(var imageName in ImagesNames.values.where((imageName) => imageName.section == ImagesPathsSections.getStarted)) {
       String path = ImagesReaderService.instance.getImagePath(ImagesPathsSections.getStarted, imageName);
-      var image = ImagesContainer(imagePath: path, heightPercentage: 45);
+      var image = FadeImagesContainer(imagePath: path, heightPercentage: 45);
       _images.add(image);
     }
   }
