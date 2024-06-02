@@ -17,10 +17,11 @@ class FadeImagesContainer extends StatefulWidget {
   createState() => _FadeImagesContainerState();
 }
 
-class _FadeImagesContainerState extends State<FadeImagesContainer> {
-  bool _isLoaded = false;
+class _FadeImagesContainerState extends State<FadeImagesContainer> with SingleTickerProviderStateMixin {
   late String _imagePlaceholder;
-  final List<String> _imagePaths = List.empty(growable: true);
+  late Map<String, bool> _imagePathExists;
+  late AnimationController _controller;
+  late Animation<double> _opacityAnimation;
 
   @override
   void initState() {
@@ -29,18 +30,43 @@ class _FadeImagesContainerState extends State<FadeImagesContainer> {
       ImagesPathsSections.extra,
       ImagesNames.loadingPlaceholder,
     );
-    _imagePaths.add(widget.imagePath);
+    _imagePathExists = {widget.imagePath: false};
+
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 3000),
+      vsync: this,
+    );
+
+    _opacityAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controller);
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   void didUpdateWidget(covariant FadeImagesContainer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (!_imagePaths.contains(widget.imagePath) && widget.imagePath != oldWidget.imagePath) {
-      _imagePaths.add(widget.imagePath);
-      setState(() {
-        _isLoaded = false;
-      });
+    if (!_imagePathExists.containsKey(widget.imagePath) && widget.imagePath != oldWidget.imagePath) {
+      _imagePathExists.addEntries([MapEntry(widget.imagePath, false)]);
+      _controller.forward(from: 0.0);
     }
+  }
+
+  Widget loadingPlaceholderWidget() {
+    return Positioned.fill(
+      child: Image.asset(
+        _imagePlaceholder,
+        fit: BoxFit.contain,
+      ),
+    );
   }
 
   @override
@@ -49,28 +75,28 @@ class _FadeImagesContainerState extends State<FadeImagesContainer> {
       height: MediaQuery.of(context).size.height * widget.heightPercentage / 100,
       child: Stack(
         children: [
+          loadingPlaceholderWidget(),
           Positioned.fill(
-            child: Image.asset(
-              _imagePlaceholder,
-              fit: BoxFit.contain,
-            ),
-          ),
-          Positioned.fill(
-            child: AnimatedOpacity(
-              opacity: _isLoaded ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 3000),
+            child: AnimatedBuilder(
+              animation: _opacityAnimation,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _opacityAnimation.value,
+                  child: child,
+                );
+              },
               child: Image.asset(
                 widget.imagePath,
                 fit: BoxFit.cover,
                 frameBuilder: (BuildContext context, Widget child, int? frame, bool wasSynchronouslyLoaded) {
-                  if (wasSynchronouslyLoaded || frame != null) {
-                    Future.delayed(Duration.zero, () {
-                      setState(() {
-                        _isLoaded = true;
-                      });
-                    });
+                  if (_imagePathExists[widget.imagePath] == true) {
                     return child;
                   } else {
+                    Future.delayed(const Duration(seconds: 1), () {
+                      setState(() {
+                        _imagePathExists[widget.imagePath] = true;
+                      });
+                    });
                     return child;
                   }
                 },
