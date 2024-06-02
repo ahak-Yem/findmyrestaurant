@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/controllers/fade_images_controller.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
@@ -20,8 +21,7 @@ class FadeImagesContainer extends StatefulWidget {
 class _FadeImagesContainerState extends State<FadeImagesContainer> with SingleTickerProviderStateMixin {
   late String _imagePlaceholder;
   late Map<String, bool> _imagePathExists;
-  late AnimationController _controller;
-  late Animation<double> _opacityAnimation;
+  late FadeImagesController _controller;
 
   @override
   void initState() {
@@ -31,18 +31,8 @@ class _FadeImagesContainerState extends State<FadeImagesContainer> with SingleTi
       ImagesNames.loadingPlaceholder,
     );
     _imagePathExists = {widget.imagePath: false};
-
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 3000),
-      vsync: this,
-    );
-
-    _opacityAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(_controller);
-
-    _controller.forward();
+    _controller = FadeImagesController(this);
+    _controller.startAnimation();
   }
 
   @override
@@ -78,10 +68,10 @@ class _FadeImagesContainerState extends State<FadeImagesContainer> with SingleTi
           loadingPlaceholderWidget(),
           Positioned.fill(
             child: AnimatedBuilder(
-              animation: _opacityAnimation,
+              animation: _controller.opacityAnimation,
               builder: (context, child) {
                 return Opacity(
-                  opacity: _opacityAnimation.value,
+                  opacity: _controller.opacityAnimation.value,
                   child: child,
                 );
               },
