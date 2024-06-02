@@ -20,6 +20,7 @@ class FadeImagesContainer extends StatefulWidget {
 class _FadeImagesContainerState extends State<FadeImagesContainer> {
   bool _isLoaded = false;
   late String _imagePlaceholder;
+  final List<String> _imagePaths = List.empty(growable: true);
 
   @override
   void initState() {
@@ -28,12 +29,14 @@ class _FadeImagesContainerState extends State<FadeImagesContainer> {
       ImagesPathsSections.extra,
       ImagesNames.loadingPlaceholder,
     );
+    _imagePaths.add(widget.imagePath);
   }
 
   @override
   void didUpdateWidget(covariant FadeImagesContainer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.imagePath != oldWidget.imagePath) {
+    if (!_imagePaths.contains(widget.imagePath) && widget.imagePath != oldWidget.imagePath) {
+      _imagePaths.add(widget.imagePath);
       setState(() {
         _isLoaded = false;
       });
