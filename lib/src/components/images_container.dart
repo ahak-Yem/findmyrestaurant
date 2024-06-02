@@ -21,12 +21,6 @@ class _ImagesContainerState extends State<ImagesContainer> {
   bool _isLoaded = false;
   late String _imagePlaceholder;
 
-  set isLoaded(bool isLoaded) {
-    setState(() {
-      _isLoaded = isLoaded;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -35,6 +29,17 @@ class _ImagesContainerState extends State<ImagesContainer> {
       ImagesNames.loadingPlaceholder,
     );
   }
+
+  @override
+  void didUpdateWidget(covariant ImagesContainer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.imagePath != oldWidget.imagePath) {
+      setState(() {
+        _isLoaded = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
