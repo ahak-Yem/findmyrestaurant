@@ -52,4 +52,8 @@ class ImagesReaderService {
     path = _config![_jsonFileRoot][section.sectionString][imageName.imageNameString];
     return path;
   }
+
+  Future<String> getImagePathAsync(ImagesPathsSections section, ImagesNames imageName) async {
+    return getImagePath(section, imageName);
+  }
 }
