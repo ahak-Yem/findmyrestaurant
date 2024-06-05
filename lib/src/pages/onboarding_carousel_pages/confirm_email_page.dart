@@ -12,7 +12,6 @@ import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-//TODO: Implement warning dialog onNavigation back
 class ConfirmEmailPage {
   ConfirmEmailPage._();
   
