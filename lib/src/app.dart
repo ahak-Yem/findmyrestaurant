@@ -1,18 +1,16 @@
+import 'package:findmyrestaurant/src/enums/app_routes_enum.dart';
 import 'package:findmyrestaurant/src/services/app_launch_service.dart';
-import 'package:findmyrestaurant/src/views/survey_view.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
-import 'package:findmyrestaurant/src/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-//TODO: Build app routes enum or class for clear route management
 class MyApp extends StatelessWidget {
   const MyApp({Key? key,}) : super(key: key);
 
   Widget _determineHomeView(){
     final AppLaunchService appLaunchService = AppLaunchService.instance; 
-    return appLaunchService.isUserEmailConfirmed ? const SurveyView() : const OnboardingView();
+    return appLaunchService.isUserEmailConfirmed ? AppRoutes.survey.view : AppRoutes.onboarding.view;
   }
 
   @override
@@ -34,9 +32,9 @@ class MyApp extends StatelessWidget {
           AppLocalizations.of(context)!.appTitle,
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
-      initialRoute: '/',
+      initialRoute: AppRoutes.onboarding.route,
       routes: {        
-        '/survey': (context) => const SurveyView(),
+        AppRoutes.survey.route: (context) => AppRoutes.survey.view,
       },
       home: _determineHomeView(),
     );
