@@ -1,0 +1,122 @@
+{
+    "survey": [
+        {
+            "id": "q1",
+            "question": "Do you follow any dietary restrictions?",
+            "type": "multipleChoice",
+            "options": [
+                "No",
+                "Vegan",
+                "Vegetarian",
+                "Halal",
+                "Kosher",
+                "Gluten-free",
+                "Dairy-free",
+                "Lactose-free",
+                "Nut-free",
+                "Egg-free",
+                "Diabetic",
+                "Keto",
+                "Low-carb",
+                "Low-fat",
+                "Pescatarian",
+                "Fruitarian",
+                "Soy-free",
+                "FODMAP",
+                "Sugar-free",
+                "Organic",
+                "Low-sodium",
+                "Low-calorie",
+                "No pork",
+                "No beef",
+                "No red meat",
+                "Paleo",
+                "Intermittent fasting",
+                "Other"
+            ]
+        },
+        {
+            "id": "q2",
+            "question": "Do you have any food allergies?",
+            "type": "multipleChoice",
+            "options": [
+                "Nuts",
+                "Shellfish",
+                "Dairy",
+                "Eggs",
+                "Soy",
+                "Wheat",
+                "Fish",
+                "Gluten",
+                "Peanuts",
+                "Tree nuts",
+                "Sesame",
+                "Corn",
+                "Mustard",
+                "Sulfites",
+                "Lupin",
+                "Celery",
+                "Other"
+            ]
+        },
+        {
+            "id": "q3",
+            "question": "What types of cuisine do you prefer?",
+            "type": "multipleChoice",
+            "options": [
+                "German",
+                "Italian",
+                "Chinese",
+                "Indian",
+                "Middle Eastern",
+                "American",
+                "Mediterranean",
+                "Greek",
+                "Korean",
+                "Vietnamese",
+                "Thai",
+                "Japanese",
+                "Mexican",
+                "Spanish",
+                "French",
+                "Caribbean",
+                "Other"
+            ]
+        },
+        {
+            "id": "q4",
+            "question": "What type of meals do you prefer?",
+            "type": "multipleChoice",
+            "options": [
+              "Breakfast",
+              "Lunch",
+              "Brunch",
+              "Dinner",
+              "Snacks",
+              "Desserts"
+            ]
+          },
+        {
+            "id": "q5",
+            "question": "What are your favorite ingredients?",
+            "type": "openEnded"
+        },
+        {
+            "id": "q6",
+            "question": "Are there any ingredients you dislike?",
+            "type": "openEnded"
+        },
+        {
+            "id": "q7",
+            "question": "How many meals do you typically eat per day?",
+            "type": "numeric"
+        },
+        {
+            "id": "q8",
+            "question": "Do you prefer home-cooked meals, delivery or eating out?",
+            "type": "singleChoice",
+            "options": ["Home-cooked", "Delivery", "Eating out"]
+        }
+    ]
+}
+  
