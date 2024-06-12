@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/enums/survey_questions_enum.dart';
 import 'package:hive/hive.dart';
 
 part 'dietary_survey_user_preferences_model.g.dart';
@@ -54,4 +55,24 @@ class DietarySurveyUserPreferencesModel {
   _cuisinePreferences = cuisinePreferences, 
   _allergies = allergies, 
   _dietaryRestrictions = dietaryRestrictions;
+
+  void setPreferencesField(String questionId, dynamic value) {
+    if (questionId == SurveyQuestions.dietaryRestrictions.id && value is List<String>) {
+      _dietaryRestrictions = value;
+    } else if (questionId == SurveyQuestions.allergies.id && value is List<String>) {
+      _allergies = value;
+    } else if (questionId == SurveyQuestions.cuisinePreferences.id && value is List<String>) {
+      _cuisinePreferences = value;
+    } else if (questionId == SurveyQuestions.mealPreferences.id && value is List<String>) {
+      _mealPreferences = value;
+    } else if (questionId == SurveyQuestions.favoriteIngredients.id && value is String) {
+      _favoriteIngredients = value;
+    } else if (questionId == SurveyQuestions.dislikedIngredients.id && value is String) {
+      _dislikedIngredients = value;
+    } else if (questionId == SurveyQuestions.mealsPerDay.id && value is int) {
+      _mealsPerDay = value;
+    } else if (questionId == SurveyQuestions.eatingHabits.id && value is String) {
+      _eatingHabits = value;
+    }
+  }
 }
