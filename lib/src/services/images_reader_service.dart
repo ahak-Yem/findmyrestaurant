@@ -19,12 +19,12 @@ class ImagesReaderService {
   }
 
   Future<void> initialize() async{
-    await _loadConfiguration();
+    await _loadImagesConfig();
   }
 
   static Map<String, dynamic>? _config;
 
-  static Future<void> _loadConfiguration() async {
+  static Future<void> _loadImagesConfig() async {
     if (_config == null && !_isLoading) {
       _isLoading = true;
       try {
@@ -38,7 +38,7 @@ class ImagesReaderService {
   String getImagePath(ImagesPathsSections section, ImagesNames imageName){
     String path = "";
     if (_config == null) {
-      _loadConfiguration();
+      _loadImagesConfig();
     }
     if(_config == null || _config!.isEmpty){
       return path;
