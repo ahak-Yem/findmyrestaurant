@@ -1,16 +1,13 @@
-import 'dart:convert' show json;
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:synchronized/synchronized.dart';
-
+import 'package:findmyrestaurant/src/services/json_files_service.dart';
 import '../enums/images enums/images_paths_sections_enum.dart';
 
 class ImagesReaderService {
 
   static bool _isLoading = false;
-  static final _lock = Lock();
   static const String _jsonFileRoot = 'imagePaths';
   static const String _jsonFilePath = 'assets/imagesPaths.json';
+  static final JsonFilesService _jsonFilesService = JsonFilesService.instance;
 
   ImagesReaderService._();
   
@@ -29,15 +26,12 @@ class ImagesReaderService {
 
   static Future<void> _loadConfiguration() async {
     if (_config == null && !_isLoading) {
-      await _lock.synchronized(() async {
-        _isLoading = true;
-        try {
-          final String jsonString = await rootBundle.loadString(_jsonFilePath);
-          _config = json.decode(jsonString);
-        } finally {
-          _isLoading = false;
-        }
-      });
+      _isLoading = true;
+      try {
+        _config = await _jsonFilesService.readAssetJsonFile(_jsonFilePath);
+      } finally {
+        _isLoading = false;
+      }
     }
   }
 
