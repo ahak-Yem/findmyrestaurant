@@ -14,9 +14,10 @@ class DatabaseService {
   DatabaseService._internal();
 
   final DatabaseModelsEnum _userDatabaseModelEnum = DatabaseModelsEnum.user;
+  
+  final DeviceInfoService deviceInfoService = DeviceInfoService.instance;
 
   Future<void> initialize() async {
-    DeviceInfoService deviceInfoService = DeviceInfoService.instance;
     Hive.registerAdapter(UserModelAdapter());
     await Hive.initFlutter();
     String userId = await deviceInfoService.deviceID;
