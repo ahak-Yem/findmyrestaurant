@@ -18,17 +18,4 @@ class DietarySurveyUserPreferencesModel {
     required this.mealsPerDay,
     required this.eatingHabits,
   });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'dietaryRestrictions': dietaryRestrictions,
-      'allergies': allergies,
-      'cuisinePreferences': cuisinePreferences,
-      'mealPreferences': mealPreferences,
-      'favoriteIngredients': favoriteIngredients,
-      'dislikedIngredients': dislikedIngredients,
-      'mealsPerDay': mealsPerDay,
-      'eatingHabits': eatingHabits,
-    };
-  }
 }
