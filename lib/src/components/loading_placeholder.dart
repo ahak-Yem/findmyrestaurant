@@ -19,7 +19,11 @@ class LoadingPlaceholder extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
-        } else {
+        }
+        else {
+          if(!snapshot.hasData || snapshot.data == null) {
+            return Container();
+          }
           return Image.asset(
             snapshot.data!,
             fit: BoxFit.contain,
