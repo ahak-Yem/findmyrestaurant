@@ -5,13 +5,20 @@ class DietarySurveyQuestionsModel {
   final String question;
   final SurveyQuestionType type;
   final List<String>? options;
-  final String? otherOptionLabel; 
 
   DietarySurveyQuestionsModel({
     required this.id,
     required this.question,
     required this.type,
     this.options,
-    this.otherOptionLabel,
   });
+
+  static DietarySurveyQuestionsModel fromJson(Map<String, dynamic> json) {
+    return DietarySurveyQuestionsModel(
+      id: json['id'],
+      question: json['question'],
+      type: SurveyQuestionType.values.firstWhere((e) => e.toString() == 'SurveyQuestionType.${json['type']}'),
+      options: json['options'] != null ? List<String>.from(json['options']) : null,
+    );
+  }
 }
