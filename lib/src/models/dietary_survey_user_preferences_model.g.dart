@@ -34,21 +34,21 @@ class DietarySurveyUserPreferencesModelAdapter
     writer
       ..writeByte(8)
       ..writeByte(0)
-      ..write(obj.dietaryRestrictions)
+      ..write(obj._dietaryRestrictions)
       ..writeByte(1)
-      ..write(obj.allergies)
+      ..write(obj._allergies)
       ..writeByte(2)
-      ..write(obj.cuisinePreferences)
+      ..write(obj._cuisinePreferences)
       ..writeByte(3)
-      ..write(obj.mealPreferences)
+      ..write(obj._mealPreferences)
       ..writeByte(4)
-      ..write(obj.favoriteIngredients)
+      ..write(obj._favoriteIngredients)
       ..writeByte(5)
-      ..write(obj.dislikedIngredients)
+      ..write(obj._dislikedIngredients)
       ..writeByte(6)
-      ..write(obj.mealsPerDay)
+      ..write(obj._mealsPerDay)
       ..writeByte(7)
-      ..write(obj.eatingHabits);
+      ..write(obj._eatingHabits);
   }
 
   @override
