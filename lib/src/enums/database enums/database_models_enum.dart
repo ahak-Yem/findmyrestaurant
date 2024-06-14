@@ -34,28 +34,28 @@ extension DatabaseModelsEnumExtension on DatabaseModelsEnum {
     return await Hive.openBox(boxName);
   }
 
-  List<String> get keysEnum {
-    switch (this) {
-      case DatabaseModelsEnum.user:
-        return [
-          UserModelKeysEnum.id.key, 
-          UserModelKeysEnum.name.key,
-          UserModelKeysEnum.email.key,
-          UserModelKeysEnum.profilePicture.key
-        ].toList();
-      case DatabaseModelsEnum.dietaryUserPreferences:
-        return [
-          DietarySurveyUserPreferencesKeysEnum.dietaryRestrictions.key,
-          DietarySurveyUserPreferencesKeysEnum.allergies.key,
-          DietarySurveyUserPreferencesKeysEnum.cuisinePreferences.key,
-          DietarySurveyUserPreferencesKeysEnum.mealPreferences.key,
-          DietarySurveyUserPreferencesKeysEnum.favoriteIngredients.key,
-          DietarySurveyUserPreferencesKeysEnum.dislikedIngredients.key,
-          DietarySurveyUserPreferencesKeysEnum.mealsPerDay.key,
-          DietarySurveyUserPreferencesKeysEnum.eatingHabits.key
-        ].toList();
-      default:
-        throw Exception('Invalid Enum Value!');
-    }
-  }
+  // List<String> get keysEnum {
+  //   switch (this) {
+  //     case DatabaseModelsEnum.user:
+  //       return [
+  //         UserModelKeysEnum.id.key, 
+  //         UserModelKeysEnum.name.key,
+  //         UserModelKeysEnum.email.key,
+  //         UserModelKeysEnum.profilePicture.key
+  //       ].toList();
+  //     case DatabaseModelsEnum.dietaryUserPreferences:
+  //       return [
+  //         DietarySurveyUserPreferencesKeysEnum.dietaryRestrictions.key,
+  //         DietarySurveyUserPreferencesKeysEnum.allergies.key,
+  //         DietarySurveyUserPreferencesKeysEnum.cuisinePreferences.key,
+  //         DietarySurveyUserPreferencesKeysEnum.mealPreferences.key,
+  //         DietarySurveyUserPreferencesKeysEnum.favoriteIngredients.key,
+  //         DietarySurveyUserPreferencesKeysEnum.dislikedIngredients.key,
+  //         DietarySurveyUserPreferencesKeysEnum.mealsPerDay.key,
+  //         DietarySurveyUserPreferencesKeysEnum.eatingHabits.key
+  //       ].toList();
+  //     default:
+  //       throw Exception('Invalid Enum Value!');
+  //   }
+  // }
 }
