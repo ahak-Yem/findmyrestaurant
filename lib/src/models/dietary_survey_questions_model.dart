@@ -15,9 +15,9 @@ class DietarySurveyQuestionsModel {
 
   static DietarySurveyQuestionsModel fromJson(Map<String, dynamic> json) {
     return DietarySurveyQuestionsModel(
-      id: json['id'],
-      question: json['question'],
-      type: SurveyQuestionType.values.firstWhere((e) => e.toString() == 'SurveyQuestionType.${json['type']}'),
+      id: json['id'] ?? '',
+      question: json['question'] ?? '',
+      type: SurveyQuestionType.values.firstWhere((e) => e.name == json['type'] || e.name == SurveyQuestionType.multipleChoice.name),
       options: json['options'] != null ? List<String>.from(json['options']) : null,
     );
   }
