@@ -44,22 +44,22 @@ class DatabaseService {
     return userBox.get(key);
   }
 
-  Future<void> save<T>(DatabaseModelsEnum model, dynamic key, T value) async {
-    final box = await model.box;
-    if(model.isSingleton && box.get(key) != null){
-      delete(model, key);
+  Future<void> save<T>(DatabaseModelsEnum databaseModelType, dynamic key, T value) async {
+    final box = await databaseModelType.box;
+    if(databaseModelType.isSingleton && box.get(key) != null){
+      delete(databaseModelType, key);
     }
     box.put(key, value);
     box.close();
   }
 
-  Future<void> delete(DatabaseModelsEnum model, dynamic key) async {
-    final box = await model.box;
+  Future<void> delete(DatabaseModelsEnum databaseModelType, dynamic key) async {
+    final box = await databaseModelType.box;
     box.delete(key);
   }
 
-  Future<T?> read<T>(DatabaseModelsEnum model, dynamic key) async {
-    final box = await model.box;
+  Future<T?> read<T>(DatabaseModelsEnum databaseModelType, dynamic key) async {
+    final box = await databaseModelType.box;
     return box.get(key);
   }
 }
