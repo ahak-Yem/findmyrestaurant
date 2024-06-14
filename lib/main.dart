@@ -11,10 +11,10 @@ import 'src/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ImagesReaderService.instance.initialize();
-  await DotenvService.instance.initialize();
+  await DotenvService.instance.initialize(); // Should be before EmailService
   await DatabaseService.instance.initialize();
   await EmailService.instance.initialize();
-  await AppLaunchService.instance.initialize();
+  await AppLaunchService.instance.initialize(); // Should be after DatabaseService
   await SurveyService.instance.initialize();
   runApp(const MyApp());
 }
