@@ -74,6 +74,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             items: viewModel.carouselItems,
             pageController: viewModel.appCarouselController,
             heightPercentage: 50,
+            isNotScrollable: false,
             onPageChanged: (index) {
               FocusScope.of(context).unfocus();
               viewModel.onAppCarouselItemChanged(index);

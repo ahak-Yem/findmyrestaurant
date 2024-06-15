@@ -7,6 +7,7 @@ class AppCarousel extends StatefulWidget {
   final PageController pageController;
   final double heightPercentage;
   final Function(int) onPageChanged;
+  final bool isNotScrollable;
 
   const AppCarousel({
     Key? key,
@@ -14,6 +15,7 @@ class AppCarousel extends StatefulWidget {
     required this.pageController,
     required this.heightPercentage,
     required this.onPageChanged,
+    required this.isNotScrollable,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class _AppCarouselState extends State<AppCarousel> {
           child: PageView.builder(
             controller: widget.pageController,
             itemCount: widget.items.length,
+            physics: widget.isNotScrollable ? const NeverScrollableScrollPhysics() :  null,
             onPageChanged: (index) {
               setState(() {
                 _currentIndex = index;
