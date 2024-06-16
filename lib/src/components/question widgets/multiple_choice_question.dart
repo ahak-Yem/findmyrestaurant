@@ -20,22 +20,32 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: widget.question.options!.map((option) {
-        return CheckboxListTile(
-          title: Text(option),
-          value: _selectedOptions.contains(option),
-          onChanged: (bool? value) {
-            setState(() {
-              if (value == true) {
-                _selectedOptions.add(option);
-              } else {
-                _selectedOptions.remove(option);
-              }
-            });
-          },
-        );
-      }).toList(),
+    return Expanded(
+      child: ListView.builder(
+        itemCount: widget.question.options!.length,
+        itemBuilder: (context, index) {
+          final option = widget.question.options![index];
+          return CheckboxListTile(
+            title: Text(option),
+            value: _selectedOptions.contains(option),
+            onChanged: (bool? value) {
+              setState(() {
+                if (value == true) {
+                  _selectedOptions.add(option);
+                } else {
+                  _selectedOptions.remove(option);
+                }
+              });
+            },
+          );
+        },
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.onNext(_selectedOptions);
   }
 }
