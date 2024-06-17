@@ -19,6 +19,7 @@ class SurveyQuestionPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 38.0),
           Text(
             question.question,
             style: const TextStyle(fontSize: 24.0),
