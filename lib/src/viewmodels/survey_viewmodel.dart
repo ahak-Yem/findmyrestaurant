@@ -40,6 +40,7 @@ class SurveyViewModel extends ChangeNotifier {
         onNext: (response) {
           updateUserResponse(question.id, response);
           if (currentQuestionIndex < surveyQuestions.length - 1) {
+            appCarouselController.goNext(currentPage: currentQuestionIndex);
             currentQuestionIndex++;
           } else {
             saveUserPreferences();
