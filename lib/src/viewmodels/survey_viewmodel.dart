@@ -43,4 +43,13 @@ class SurveyViewModel extends ChangeNotifier {
       return;
     }
   }
+
+  Future<bool> onDeviceBackPressed() {
+    final currentPage = appCarouselController.currentPageIndex;
+    if (currentPage == 0) {
+      return Future.value(false);
+    }
+    appCarouselController.goBack(currentPage: currentPage);
+    return Future.value(false);
+  }
 }
