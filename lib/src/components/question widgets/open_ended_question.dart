@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
@@ -17,7 +18,7 @@ class OpenEndedQuestion extends StatelessWidget {
 
     return TextField(
       controller: controller,
-      decoration: const InputDecoration(labelText: 'Your answer'),
+      decoration: const InputDecoration(labelText: AppStrings.openEndedQuestionLabelText),
       onSubmitted: (value) {
         onNext(value);
       },

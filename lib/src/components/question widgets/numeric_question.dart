@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
@@ -17,7 +18,7 @@ class NumericQuestion extends StatelessWidget {
 
     return TextField(
       controller: controller,
-      decoration: const InputDecoration(labelText:'Please enter a number'),
+      decoration: const InputDecoration(labelText:AppStrings.numericQuestionLabelText),
       keyboardType: TextInputType.number,
       onSubmitted: (value) {
         onNext(int.tryParse(value));
