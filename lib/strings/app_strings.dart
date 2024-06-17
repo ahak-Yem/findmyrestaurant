@@ -40,6 +40,8 @@ class AppStrings {
   static const String userSavedText = "We detected user data saved in your device.\n\nDo you want to continue signing up with the saved user?";
   static const String useSavedUserBtn = "Use Saved User";
   static const String toSurveyBtn = "Open Survey";
+  static const String numericQuestionLabelText = "Please enter a number";
+  static const String openEndedQuestionLabelText = "Please type your answer";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
