@@ -20,19 +20,31 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: widget.question.options!.map((option) {
-        return RadioListTile<String>(
-          title: Text(option),
-          value: option,
-          groupValue: _selectedOption,
-          onChanged: (String? value) {
-            setState(() {
-              _selectedOption = value;
-            });
-          },
-        );
-      }).toList(),
+    return Expanded(
+      child: ListView.builder(
+        itemCount: widget.question.options!.length,
+        itemBuilder: (context, index) {
+          final option = widget.question.options![index];
+          return RadioListTile<String>(
+            title: Text(option),
+            value: option,
+            groupValue: _selectedOption,
+            onChanged: (String? value) {
+              setState(() {
+                _selectedOption = value;
+              });
+            },
+          );
+        },
+      ),
     );
+  }
+
+    @override
+  void dispose() {
+    super.dispose();
+    if (_selectedOption != null) {
+      widget.onNext(_selectedOption!);
+    }
   }
 }
