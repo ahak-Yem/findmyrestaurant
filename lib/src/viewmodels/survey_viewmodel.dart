@@ -13,6 +13,9 @@ class SurveyViewModel extends ChangeNotifier {
   final DietarySurveyUserPreferencesModel _surveyUserPreferences = DietarySurveyUserPreferencesModel();
   DietarySurveyUserPreferencesModel get surveyUserPreferences => _surveyUserPreferences;
 
+  List<Widget> _surveyPages = List.empty();
+  List<Widget> get surveyPages => _surveyPages;
+
   String? _userID;
   
   final SurveyService _surveyService = SurveyService.instance;
@@ -24,6 +27,24 @@ class SurveyViewModel extends ChangeNotifier {
   SurveyViewModel() {
     _surveyQuestions = _surveyService.surveyQuestions;
     _userID = _appLaunchService.userId;
+    _surveyPages = _generateSurveyQuestionPages();
+  }
+
+  List<Widget> _generateSurveyQuestionPages() {
+    return surveyQuestions.map((question) {
+      return SurveyQuestionPage(
+        question: question,
+        onNext: (response) {
+          updateUserResponse(question.id, response);
+          if (currentQuestionIndex < surveyQuestions.length - 1) {
+            currentQuestionIndex++;
+          } else {
+            saveUserPreferences();
+          }
+          notifyListeners();
+        },
+      );
+    }).toList();
   }
 
   void updateUserResponse(String questionId, dynamic response) {
