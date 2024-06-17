@@ -19,6 +19,8 @@ class SurveyViewModel extends ChangeNotifier {
   final DatabaseService _databaseService = DatabaseService.instance;
   final AppLaunchService _appLaunchService = AppLaunchService.instance;
 
+  AppCarouselController get appCarouselController => AppCarouselController();
+
   SurveyViewModel() {
     _surveyQuestions = _surveyService.surveyQuestions;
     _userID = _appLaunchService.userId;
