@@ -1,76 +1,60 @@
+import 'package:findmyrestaurant/src/pages/survey_question_page.dart';
+import 'package:findmyrestaurant/src/viewmodels/survey_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SurveyView extends StatefulWidget {
-  const SurveyView({Key? key}) : super(key: key);
+  const SurveyView({super.key});
 
   @override
   State<SurveyView> createState() => _SurveyViewState();
 }
 
 class _SurveyViewState extends State<SurveyView> {
-  final _surveyQuestions = [
-    'How satisfied are you with our service?',
-    'Would you recommend our service to others?',
-    'Any additional comments?'
-  ];
-  final Map<String, dynamic> _surveyResponses = {};
+  final PageController _pageController = PageController();
+  late SurveyViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = SurveyViewModel();
+  }
+
+  @override
+  void dispose() {
+    viewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Survey'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            for (var question in _surveyQuestions) ...[
-              Text(
-                question,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              if (question == _surveyQuestions[2])
-                TextField(
-                  onChanged: (value) {
-                    _surveyResponses[question] = value;
-                  },
-                  decoration: const InputDecoration(hintText: 'Your comments'),
-                )
-              else
-                DropdownButton<String>(
-                  value: _surveyResponses[question] != null ? _surveyResponses[question] as String : null,
-                  items: const [
-                    DropdownMenuItem(value: 'Very satisfied', child: Text('Very satisfied')),
-                    DropdownMenuItem(value: 'Satisfied', child: Text('Satisfied')),
-                    DropdownMenuItem(value: 'Neutral', child: Text('Neutral')),
-                    DropdownMenuItem(value: 'Dissatisfied', child: Text('Dissatisfied')),
-                    DropdownMenuItem(value: 'Very dissatisfied', child: Text('Very dissatisfied')),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      _surveyResponses[question] = value;
-                    });
-                  },
-                ),
-              const SizedBox(height: 20),
-            ],
-            Center(
-              child: ElevatedButton(
-                onPressed: _submitSurvey,
-                child: const Text('Submit'),
-              ),
-            ),
-          ],
+      body: ChangeNotifierProvider(
+        create: (context) => viewModel,
+        child: PageView.builder(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: viewModel.surveyQuestions.length,
+          itemBuilder: (context, index) {
+            final question = viewModel.surveyQuestions[index];
+            return SurveyQuestionPage(
+              question: question,
+              onNext: (response) {
+                viewModel.updateUserResponse(question.id, response);
+                if (index < viewModel.surveyQuestions.length - 1) {
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                } else {
+                  viewModel.saveUserPreferences();
+                  Navigator.pop(context);
+                }
+              },
+            );
+          },
         ),
       ),
-    );
-  }
-
-  void _submitSurvey() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Survey submitted successfully!')),
     );
   }
 }
