@@ -38,13 +38,7 @@ class SurveyViewModel extends ChangeNotifier {
       return SurveyQuestionPage(
         question: question,
         onNext: (response) {
-          _updateUserResponse(question.id, response);
-          if (currentQuestionIndex < surveyQuestions.length - 1) {
-            appCarouselController.goNext(currentPage: currentQuestionIndex);
-            currentQuestionIndex++;
-          } else {
-            _saveUserPreferences();
-          }
+          _onNextSurveyQuestion(question.id, response);
         },
       );
     }).toList();
@@ -79,5 +73,15 @@ class SurveyViewModel extends ChangeNotifier {
     }
     appCarouselController.goBack(currentPage: currentPage);
     return Future.value(false);
+  }
+
+  void _onNextSurveyQuestion(String questionId, dynamic response) {
+    _updateUserResponse(questionId, response);
+    if (currentQuestionIndex < surveyQuestions.length - 1) {
+      appCarouselController.goNext(currentPage: currentQuestionIndex);
+      currentQuestionIndex++;
+    } else {
+      _saveUserPreferences();
+    }
   }
 }
