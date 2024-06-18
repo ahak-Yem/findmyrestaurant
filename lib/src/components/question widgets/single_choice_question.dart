@@ -20,11 +20,13 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
 
   @override
   Widget build(BuildContext context) {
+    final options = widget.question.options ?? [];
+
     return Expanded(
       child: ListView.builder(
-        itemCount: widget.question.options!.length,
+        itemCount: options.length,
         itemBuilder: (context, index) {
-          final option = widget.question.options![index];
+          final option = options[index];
           return RadioListTile<String>(
             title: Text(option),
             value: option,
