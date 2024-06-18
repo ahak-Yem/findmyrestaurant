@@ -17,7 +17,7 @@ class DietarySurveyQuestionsModel {
     return DietarySurveyQuestionsModel(
       id: json['id'] ?? '',
       question: json['question'] ?? '',
-      type: SurveyQuestionType.values.firstWhere((e) => e.name == json['type'] || e.name == SurveyQuestionType.multipleChoice.name),
+      type: SurveyQuestionType.values.firstWhere((e) => e.name == json['type'], orElse: () => SurveyQuestionType.openEnded,),
       options: json['options'] != null ? List<String>.from(json['options']) : null,
     );
   }
