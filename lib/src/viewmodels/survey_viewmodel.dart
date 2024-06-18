@@ -45,7 +45,6 @@ class SurveyViewModel extends ChangeNotifier {
           } else {
             saveUserPreferences();
           }
-          notifyListeners();
         },
       );
     }).toList();
@@ -55,7 +54,9 @@ class SurveyViewModel extends ChangeNotifier {
     final questionIndex = _surveyQuestions.indexWhere((q) => q.id == questionId);
     if (questionIndex >= 0) {
       _surveyUserPreferences.setPreferencesField(questionId, response);
-      notifyListeners();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        notifyListeners();
+      });
     }
   }
 
@@ -64,7 +65,7 @@ class SurveyViewModel extends ChangeNotifier {
       return;  
     }
     try{
-      _databaseService.save(DatabaseModelsEnum.dietaryUserPreferences, _userID, _surveyUserPreferences);
+      await _databaseService.save(DatabaseModelsEnum.dietaryUserPreferences, _userID, _surveyUserPreferences);
     }
     catch(e){
       return;
@@ -74,7 +75,7 @@ class SurveyViewModel extends ChangeNotifier {
   Future<bool> onDeviceBackPressed() {
     final currentPage = appCarouselController.currentPageIndex;
     if (currentPage == 0) {
-      return Future.value(false);
+      return Future.value(true);
     }
     appCarouselController.goBack(currentPage: currentPage);
     return Future.value(false);
