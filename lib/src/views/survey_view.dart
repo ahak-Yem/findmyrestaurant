@@ -39,9 +39,7 @@ class _SurveyViewState extends State<SurveyView> {
                 items: viewModel.surveyPages,
                 pageController: viewModel.appCarouselController,
                 heightPercentage: 95,
-                onPageChanged: (index) {
-                  viewModel.currentQuestionIndex = index;
-                },
+                onPageChanged: (index) => viewModel.onCarouselItemChanged(index),
                 isNotScrollable: true,
               );
             },

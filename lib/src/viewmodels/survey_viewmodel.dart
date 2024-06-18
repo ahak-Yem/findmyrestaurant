@@ -84,4 +84,9 @@ class SurveyViewModel extends ChangeNotifier {
       _saveUserPreferences();
     }
   }
+
+  void onCarouselItemChanged(int index) {
+    currentQuestionIndex = index;
+    appCarouselController.setCurrentPageIndex(index);
+  }
 }
