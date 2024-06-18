@@ -69,7 +69,7 @@ class SurveyViewModel extends ChangeNotifier {
   Future<bool> onDeviceBackPressed() {
     final currentPage = appCarouselController.currentPageIndex;
     if (currentPage == 0) {
-      return Future.value(true);
+      return Future.value(false);
     }
     appCarouselController.goBack(currentPage: currentPage);
     return Future.value(false);

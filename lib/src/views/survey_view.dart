@@ -32,6 +32,7 @@ class _SurveyViewState extends State<SurveyView> {
       body: ChangeNotifierProvider<SurveyViewModel>.value(
         value: _viewModel,
         child: WillPopScope(
+          key: widget.key,
           onWillPop: () => _viewModel.onDeviceBackPressed(),
           child: Consumer<SurveyViewModel>(
             builder: (context, viewModel, child) {
