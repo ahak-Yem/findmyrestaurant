@@ -38,20 +38,20 @@ class SurveyViewModel extends ChangeNotifier {
       return SurveyQuestionPage(
         question: question,
         onNext: (response) {
-          updateUserResponse(question.id, response);
+          _updateUserResponse(question.id, response);
           if (currentQuestionIndex < surveyQuestions.length - 1) {
             appCarouselController.goNext(currentPage: currentQuestionIndex);
             currentQuestionIndex++;
           } else {
-            saveUserPreferences();
+            _saveUserPreferences();
           }
         },
       );
     }).toList();
   }
 
-  void updateUserResponse(String questionId, dynamic response) {
-    final questionIndex = _surveyQuestions.indexWhere((q) => q.id == questionId);
+  void _updateUserResponse(String questionId, dynamic response) {
+    final questionIndex = _surveyQuestions.indexWhere((question) => question.id == questionId);
     if (questionIndex >= 0) {
       _surveyUserPreferences.setPreferencesField(questionId, response);
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -60,7 +60,7 @@ class SurveyViewModel extends ChangeNotifier {
     }
   }
 
-  void saveUserPreferences() async{
+  void _saveUserPreferences() async{
     if(_userID == null){
       return;  
     }
