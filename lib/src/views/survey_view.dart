@@ -12,13 +12,11 @@ class SurveyView extends StatefulWidget {
 
 class _SurveyViewState extends State<SurveyView> {
   late SurveyViewModel _viewModel;
-  late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
     _viewModel = SurveyViewModel();
-    _pageController = _viewModel.appCarouselController;
   }
 
   @override
@@ -31,16 +29,15 @@ class _SurveyViewState extends State<SurveyView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: ChangeNotifierProvider(
-        create: (context) => _viewModel,
+      body: ChangeNotifierProvider<SurveyViewModel>.value(
+        value: _viewModel,
         child: WillPopScope(
-          key: widget.key,
           onWillPop: () => _viewModel.onDeviceBackPressed(),
           child: Consumer<SurveyViewModel>(
             builder: (context, viewModel, child) {
               return AppCarousel(
-                items: _viewModel.surveyPages,
-                pageController: _pageController,
+                items: viewModel.surveyPages,
+                pageController: viewModel.appCarouselController,
                 heightPercentage: 95,
                 onPageChanged: (index) {
                   viewModel.currentQuestionIndex = index;
