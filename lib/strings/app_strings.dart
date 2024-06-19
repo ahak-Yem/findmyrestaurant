@@ -42,6 +42,7 @@ class AppStrings {
   static const String toSurveyBtn = "Open Survey";
   static const String numericQuestionLabelText = "Please enter a number";
   static const String openEndedQuestionLabelText = "Please type your answer";
+  static const String goNextBtn = "Next";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
