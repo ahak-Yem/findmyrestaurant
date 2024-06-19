@@ -43,6 +43,16 @@ class AppStrings {
   static const String numericQuestionLabelText = "Please enter a number";
   static const String openEndedQuestionLabelText = "Please type your answer";
   static const String goNextBtn = "Next";
+  static const String surveyEndedHeader = "Survey Completed.";
+  static const String surveyEndedMessage = 
+  '''
+Congratulations! You have completed the survey. 
+
+Your answers will help us to provide you with more personalized suggestions.
+
+You can change all your personal information and preferences in the app settings.
+  ''';
+  static const String surveyEndedBtn = "End Onboarding";
 
   static const String errorTitle = 'Error';
   static const String errorMessage = 'An error occurred. Please try again later.';
