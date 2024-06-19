@@ -76,6 +76,5 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
   @override
   void dispose() {
     super.dispose();
-    widget.onNext(_selectedOptions);
   }
 }

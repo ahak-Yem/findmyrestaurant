@@ -70,8 +70,5 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
   @override
   void dispose() {
     super.dispose();
-    if (_selectedOption != null) {
-      widget.onNext(_selectedOption!);
-    }
   }
 }
