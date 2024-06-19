@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/database%20enums/database_models_enum.dart';
 import 'package:findmyrestaurant/src/pages/survey_question_page.dart';
@@ -17,6 +18,9 @@ class SurveyViewModel extends ChangeNotifier {
 
   List<Widget> _surveyPages = List.empty();
   List<Widget> get surveyPages => _surveyPages;
+
+  final StreamController<bool> _surveyEndedController = StreamController<bool>();
+  Stream<bool> get surveyEndedController => _surveyEndedController.stream;
 
   String? _userID;
   int currentQuestionIndex = 0;
@@ -81,11 +85,16 @@ class SurveyViewModel extends ChangeNotifier {
       appCarouselController.goNext(currentPage: currentQuestionIndex);
     } else {
       _saveUserPreferences();
+      _notifySurveyEnded();
     }
   }
 
   void onCarouselItemChanged(int index) {
     currentQuestionIndex = index;
     appCarouselController.setCurrentPageIndex(index);
+  }
+
+  void _notifySurveyEnded() {
+    _surveyEndedController.add(true);
   }
 }
