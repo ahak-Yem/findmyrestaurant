@@ -97,4 +97,12 @@ class SurveyViewModel extends ChangeNotifier {
   void _notifySurveyEnded() {
     _surveyEndedController.add(true);
   }
+
+  @override
+  void dispose() {
+    _surveyEndedController.close();
+    _surveyQuestions.clear();
+    _surveyPages.clear();
+    super.dispose();
+  }
 }
