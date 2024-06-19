@@ -1,3 +1,6 @@
+import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
+import 'package:findmyrestaurant/strings/app_strings.dart';
+import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
@@ -22,12 +25,27 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
   Widget build(BuildContext context) {
     final options = widget.question.options ?? [];
 
-    return // Column(
-      // children: [
-        Expanded(
-          child: ListView(
-            children: options.map((option) {
-              return CheckboxListTile(
+    return Expanded(
+      child: ListView.builder(
+        itemCount: options.length,
+        itemBuilder: (context, index) {
+          final option = options[index];
+          return index < options.length - 1 ? CheckboxListTile(
+            title: Text(option),
+            value: _selectedOptions.contains(option),
+            onChanged: (bool? value) {
+              setState(() {
+                if (value == true) {
+                  _selectedOptions.add(option);
+                } else {
+                  _selectedOptions.remove(option);
+                }
+              });
+            },
+          ) :
+          Column(
+            children: [
+              CheckboxListTile(
                 title: Text(option),
                 value: _selectedOptions.contains(option),
                 onChanged: (bool? value) {
@@ -39,17 +57,25 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
                     }
                   });
                 },
-              );
-            }).toList(),
-          ),
-        // ),
-        // ElevatedButton(
-        //   onPressed: () {
-        //     widget.onNext(_selectedOptions);
-        //   },
-        //   child: const Text('Next'),
-        // ),
-      // ],
+              ),
+              AppDynamicButton(
+                color: AppColors.primaryColor,
+                textColor: AppColors.appWhite,
+                text: AppStrings.goNextBtn,
+                onPressed: () {
+                  widget.onNext(_selectedOptions);
+                },
+              ),
+            ],
+          );
+        },
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.onNext(_selectedOptions);
   }
 }
