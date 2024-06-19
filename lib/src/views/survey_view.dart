@@ -40,7 +40,10 @@ class _SurveyViewState extends State<SurveyView> {
                 items: viewModel.surveyPages,
                 pageController: viewModel.appCarouselController,
                 heightPercentage: 95,
-                onPageChanged: (index) => viewModel.onCarouselItemChanged(index),
+                onPageChanged: (index) {
+                  FocusScope.of(context).unfocus();
+                  viewModel.onCarouselItemChanged(index);
+                },
                 isNotScrollable: true,
               );
             },
