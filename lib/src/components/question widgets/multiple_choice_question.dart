@@ -4,6 +4,7 @@ import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
+//TODO:Change the options to picture-options and make the checkbox uses a knife icon
 class MultipleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final Function(List<String>) onNext;

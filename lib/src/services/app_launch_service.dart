@@ -3,6 +3,7 @@ import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:flutter/foundation.dart';
 
+// TODO: Add logic to not repeat survey and add preferences instances
 class AppLaunchService {
   static final AppLaunchService _instance = AppLaunchService._internal();
 
