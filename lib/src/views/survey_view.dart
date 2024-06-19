@@ -1,5 +1,9 @@
+import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/components/app_carousel.dart';
+import 'package:findmyrestaurant/src/components/dialogs/muliple_buttons_alert_dialog.dart';
 import 'package:findmyrestaurant/src/viewmodels/survey_viewmodel.dart';
+import 'package:findmyrestaurant/strings/app_strings.dart';
+import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +21,7 @@ class _SurveyViewState extends State<SurveyView> {
   void initState() {
     super.initState();
     _viewModel = SurveyViewModel();
+    _setupSurveyEndedListener();
   }
 
   @override
@@ -51,5 +56,27 @@ class _SurveyViewState extends State<SurveyView> {
         ),
       ),
     );
+  }
+
+  void _setupSurveyEndedListener() {
+    _viewModel.surveyEndedController.listen((bool ended) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return MulipleButtonsAlertDialog.buildDialog(
+            context, 
+            AppStrings.surveyEndedHeader, 
+            AppStrings.surveyEndedMessage,
+            [
+              const AppDynamicButton(
+                color: AppColors.primaryColor, 
+                textColor: AppColors.appWhite, 
+                text: AppStrings.surveyEndedBtn
+              ),
+            ]
+          );
+        },
+      );
+    });
   }
 }
