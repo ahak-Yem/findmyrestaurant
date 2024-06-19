@@ -26,6 +26,7 @@ extension SurveyQuestionTypeExtension on SurveyQuestionType {
     }
   }
 
+  // TODO: Disable onNext until an option is selected
   Widget buildWidget(DietarySurveyQuestionsModel question, Function(dynamic) onNext) {
     switch (this) {
       case SurveyQuestionType.multipleChoice:
