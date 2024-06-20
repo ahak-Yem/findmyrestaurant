@@ -1,9 +1,10 @@
 import 'package:findmyrestaurant/src/enums/database%20enums/user_model_keys_enum.dart';
 import 'package:findmyrestaurant/src/models/user_preferences_model.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
+import 'package:findmyrestaurant/src/services/app_launch_service.dart';
 import 'package:findmyrestaurant/src/services/device_info_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../enums/database enums/database_models_enum.dart';
+import '../enums/database%20enums/database_models_enum.dart';
 
 class DatabaseService {
   static final DatabaseService _instance = DatabaseService._internal();
@@ -15,7 +16,6 @@ class DatabaseService {
   DatabaseService._internal();
 
   final DatabaseModelsEnum _userDatabaseModelEnum = DatabaseModelsEnum.user;
-  
   final DeviceInfoService deviceInfoService = DeviceInfoService.instance;
 
   Future<void> initialize() async {
@@ -46,20 +46,29 @@ class DatabaseService {
 
   Future<void> save<T>(DatabaseModelsEnum databaseModelType, dynamic key, T value) async {
     final box = await databaseModelType.box;
-    if(databaseModelType.isSingleton && box.get(key) != null){
-      delete(databaseModelType, key);
+    if (databaseModelType.isSingleton && box.get(key) != null) {
+      await delete(databaseModelType, key);
     }
-    box.put(key, value);
+    await box.put(key, value);
     box.close();
+
+    updateAppLaunchServiceProperties(databaseModelType, value);
   }
 
   Future<void> delete(DatabaseModelsEnum databaseModelType, dynamic key) async {
     final box = await databaseModelType.box;
-    box.delete(key);
+    await box.delete(key);
+    box.close();
   }
 
   Future<T?> read<T>(DatabaseModelsEnum databaseModelType, dynamic key) async {
     final box = await databaseModelType.box;
     return box.get(key);
+  }
+
+  void updateAppLaunchServiceProperties<T>(DatabaseModelsEnum databaseModelType, T propertyValue) {
+    if (databaseModelType == DatabaseModelsEnum.user || databaseModelType == DatabaseModelsEnum.dietaryUserPreferences) {
+      AppLaunchService.instance.refreshProperties(propertyValue);
+    }
   }
 }
