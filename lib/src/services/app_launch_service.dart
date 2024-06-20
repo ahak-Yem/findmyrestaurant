@@ -42,14 +42,23 @@ class AppLaunchService {
         _isUserSaved = _user?.email.isNotEmpty ?? false;
         _isUserEmailConfirmed = _user?.isEmailConfirmed ?? false;
         _userPreferences = await _databaseService.read(DatabaseModelsEnum.dietaryUserPreferences, _userId);
-        if (_userPreferences != null && _userPreferences?.eatingHabits != null) {
-          _isSurveyCompleted = _userPreferences?.eatingHabits! != "";
-        }
+        _isSurveyCompleted = _userPreferences?.eatingHabits?.isNotEmpty ?? false;
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Failed to initialize AppLaunchService: $e');
+        debugPrint('Failed to initialize AppLaunchService: $e');
       }
+    }
+  }
+
+  void refreshProperties(dynamic propertyValue) {
+    if (propertyValue is UserModel) {
+      _user = propertyValue;
+      _isUserSaved = _user?.email.isNotEmpty ?? false;
+      _isUserEmailConfirmed = _user?.isEmailConfirmed ?? false;
+    } else if (propertyValue is UserPreferencesModel) {
+      _userPreferences = propertyValue;
+      _isSurveyCompleted = _userPreferences?.eatingHabits?.isNotEmpty ?? false;
     }
   }
 }
