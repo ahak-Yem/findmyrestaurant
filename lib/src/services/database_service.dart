@@ -1,5 +1,5 @@
 import 'package:findmyrestaurant/src/enums/database%20enums/user_model_keys_enum.dart';
-import 'package:findmyrestaurant/src/models/dietary_survey_user_preferences_model.dart';
+import 'package:findmyrestaurant/src/models/user_preferences_model.dart';
 import 'package:findmyrestaurant/src/models/user_model.dart';
 import 'package:findmyrestaurant/src/services/device_info_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -20,7 +20,7 @@ class DatabaseService {
 
   Future<void> initialize() async {
     Hive.registerAdapter(UserModelAdapter());
-    Hive.registerAdapter(DietarySurveyUserPreferencesModelAdapter());
+    Hive.registerAdapter(UserPreferencesModelAdapter());
     await Hive.initFlutter();
     String userId = await deviceInfoService.deviceID;
     _saveUserID(userId);

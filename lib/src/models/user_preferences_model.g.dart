@@ -1,36 +1,34 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dietary_survey_user_preferences_model.dart';
+part of 'user_preferences_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DietarySurveyUserPreferencesModelAdapter
-    extends TypeAdapter<DietarySurveyUserPreferencesModel> {
+class UserPreferencesModelAdapter extends TypeAdapter<UserPreferencesModel> {
   @override
   final int typeId = 1;
 
   @override
-  DietarySurveyUserPreferencesModel read(BinaryReader reader) {
+  UserPreferencesModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DietarySurveyUserPreferencesModel(
-      dietaryRestrictions: (fields[0] as List?)?.cast<String>(),
-      allergies: (fields[1] as List?)?.cast<String>(),
-      cuisinePreferences: (fields[2] as List?)?.cast<String>(),
-      mealPreferences: (fields[3] as List?)?.cast<String>(),
-      favoriteIngredients: fields[4] as String?,
-      dislikedIngredients: fields[5] as String?,
-      mealsPerDay: fields[6] as int?,
-      eatingHabits: fields[7] as String?,
-    );
+    return UserPreferencesModel()
+      .._dietaryRestrictions = (fields[0] as List?)?.cast<String>()
+      .._allergies = (fields[1] as List?)?.cast<String>()
+      .._cuisinePreferences = (fields[2] as List?)?.cast<String>()
+      .._mealPreferences = (fields[3] as List?)?.cast<String>()
+      .._favoriteIngredients = fields[4] as String?
+      .._dislikedIngredients = fields[5] as String?
+      .._mealsPerDay = fields[6] as int?
+      .._eatingHabits = fields[7] as String?;
   }
 
   @override
-  void write(BinaryWriter writer, DietarySurveyUserPreferencesModel obj) {
+  void write(BinaryWriter writer, UserPreferencesModel obj) {
     writer
       ..writeByte(8)
       ..writeByte(0)
@@ -57,7 +55,7 @@ class DietarySurveyUserPreferencesModelAdapter
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DietarySurveyUserPreferencesModelAdapter &&
+      other is UserPreferencesModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

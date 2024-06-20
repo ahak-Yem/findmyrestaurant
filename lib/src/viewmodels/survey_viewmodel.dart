@@ -7,14 +7,14 @@ import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/survey_service.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
-import 'package:findmyrestaurant/src/models/dietary_survey_user_preferences_model.dart';
+import 'package:findmyrestaurant/src/models/user_preferences_model.dart';
 
 class SurveyViewModel extends ChangeNotifier {
   List<DietarySurveyQuestionsModel> _surveyQuestions = List.empty();
   List<DietarySurveyQuestionsModel> get surveyQuestions => _surveyQuestions;
   
-  final DietarySurveyUserPreferencesModel _surveyUserPreferences = DietarySurveyUserPreferencesModel();
-  DietarySurveyUserPreferencesModel get surveyUserPreferences => _surveyUserPreferences;
+  final UserPreferencesModel _surveyUserPreferences = UserPreferencesModel();
+  UserPreferencesModel get surveyUserPreferences => _surveyUserPreferences;
 
   List<Widget> _surveyPages = List.empty();
   List<Widget> get surveyPages => _surveyPages;

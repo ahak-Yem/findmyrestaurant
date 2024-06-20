@@ -1,10 +1,10 @@
 import 'package:findmyrestaurant/src/enums/survey_questions_enum.dart';
 import 'package:hive/hive.dart';
 
-part 'dietary_survey_user_preferences_model.g.dart';
+part 'user_preferences_model.g.dart';
 
 @HiveType(typeId: 1)
-class DietarySurveyUserPreferencesModel {
+class UserPreferencesModel {
   @HiveField(0)
   List<String>? _dietaryRestrictions;
   List<String>? get dietaryRestrictions => _dietaryRestrictions;
@@ -37,7 +37,7 @@ class DietarySurveyUserPreferencesModel {
   String? _eatingHabits;
   String? get eatingHabits => _eatingHabits;
 
-  DietarySurveyUserPreferencesModel({
+  UserPreferencesModel({
     List<String>? dietaryRestrictions,
     List<String>? allergies,
     List<String>? cuisinePreferences,
