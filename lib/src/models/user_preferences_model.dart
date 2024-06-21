@@ -81,28 +81,28 @@ class UserPreferencesModel {
     for (final question in SurveyQuestions.values) {
       switch (question) {
         case SurveyQuestions.dietaryRestrictions:
-          savedOptionsMap[question.id] = dietaryRestrictions;
+          savedOptionsMap[question.id] = dietaryRestrictions ?? [];
           break;
         case SurveyQuestions.allergies:
-          savedOptionsMap[question.id] = allergies;
+          savedOptionsMap[question.id] = allergies ?? [];
           break;
         case SurveyQuestions.cuisinePreferences:
-          savedOptionsMap[question.id] = cuisinePreferences;
+          savedOptionsMap[question.id] = cuisinePreferences ?? [];
           break;
         case SurveyQuestions.mealPreferences:
-          savedOptionsMap[question.id] = mealPreferences;
+          savedOptionsMap[question.id] = mealPreferences ?? [];
           break;
         case SurveyQuestions.favoriteIngredients:
-          savedOptionsMap[question.id] = favoriteIngredients;
+          savedOptionsMap[question.id] = favoriteIngredients ?? '';
           break;
         case SurveyQuestions.dislikedIngredients:
-          savedOptionsMap[question.id] = dislikedIngredients;
+          savedOptionsMap[question.id] = dislikedIngredients ?? '';
           break;
         case SurveyQuestions.mealsPerDay:
-          savedOptionsMap[question.id] = mealsPerDay;
+          savedOptionsMap[question.id] = mealsPerDay ?? 0;
           break;
         case SurveyQuestions.eatingHabits:
-          savedOptionsMap[question.id] = eatingHabits;
+          savedOptionsMap[question.id] = eatingHabits ?? '';
           break;
       }
     }
