@@ -23,17 +23,17 @@ class DatabaseService {
     Hive.registerAdapter(UserPreferencesModelAdapter());
     await Hive.initFlutter();
     String userId = await deviceInfoService.deviceID;
-    _saveUserID(userId);
+    await _saveUserID(userId);
   }
 
-  void _saveUserID(String userId) async{
+  Future<void> _saveUserID(String userId) async{
     if(await readUserID() == userId){
       return;
     }
     Box userBox = await _userDatabaseModelEnum.box;
     String key = UserModelKeysEnum.id.key;
     if (userBox.get(key) == null) {
-      userBox.put(key, userId);
+      await userBox.put(key, userId);
     }
     userBox.close();
   }
