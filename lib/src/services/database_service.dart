@@ -46,12 +46,13 @@ class DatabaseService {
 
   Future<void> save<T>(DatabaseModelsEnum databaseModelType, dynamic key, T value) async {
     final box = await databaseModelType.box;
-    if (databaseModelType.isSingleton && box.get(key) != null) {
-      await delete(databaseModelType, key);
+    if (!databaseModelType.isSingleton && box.get(key) != null) {
+      throw("You are overwritting a non singleton saved value. Please use update() instead or use another key.");
     }
-    await box.put(key, value);
-    box.close();
-
+    else {
+      await box.put(key, value);
+      await box.close();
+    }
     updateAppLaunchServiceProperties(databaseModelType, value);
   }
 
