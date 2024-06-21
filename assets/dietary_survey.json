@@ -40,6 +40,7 @@
             "question": "Do you have any food allergies?",
             "type": "multipleChoice",
             "options": [
+                "No",
                 "Nuts",
                 "Shellfish",
                 "Dairy",
