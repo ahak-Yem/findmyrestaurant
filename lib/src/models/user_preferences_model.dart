@@ -75,4 +75,37 @@ class UserPreferencesModel {
       _eatingHabits = value;
     }
   }
+
+  Map<String, dynamic> generateIdOptionsMap() {
+    final Map<String, dynamic> savedOptionsMap = {};
+    for (final question in SurveyQuestions.values) {
+      switch (question) {
+        case SurveyQuestions.dietaryRestrictions:
+          savedOptionsMap[question.id] = dietaryRestrictions;
+          break;
+        case SurveyQuestions.allergies:
+          savedOptionsMap[question.id] = allergies;
+          break;
+        case SurveyQuestions.cuisinePreferences:
+          savedOptionsMap[question.id] = cuisinePreferences;
+          break;
+        case SurveyQuestions.mealPreferences:
+          savedOptionsMap[question.id] = mealPreferences;
+          break;
+        case SurveyQuestions.favoriteIngredients:
+          savedOptionsMap[question.id] = favoriteIngredients;
+          break;
+        case SurveyQuestions.dislikedIngredients:
+          savedOptionsMap[question.id] = dislikedIngredients;
+          break;
+        case SurveyQuestions.mealsPerDay:
+          savedOptionsMap[question.id] = mealsPerDay;
+          break;
+        case SurveyQuestions.eatingHabits:
+          savedOptionsMap[question.id] = eatingHabits;
+          break;
+      }
+    }
+    return savedOptionsMap;
+  }
 }
