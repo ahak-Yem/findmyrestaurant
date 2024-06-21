@@ -8,11 +8,13 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 class MultipleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final Function(List<String>) onNext;
+  final Map<String, List<String>>? selectedOptions;
 
   const MultipleChoiceQuestion({
     super.key,
     required this.question,
     required this.onNext,
+    this.selectedOptions,
   });
 
   @override
