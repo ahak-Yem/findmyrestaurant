@@ -13,7 +13,7 @@ class SurveyViewModel extends ChangeNotifier {
   List<DietarySurveyQuestionsModel> _surveyQuestions = List.empty();
   List<DietarySurveyQuestionsModel> get surveyQuestions => _surveyQuestions;
   
-  final UserPreferencesModel _surveyUserPreferences = UserPreferencesModel();
+  UserPreferencesModel _surveyUserPreferences = UserPreferencesModel();
   UserPreferencesModel get surveyUserPreferences => _surveyUserPreferences;
 
   List<Widget> _surveyPages = List.empty();
@@ -32,8 +32,9 @@ class SurveyViewModel extends ChangeNotifier {
   final AppCarouselController appCarouselController = AppCarouselController();
 
   SurveyViewModel() {
-    _surveyQuestions = _surveyService.surveyQuestions;
     _userID = _appLaunchService.userId;
+    _surveyQuestions = _surveyService.surveyQuestions;
+    _surveyUserPreferences = _appLaunchService.userPreferences ?? UserPreferencesModel();
     _surveyPages = _generateSurveyQuestionPages();
   }
 
