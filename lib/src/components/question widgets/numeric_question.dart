@@ -7,7 +7,7 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 class NumericQuestion extends StatelessWidget {
   final DietarySurveyQuestionsModel question;
   final Function(int?) onNext;
-    final Map<String, List<String>>? answer;
+  final int? answer;
 
   const NumericQuestion({
     super.key,

@@ -7,7 +7,7 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 class OpenEndedQuestion extends StatelessWidget {
   final DietarySurveyQuestionsModel question;
   final Function(String) onNext;
-    final Map<String, List<String>>? answer;
+  final String? answer;
 
   const OpenEndedQuestion({
     Key? key,

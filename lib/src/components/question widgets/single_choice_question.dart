@@ -8,13 +8,13 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 class SingleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final Function(String) onNext;
-  final Map<String, List<String>>? selectedOption;
+  final String? savedOption;
 
   const SingleChoiceQuestion({
     super.key,
     required this.question,
     required this.onNext,
-    this.selectedOption,
+    this.savedOption,
   });
 
   @override
