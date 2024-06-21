@@ -39,12 +39,15 @@ class SurveyViewModel extends ChangeNotifier {
   }
 
   List<Widget> _generateSurveyQuestionPages() {
-    return surveyQuestions.map((question) {
+    final Map<String, dynamic> savedOptionsMap = _surveyUserPreferences.generateIdOptionsMap();
+
+    return _surveyQuestions.map((question) {
       return SurveyQuestionPage(
         question: question,
         onNext: (response) {
           _onNextSurveyQuestion(question.id, response);
         },
+        answer: savedOptionsMap[question.id],
       );
     }).toList();
   }
