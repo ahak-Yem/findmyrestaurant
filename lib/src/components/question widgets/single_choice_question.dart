@@ -25,6 +25,14 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
   String? _selectedOption;
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.savedOption != null){
+      _selectedOption = widget.savedOption!.isNotEmpty ?  widget.savedOption : null;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final options = widget.question.options ?? [];
 

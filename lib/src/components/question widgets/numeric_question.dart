@@ -15,10 +15,18 @@ class NumericQuestion extends StatelessWidget {
     required this.onNext,
     this.answer,
   });
+  
+  TextEditingController init() {
+    TextEditingController controller = TextEditingController();
+    if (answer != null) {
+      controller.text = answer.toString();
+    }
+    return controller;
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController();
+    TextEditingController controller = init();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

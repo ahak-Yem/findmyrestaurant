@@ -22,7 +22,13 @@ class MultipleChoiceQuestion extends StatefulWidget {
 }
 
 class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
-  final List<String> _selectedOptions = List.empty(growable: true);
+  late List<String> _selectedOptions;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedOptions = widget.savedOptions != null && widget.savedOptions!.isNotEmpty ? List<String>.from(widget.savedOptions!) : [];
+  }
 
   @override
   Widget build(BuildContext context) {
