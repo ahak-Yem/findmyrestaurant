@@ -5,7 +5,7 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 class SurveyQuestionPage extends StatelessWidget {
   final DietarySurveyQuestionsModel question;
   final Function(dynamic) onNext;
-  final Map<String, dynamic>? answer;
+  final dynamic answer;
 
   const SurveyQuestionPage({
     super.key,
