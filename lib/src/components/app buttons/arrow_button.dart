@@ -4,12 +4,14 @@ class ArrowButton extends StatelessWidget {
   final ArrowDirection direction;
   final VoidCallback onPressed;
   final Color containerColor;
+  final double iconSize;
 
   const ArrowButton({
     Key? key,
     required this.direction,
     required this.containerColor,
     required this.onPressed,
+    required this.iconSize
   }) : super(key: key);
 
   @override
@@ -20,9 +22,11 @@ class ArrowButton extends StatelessWidget {
         color: containerColor,
       ),
       child: IconButton(
+        iconSize: iconSize,
+        alignment: Alignment.center,
         icon: Transform.rotate(
           angle: direction.angle,
-          child: Image.asset('assets/icons/arrow_primary.png'),
+          child: Image.asset('assets/icons/arrow_white.png'),
         ),
         onPressed: onPressed,
       ),
