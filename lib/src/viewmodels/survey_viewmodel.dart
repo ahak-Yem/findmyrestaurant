@@ -44,9 +44,6 @@ class SurveyViewModel extends ChangeNotifier {
     return _surveyQuestions.map((question) {
       return SurveyQuestionPage(
         question: question,
-        onNext: (response) {
-          _onNextSurveyQuestion(question.id, response);
-        },
         answer: savedOptionsMap[question.id],
       );
     }).toList();
