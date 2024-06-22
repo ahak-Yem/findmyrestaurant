@@ -52,6 +52,7 @@ class _SurveyViewState extends State<SurveyView> {
                 isNotScrollable: true,
                 showArrows: true,
                 onBack: viewModel.onBackSurveyQuestion,
+                onNext:() => viewModel.onNextSurveyQuestion(viewModel.surveyQuestions[viewModel.currentQuestionIndex].id),
               );
             },
           ),
