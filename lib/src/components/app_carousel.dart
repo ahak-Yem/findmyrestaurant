@@ -36,14 +36,16 @@ class _AppCarouselState extends State<AppCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
+      alignment: Alignment.bottomCenter,
       children: [
-        SizedBox(
+        Container(
+          padding: const EdgeInsets.only(bottom: 34),
           height: MediaQuery.of(context).size.height * widget.heightPercentage / 100,
           child: PageView.builder(
             controller: widget.pageController,
             itemCount: widget.items.length,
-            physics: widget.isNotScrollable ? const NeverScrollableScrollPhysics() :  null,
+            physics: widget.isNotScrollable ? const NeverScrollableScrollPhysics() : null,
             onPageChanged: (index) {
               setState(() {
                 _currentIndex = index;
