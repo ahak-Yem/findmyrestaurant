@@ -25,7 +25,6 @@ class SurveyQuestionPage extends StatelessWidget {
             style: const TextStyle(fontSize: 24.0),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24.0),
           question.type.buildWidget(question, answer),
         ],
       ),
