@@ -1,5 +1,4 @@
-
-class SurveyResponseUtil {
+class QuestionWidgetsAnswersUtil {
   static final Map<String, dynamic> _surveyUserPreferences = {};
   static Map<String, dynamic> get surveyUserPreferences => _surveyUserPreferences;
 

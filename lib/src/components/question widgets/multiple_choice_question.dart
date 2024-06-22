@@ -1,4 +1,4 @@
-import 'package:findmyrestaurant/src/utility/survey_response_util.dart';
+import 'package:findmyrestaurant/src/utility/question_widgets_answers_util.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
@@ -25,7 +25,7 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
   void initState() {
     super.initState();
     _selectedOptions = widget.savedOptions != null && widget.savedOptions!.isNotEmpty ? List<String>.from(widget.savedOptions!) : [];
-    SurveyResponseUtil.setResponse(widget.question.id, _selectedOptions);
+    QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOptions);
   }
 
   @override
@@ -47,7 +47,7 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
                 } else {
                   _selectedOptions.remove(option);
                 }
-                SurveyResponseUtil.setResponse(widget.question.id, _selectedOptions);
+                QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOptions);
               });
             },
           );
