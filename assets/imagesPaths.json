@@ -7,7 +7,11 @@
         "salmon eggs" : "assets/images/getstarted/salmon eggs.png",
         "tomatoes pesto" : "assets/images/getstarted/tomatoes pesto.png"
       },
-      "extra" :{
+      "icons" : {
+        "arrow_primary" : "assets/icons/arrow_primary.png",
+        "arrow_white" : "assets/icons/arrow_white.png"
+      },
+      "extra" : {
         "loading placeholder" : "assets/images/loading placeholder.gif"
       }
     }
