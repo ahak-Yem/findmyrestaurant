@@ -44,7 +44,8 @@ class _SurveyViewState extends State<SurveyView> {
               return AppCarousel(
                 items: viewModel.surveyPages,
                 pageController: viewModel.appCarouselController,
-                heightPercentage: 95,
+                heightPercentage: 92,
+                indicatorPadding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                 onPageChanged: (index) {
                   FocusScope.of(context).unfocus();
                   viewModel.onCarouselItemChanged(index);
