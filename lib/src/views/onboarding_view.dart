@@ -1,6 +1,7 @@
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/components/dialogs/app_alert_dialog.dart';
 import 'package:findmyrestaurant/src/components/dialogs/muliple_buttons_alert_dialog.dart';
+import 'package:findmyrestaurant/src/enums/app_routes_enum.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -113,7 +114,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   void _setupOnToSurveyBtnPressedListener() {
     viewModel.toSurveyBtnStreamController.listen((event) {
       if (event) {
-        Navigator.pushReplacementNamed(context, '/survey');
+        Navigator.pushReplacementNamed(context, AppRoutes.survey.route);
       }
     });
   }
