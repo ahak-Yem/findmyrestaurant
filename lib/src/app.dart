@@ -9,8 +9,16 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key,}) : super(key: key);
 
   Widget _determineHomeView(){
-    final AppLaunchService appLaunchService = AppLaunchService.instance; 
-    return appLaunchService.isUserEmailConfirmed ? AppRoutes.survey.view : AppRoutes.onboarding.view;
+    final AppLaunchService appLaunchService = AppLaunchService.instance;
+    if (appLaunchService.isUserEmailConfirmed) {
+      return AppRoutes.survey.view;
+    }
+    else if (appLaunchService.isSurveyCompleted) {
+      return AppRoutes.home.view;
+    }
+    else {
+      return AppRoutes.onboarding.view;
+    }
   }
 
   @override
@@ -35,6 +43,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.onboarding.route,
       routes: {        
         AppRoutes.survey.route: (context) => AppRoutes.survey.view,
+        AppRoutes.home.route: (context) => AppRoutes.home.view,
       },
       home: _determineHomeView(),
     );
