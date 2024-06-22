@@ -6,7 +6,9 @@ enum ImagesNames {
   salad,
   salmonEggs,
   tomatoesPesto,
-  loadingPlaceholder
+  loadingPlaceholder,
+  arrowPrimary,
+  arrowWhite,
 }
 
 extension ImagesNamesExtension on ImagesNames {
@@ -23,24 +25,28 @@ extension ImagesNamesExtension on ImagesNames {
       case ImagesNames.tomatoesPesto:
         return 'tomatoes pesto';
       case ImagesNames.loadingPlaceholder:
-      return 'loading placeholder';
+        return 'loading placeholder';
+      case ImagesNames.arrowPrimary:
+        return 'arrow_primary';
+      case ImagesNames.arrowWhite:
+        return 'arrow_white';
     }
   }
 
   ImagesPathsSections get section {
     switch (this) {
       case ImagesNames.muesli:
-        return ImagesPathsSections.getStarted;
       case ImagesNames.eggSandwish:
-        return ImagesPathsSections.getStarted;
       case ImagesNames.salad:
-        return ImagesPathsSections.getStarted;
       case ImagesNames.salmonEggs:
-        return ImagesPathsSections.getStarted;
       case ImagesNames.tomatoesPesto:
         return ImagesPathsSections.getStarted;
       case ImagesNames.loadingPlaceholder:
         return ImagesPathsSections.extra;
+      case ImagesNames.arrowPrimary:
+      case ImagesNames.arrowWhite:
+        return ImagesPathsSections.icons;
+
     }
   }
 }
