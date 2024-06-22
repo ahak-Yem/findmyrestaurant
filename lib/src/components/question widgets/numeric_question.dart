@@ -1,6 +1,5 @@
-import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
+import 'package:findmyrestaurant/src/utility/survey_response_util.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
-import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
@@ -36,7 +35,7 @@ class NumericQuestion extends StatelessWidget {
           ),
           keyboardType: TextInputType.number,
           onSubmitted: (value) {
-            
+            SurveyResponseUtil.setResponse(question.id, value);
           },
         ),
       ],

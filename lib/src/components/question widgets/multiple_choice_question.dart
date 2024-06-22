@@ -1,3 +1,4 @@
+import 'package:findmyrestaurant/src/utility/survey_response_util.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
@@ -45,6 +46,7 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
                 } else {
                   _selectedOptions.remove(option);
                 }
+                SurveyResponseUtil.setResponse(widget.question.id, _selectedOptions);
               });
             },
           );
