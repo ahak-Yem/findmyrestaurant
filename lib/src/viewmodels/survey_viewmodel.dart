@@ -5,6 +5,7 @@ import 'package:findmyrestaurant/src/pages/survey_question_page.dart';
 import 'package:findmyrestaurant/src/services/app_launch_service.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/survey_service.dart';
+import 'package:findmyrestaurant/src/utility/survey_response_util.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 import 'package:findmyrestaurant/src/models/user_preferences_model.dart';
@@ -80,7 +81,8 @@ class SurveyViewModel extends ChangeNotifier {
     return Future.value(false);
   }
 
-  void _onNextSurveyQuestion(String questionId, dynamic response) {
+  void onNextSurveyQuestion(String questionId) {
+    dynamic response = SurveyResponseUtil.getResponse(questionId);
     _updateUserResponse(questionId, response);
     _saveUserPreferences();
     if (currentQuestionIndex < surveyQuestions.length - 1) {
