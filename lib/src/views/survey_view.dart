@@ -1,6 +1,7 @@
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/components/app_carousel.dart';
 import 'package:findmyrestaurant/src/components/dialogs/muliple_buttons_alert_dialog.dart';
+import 'package:findmyrestaurant/src/enums/app_routes_enum.dart';
 import 'package:findmyrestaurant/src/viewmodels/survey_viewmodel.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
@@ -72,10 +73,14 @@ class _SurveyViewState extends State<SurveyView> {
             AppStrings.surveyEndedHeader, 
             AppStrings.surveyEndedMessage,
             [
-              const AppDynamicButton(
+              AppDynamicButton(
                 color: AppColors.primaryColor, 
                 textColor: AppColors.appWhite, 
-                text: AppStrings.surveyEndedBtn
+                text: AppStrings.surveyEndedBtn,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushReplacementNamed(context, AppRoutes.home.route);
+                },
               ),
             ]
           );
