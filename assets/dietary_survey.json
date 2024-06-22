@@ -116,7 +116,12 @@
             "id": "q8",
             "question": "Do you prefer home-cooked meals, delivery or eating out?",
             "type": "singleChoice",
-            "options": ["Home-cooked", "Delivery", "Eating out"]
+            "options": ["Home-cooked", "Delivery", "Eating out"],
+            "images" : {
+                "Home-cooked" : "assets/images/survey/Home-cooked.png",
+                "Delivery" : "assets/images/survey/Delivery.png",
+                "Eating out" : "assets/images/survey/Eating out.png"
+            }
         }
     ]
 }
