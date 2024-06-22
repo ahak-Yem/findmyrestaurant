@@ -25,6 +25,7 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
   void initState() {
     super.initState();
     _selectedOptions = widget.savedOptions != null && widget.savedOptions!.isNotEmpty ? List<String>.from(widget.savedOptions!) : [];
+    SurveyResponseUtil.setResponse(widget.question.id, _selectedOptions);
   }
 
   @override

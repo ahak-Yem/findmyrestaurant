@@ -25,6 +25,7 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
     super.initState();
     if (widget.savedOption != null){
       _selectedOption = widget.savedOption!.isNotEmpty ?  widget.savedOption : null;
+      SurveyResponseUtil.setResponse(widget.question.id, _selectedOption);
     }
   }
 

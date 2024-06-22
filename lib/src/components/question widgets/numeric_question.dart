@@ -17,6 +17,7 @@ class NumericQuestion extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     if (answer != null) {
       controller.text = answer.toString();
+      SurveyResponseUtil.setResponse(question.id, controller.text);
     }
     return controller;
   }
