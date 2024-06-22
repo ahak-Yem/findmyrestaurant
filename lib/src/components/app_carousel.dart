@@ -77,7 +77,7 @@ class _AppCarouselState extends State<AppCarousel> {
                   direction: ArrowDirection.right,
                   containerColor: AppColors.primaryColor,
                   iconSize: 40,
-                  onPressed: _currentIndex < widget.items.length - 1 && widget.onBack != null ? widget.onNext! : (){},
+                  onPressed: _currentIndex < widget.items.length && widget.onBack != null ? widget.onNext! : (){},
                 ),
               ],
             ],
