@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
 
   Widget _determineHomeView(){
     final AppLaunchService appLaunchService = AppLaunchService.instance;
-    if (appLaunchService.isUserEmailConfirmed) {
-      return AppRoutes.survey.view;
-    }
-    else if (appLaunchService.isSurveyCompleted) {
+    if (appLaunchService.isSurveyCompleted) {
       return AppRoutes.home.view;
+    }
+    else if (appLaunchService.isUserEmailConfirmed) {
+      return AppRoutes.survey.view;
     }
     else {
       return AppRoutes.onboarding.view;
