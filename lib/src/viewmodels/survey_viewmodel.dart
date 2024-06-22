@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:findmyrestaurant/src/controllers/app_carousel_controller.dart';
 import 'package:findmyrestaurant/src/enums/database%20enums/database_models_enum.dart';
-import 'package:findmyrestaurant/src/pages/survey_question_page.dart';
+import 'package:findmyrestaurant/src/items_templates/survey_question_item.dart';
 import 'package:findmyrestaurant/src/services/app_launch_service.dart';
 import 'package:findmyrestaurant/src/services/database_service.dart';
 import 'package:findmyrestaurant/src/services/survey_service.dart';
@@ -43,7 +43,7 @@ class SurveyViewModel extends ChangeNotifier {
     final Map<String, dynamic> savedOptionsMap = _surveyUserPreferences.generateIdOptionsMap();
 
     return _surveyQuestions.map((question) {
-      return SurveyQuestionPage(
+      return SurveyQuestionItem(
         question: question,
         answer: savedOptionsMap[question.id],
       );

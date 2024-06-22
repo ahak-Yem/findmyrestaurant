@@ -2,11 +2,11 @@ import 'package:findmyrestaurant/src/enums/survey_question_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
-class SurveyQuestionPage extends StatelessWidget {
+class SurveyQuestionItem extends StatelessWidget {
   final DietarySurveyQuestionsModel question;
   final dynamic answer;
 
-  const SurveyQuestionPage({
+  const SurveyQuestionItem({
     super.key,
     required this.question,
     this.answer,
