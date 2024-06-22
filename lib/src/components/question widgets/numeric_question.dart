@@ -6,13 +6,11 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 
 class NumericQuestion extends StatelessWidget {
   final DietarySurveyQuestionsModel question;
-  final Function(int?) onNext;
   final int? answer;
 
   const NumericQuestion({
     super.key,
     required this.question,
-    required this.onNext,
     this.answer,
   });
   
@@ -37,14 +35,8 @@ class NumericQuestion extends StatelessWidget {
             labelText: AppStrings.numericQuestionLabelText,
           ),
           keyboardType: TextInputType.number,
-        ),
-        const SizedBox(height: 16),
-        AppDynamicButton(
-          color: AppColors.primaryColor,
-          textColor: AppColors.appWhite,
-          text: AppStrings.goNextBtn,
-          onPressed: () {
-            onNext(int.tryParse(controller.text.trim()));
+          onSubmitted: (value) {
+            
           },
         ),
       ],

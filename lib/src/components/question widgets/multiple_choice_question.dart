@@ -1,19 +1,14 @@
-import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
-import 'package:findmyrestaurant/strings/app_strings.dart';
-import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
 //TODO:Change the options to picture-options and make the checkbox uses a knife icon
 class MultipleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
-  final Function(List<String>) onNext;
   final List<String>? savedOptions;
 
   const MultipleChoiceQuestion({
     super.key,
     required this.question,
-    required this.onNext,
     this.savedOptions,
   });
 
@@ -23,6 +18,7 @@ class MultipleChoiceQuestion extends StatefulWidget {
 
 class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
   late List<String> _selectedOptions;
+  
 
   @override
   void initState() {
@@ -39,7 +35,7 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
         itemCount: options.length,
         itemBuilder: (context, index) {
           final option = options[index];
-          return index < options.length - 1 ? CheckboxListTile(
+          return CheckboxListTile(
             title: Text(option),
             value: _selectedOptions.contains(option),
             onChanged: (bool? value) {
@@ -51,31 +47,6 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
                 }
               });
             },
-          ) :
-          Column(
-            children: [
-              CheckboxListTile(
-                title: Text(option),
-                value: _selectedOptions.contains(option),
-                onChanged: (bool? value) {
-                  setState(() {
-                    if (value == true) {
-                      _selectedOptions.add(option);
-                    } else {
-                      _selectedOptions.remove(option);
-                    }
-                  });
-                },
-              ),
-              AppDynamicButton(
-                color: AppColors.primaryColor,
-                textColor: AppColors.appWhite,
-                text: AppStrings.goNextBtn,
-                onPressed: () {
-                  widget.onNext(_selectedOptions);
-                },
-              ),
-            ],
           );
         },
       ),

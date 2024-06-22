@@ -6,13 +6,11 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 
 class OpenEndedQuestion extends StatelessWidget {
   final DietarySurveyQuestionsModel question;
-  final Function(String) onNext;
   final String? answer;
 
   const OpenEndedQuestion({
     Key? key,
     required this.question,
-    required this.onNext,
     this.answer,
   }) : super(key: key);
 
@@ -36,14 +34,8 @@ class OpenEndedQuestion extends StatelessWidget {
           decoration: const InputDecoration(
             labelText: AppStrings.openEndedQuestionLabelText,
           ),
-        ),
-        const SizedBox(height: 16),
-        AppDynamicButton(
-          color: AppColors.primaryColor,
-          textColor: AppColors.appWhite,
-          text: AppStrings.goNextBtn,
-          onPressed: () {
-            onNext(controller.text.trim());
+          onSubmitted: (value) {
+            
           },
         ),
       ],

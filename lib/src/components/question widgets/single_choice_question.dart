@@ -7,13 +7,11 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 //TODO:Change the options to picture-options and make the radio cicles uses an egg icon
 class SingleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
-  final Function(String) onNext;
   final String? savedOption;
 
   const SingleChoiceQuestion({
     super.key,
     required this.question,
-    required this.onNext,
     this.savedOption,
   });
 
@@ -41,7 +39,7 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
         itemCount: options.length,
         itemBuilder: (context, index) {
           final option = options[index];
-          return index < options.length - 1 ? RadioListTile<String>(
+          return RadioListTile<String>(
             title: Text(option),
             value: option,
             groupValue: _selectedOption,
@@ -50,28 +48,6 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
                 _selectedOption = value;
               });
             },
-          ) :
-          Column(
-            children: [
-              RadioListTile<String>(
-                title: Text(option),
-                value: option,
-                groupValue: _selectedOption,
-                onChanged: (String? value) {
-                  setState(() {
-                    _selectedOption = value;
-                  });
-                },
-              ),
-              AppDynamicButton(
-                color: AppColors.primaryColor,
-                textColor: AppColors.appWhite,
-                text: AppStrings.goNextBtn,
-                onPressed: () {
-                  widget.onNext(_selectedOption ?? "");
-                },
-              ),
-            ]
           );
         },
       ),
