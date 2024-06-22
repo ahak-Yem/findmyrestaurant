@@ -19,12 +19,14 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_viewModel.viewTitle),
-      ),
-      body: const Center(
-        child: Text('Home View'),
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        body: Center(
+          child: Text(_viewModel.viewTitle),
+        ),
       ),
     );
   }
