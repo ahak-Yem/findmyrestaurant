@@ -37,6 +37,7 @@ class SurveyViewModel extends ChangeNotifier {
     _surveyQuestions = _surveyService.surveyQuestions;
     _surveyUserPreferences = _appLaunchService.userPreferences ?? UserPreferencesModel();
     _surveyPages = _generateSurveyQuestionPages();
+    notifyListeners();
   }
 
   List<Widget> _generateSurveyQuestionPages() {
@@ -94,12 +95,16 @@ class SurveyViewModel extends ChangeNotifier {
 
   void onBackSurveyQuestion() {
     final currentPage = appCarouselController.currentPageIndex;
+    if (currentPage == 0) {
+      return;
+    }
     appCarouselController.goBack(currentPage: currentPage);
   }
 
   void onCarouselItemChanged(int index) {
     currentQuestionIndex = index;
     appCarouselController.setCurrentPageIndex(index);
+    notifyListeners();
   }
 
   void _notifySurveyEnded() {
