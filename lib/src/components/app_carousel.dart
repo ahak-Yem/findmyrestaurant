@@ -27,7 +27,6 @@ class AppCarousel extends StatefulWidget {
 }
 
 class _AppCarouselState extends State<AppCarousel> {
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +41,6 @@ class _AppCarouselState extends State<AppCarousel> {
             itemCount: widget.items.length,
             physics: widget.isNotScrollable ? const NeverScrollableScrollPhysics() : null,
             onPageChanged: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
               widget.onPageChanged(index);
             },
             itemBuilder: (context, index) {
