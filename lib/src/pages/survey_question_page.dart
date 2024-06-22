@@ -4,13 +4,11 @@ import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart'
 
 class SurveyQuestionPage extends StatelessWidget {
   final DietarySurveyQuestionsModel question;
-  final Function(dynamic) onNext;
   final dynamic answer;
 
   const SurveyQuestionPage({
     super.key,
     required this.question,
-    required this.onNext,
     this.answer,
   });
 
@@ -28,7 +26,7 @@ class SurveyQuestionPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 24.0),
-          question.type.buildWidget(question, onNext, answer),
+          question.type.buildWidget(question, answer),
         ],
       ),
     );
