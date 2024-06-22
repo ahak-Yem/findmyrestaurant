@@ -1,5 +1,6 @@
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/components/app_carousel.dart';
+import 'package:findmyrestaurant/src/components/carousel_arrows_navbar.dart';
 import 'package:findmyrestaurant/src/components/dialogs/muliple_buttons_alert_dialog.dart';
 import 'package:findmyrestaurant/src/enums/app_routes_enum.dart';
 import 'package:findmyrestaurant/src/viewmodels/survey_viewmodel.dart';
@@ -52,9 +53,14 @@ class _SurveyViewState extends State<SurveyView> {
                   viewModel.onCarouselItemChanged(index);
                 },
                 isNotScrollable: true,
-                showArrows: true,
-                onBack: viewModel.onBackSurveyQuestion,
-                onNext:() => viewModel.onNextSurveyQuestion(viewModel.surveyQuestions[viewModel.currentQuestionIndex].id),
+                bottomBar: CarouselArrowsNavbar(
+                  currentPage: viewModel.appCarouselController.currentPageIndex,
+                  pageCount: viewModel.surveyPages.length,
+                  iconSize: 30,
+                  arrowBtnsColor: AppColors.primaryColor,
+                  onBackPressed: viewModel.onBackSurveyQuestion,
+                  onNextPressed:() => viewModel.onNextSurveyQuestion(viewModel.surveyQuestions[viewModel.currentQuestionIndex].id),
+                ),
               );
             },
           ),
