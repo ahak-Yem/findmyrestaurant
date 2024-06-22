@@ -1,6 +1,7 @@
 import 'package:findmyrestaurant/src/components/app%20buttons/app_dynamic_button.dart';
 import 'package:findmyrestaurant/src/components/dialogs/app_alert_dialog.dart';
 import 'package:findmyrestaurant/src/components/dialogs/muliple_buttons_alert_dialog.dart';
+import 'package:findmyrestaurant/src/components/dot_page_indicator.dart';
 import 'package:findmyrestaurant/src/enums/app_routes_enum.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
@@ -74,13 +75,17 @@ class _OnboardingViewState extends State<OnboardingView> {
           return AppCarousel(
             items: viewModel.carouselItems,
             pageController: viewModel.appCarouselController,
-            heightPercentage: 50,
-            indicatorPadding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+            heightPercentage: 55,
+            indicatorPadding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             isNotScrollable: false,
             onPageChanged: (index) {
               FocusScope.of(context).unfocus();
               viewModel.onAppCarouselItemChanged(index);
             },
+            bottomBar: PageIndicator (
+              currentPage: viewModel.appCarouselController.currentPageIndex,
+              pageCount: viewModel.carouselItems.length,
+            ),
           );
         } else {
           return const SizedBox(height: 0, width: 0);
