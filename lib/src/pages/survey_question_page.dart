@@ -15,11 +15,10 @@ class SurveyQuestionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 38.0),
           Text(
             question.question,
             style: const TextStyle(fontSize: 24.0),
