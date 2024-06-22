@@ -27,30 +27,26 @@ extension SurveyQuestionTypeExtension on SurveyQuestionType {
   }
 
   // TODO: Disable onNext until an option is selected
-  Widget buildWidget(DietarySurveyQuestionsModel question, Function(dynamic) onNext, dynamic answer) {
+  Widget buildWidget(DietarySurveyQuestionsModel question, dynamic answer) {
     switch (this) {
       case SurveyQuestionType.multipleChoice:
         return MultipleChoiceQuestion(
           question: question,
-          onNext: onNext,
           savedOptions: answer is List<String> ? answer : null,
         );
       case SurveyQuestionType.singleChoice:
         return SingleChoiceQuestion(
           question: question,
-          onNext: onNext,
           savedOption: answer is String ? answer : null,
         );
       case SurveyQuestionType.openEnded:
         return OpenEndedQuestion(
           question: question,
-          onNext: onNext,
           answer: answer is String ? answer : null,
         );
       case SurveyQuestionType.numeric:
         return NumericQuestion(
           question: question,
-          onNext: onNext,
           answer: answer is int ? answer : null,
         );
       default:
