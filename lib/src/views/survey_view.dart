@@ -50,6 +50,8 @@ class _SurveyViewState extends State<SurveyView> {
                   viewModel.onCarouselItemChanged(index);
                 },
                 isNotScrollable: true,
+                showArrows: true,
+                onBack: viewModel.onBackSurveyQuestion,
               );
             },
           ),
