@@ -93,6 +93,11 @@ class SurveyViewModel extends ChangeNotifier {
     }
   }
 
+  void onBackSurveyQuestion() {
+    final currentPage = appCarouselController.currentPageIndex;
+    appCarouselController.goBack(currentPage: currentPage);
+  }
+
   void onCarouselItemChanged(int index) {
     currentQuestionIndex = index;
     appCarouselController.setCurrentPageIndex(index);
