@@ -18,6 +18,7 @@ class SurveyQuestionItem extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             question.question,
