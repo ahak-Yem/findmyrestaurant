@@ -43,6 +43,7 @@ flutter:
     - assets/icons/
     - assets/images/getstarted/
     - assets/images/survey/
+    - assets/images/extra/
     - assets/imagesPaths.json
     - assets/dietary_survey.json
     - assets/html pages/confirm_email.html
