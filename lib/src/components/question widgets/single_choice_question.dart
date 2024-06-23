@@ -3,7 +3,6 @@ import 'package:findmyrestaurant/src/utility/question_widgets_answers_util.dart'
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
-//TODO: Make the radio circles use an egg icon
 class SingleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final String? savedOption;
