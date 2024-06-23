@@ -46,7 +46,7 @@ extension SurveyQuestionTypeExtension on SurveyQuestionType {
       case SurveyQuestionType.numeric:
         return NumericQuestion(
           question: question,
-          answer: answer is int ? answer : null,
+          answer: answer is String ? int.tryParse(answer) : answer is int ?  answer : null,
         );
       default:
         return Container();
