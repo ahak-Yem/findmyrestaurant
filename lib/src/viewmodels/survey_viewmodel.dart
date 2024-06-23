@@ -87,6 +87,7 @@ class SurveyViewModel extends ChangeNotifier {
   void onNextSurveyQuestion(String questionId) {
     dynamic response = QuestionWidgetsAnswersUtil.getResponse(questionId);
     _updateUserResponse(questionId, response);
+    _userPreferencesWithQID[questionId] = response;
     _saveUserPreferences();
     if (currentQuestionIndex < surveyQuestions.length - 1) {
       appCarouselController.goNext(currentPage: currentQuestionIndex);
