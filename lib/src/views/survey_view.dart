@@ -60,6 +60,7 @@ class _SurveyViewState extends State<SurveyView> {
                   arrowBtnsColor: AppColors.primaryColor,
                   onBackPressed: viewModel.onBackSurveyQuestion,
                   onNextPressed:() => viewModel.onNextSurveyQuestion(viewModel.surveyQuestions[viewModel.currentQuestionIndex].id),
+                  isNextActive: viewModel.isQuestionAnswered[viewModel.surveyQuestions[viewModel.currentQuestionIndex].id] ?? false,
                 ),
               );
             },

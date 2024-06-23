@@ -9,6 +9,7 @@ class CarouselArrowsNavbar extends StatelessWidget {
   final double iconSize;
   final VoidCallback onBackPressed;
   final VoidCallback onNextPressed;
+  final bool isNextActive;
 
   const CarouselArrowsNavbar({
     Key? key,
@@ -18,6 +19,7 @@ class CarouselArrowsNavbar extends StatelessWidget {
     required this.iconSize,
     required this.onBackPressed,
     required this.onNextPressed,
+    required this.isNextActive,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class CarouselArrowsNavbar extends StatelessWidget {
           containerColor: arrowBtnsColor,
           iconSize: iconSize,
           onPressed: onBackPressed,
+          active: currentPage != 0,
         ),
         PageIndicator(
           currentPage: currentPage,
@@ -40,6 +43,7 @@ class CarouselArrowsNavbar extends StatelessWidget {
           containerColor: arrowBtnsColor,
           iconSize: iconSize,
           onPressed: onNextPressed,
+          active: isNextActive,
         ),
       ],
     );
