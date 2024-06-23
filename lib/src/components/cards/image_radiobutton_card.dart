@@ -49,7 +49,7 @@ class _ImageRadioButtonCardState extends State<ImageRadioButtonCard> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: BorderSide(
-            color: _isSelected ? AppColors.primaryColor : AppColors.gray,
+            color: _isSelected ? AppColors.primaryColor : AppColors.transparent,
             width: 2,
           ),
         ),
@@ -75,7 +75,7 @@ class _ImageRadioButtonCardState extends State<ImageRadioButtonCard> {
               right: 8,
               child: Icon(
                 _isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                color: _isSelected ? AppColors.primaryColor : AppColors.gray,
+                color: _isSelected ? AppColors.appWhite : AppColors.gray,
               ),
             ),
           ],
