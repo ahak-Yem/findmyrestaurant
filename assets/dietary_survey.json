@@ -33,7 +33,14 @@
                 "Paleo",
                 "Intermittent fasting",
                 "Other"
-            ]
+            ],
+            "images" : {
+                "No" : "assets/images/survey/No.png",
+                "Vegan" : "assets/images/survey/Vegan.png",
+                "Vegetarian" : "assets/images/survey/Vegetarian.png",
+                "Halal" : "assets/images/survey/Halal.png",
+                "Kosher" : "assets/images/survey/Kosher.png"
+            }
         },
         {
             "id": "q2",
@@ -58,7 +65,10 @@
                 "Lupin",
                 "Celery",
                 "Other"
-            ]
+            ],
+            "images" : {
+                "No" : "assets/images/survey/No.png"
+            }
         },
         {
             "id": "q3",
