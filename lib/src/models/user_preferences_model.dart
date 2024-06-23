@@ -69,8 +69,8 @@ class UserPreferencesModel {
       _favoriteIngredients = value;
     } else if (questionId == SurveyQuestions.dislikedIngredients.id && value is String) {
       _dislikedIngredients = value;
-    } else if (questionId == SurveyQuestions.mealsPerDay.id && value is int) {
-      _mealsPerDay = value;
+    } else if (questionId == SurveyQuestions.mealsPerDay.id && int.tryParse(value) is int) {
+      _mealsPerDay = int.tryParse(value);
     } else if (questionId == SurveyQuestions.eatingHabits.id && value is String) {
       _eatingHabits = value;
     }
