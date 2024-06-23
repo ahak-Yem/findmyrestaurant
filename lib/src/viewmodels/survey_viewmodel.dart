@@ -74,6 +74,13 @@ class SurveyViewModel extends ChangeNotifier {
     }
   }
 
+  void _updateLocalProperties(String questionId) {
+    dynamic response = QuestionWidgetsAnswersUtil.getResponse(questionId);
+    _updateUserResponse(questionId, response);
+    _userPreferencesWithQID[questionId] = response;
+    _updateSurveyItems(questionId);
+  }
+
   void _saveUserPreferences() async{
     if(_userID == null){
       return;  
@@ -96,9 +103,7 @@ class SurveyViewModel extends ChangeNotifier {
   }
 
   void onNextSurveyQuestion(String questionId) {
-    dynamic response = QuestionWidgetsAnswersUtil.getResponse(questionId);
-    _updateUserResponse(questionId, response);
-    _userPreferencesWithQID[questionId] = response;
+    _updateLocalProperties(questionId);  
     _saveUserPreferences();
     if (currentQuestionIndex < surveyQuestions.length - 1) {
       appCarouselController.goNext(currentPage: currentQuestionIndex);
