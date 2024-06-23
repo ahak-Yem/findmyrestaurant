@@ -17,6 +17,9 @@ class SurveyViewModel extends ChangeNotifier {
   UserPreferencesModel _surveyUserPreferences = UserPreferencesModel();
   UserPreferencesModel get surveyUserPreferences => _surveyUserPreferences;
 
+  Map<String, bool> _isQuestionAnswered = {};
+  Map<String, bool> get isQuestionAnswered => _isQuestionAnswered;
+
   List<Widget> _surveyPages = List.empty();
   List<Widget> get surveyPages => _surveyPages;
 
@@ -37,6 +40,7 @@ class SurveyViewModel extends ChangeNotifier {
     _surveyQuestions = _surveyService.surveyQuestions;
     _surveyUserPreferences = _appLaunchService.userPreferences ?? UserPreferencesModel();
     _surveyPages = _generateSurveyQuestionPages();
+    listenToIsQuestionAnsweredStream();
     notifyListeners();
   }
 
@@ -110,6 +114,14 @@ class SurveyViewModel extends ChangeNotifier {
   void _notifySurveyEnded() {
     _surveyEndedController.add(true);
   }
+
+  void listenToIsQuestionAnsweredStream() {
+  QuestionWidgetsAnswersUtil.isQuestionAnsweredStream.listen((Map<String, bool> isQuestionAnswered) {
+    _isQuestionAnswered = isQuestionAnswered;
+    notifyListeners();
+  });
+}
+
 
   @override
   void dispose() {
