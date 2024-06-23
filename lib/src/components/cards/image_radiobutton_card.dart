@@ -1,4 +1,3 @@
-// image_radio_button_card.dart
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 

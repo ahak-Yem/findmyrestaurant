@@ -3,16 +3,16 @@ import 'package:findmyrestaurant/src/utility/question_widgets_answers_util.dart'
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
-//TODO:Make the radio cicles uses an egg icon
+//TODO: Make the radio circles use an egg icon
 class SingleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final String? savedOption;
 
   const SingleChoiceQuestion({
-    super.key,
+    Key? key,
     required this.question,
     this.savedOption,
-  });
+  }) : super(key: key);
 
   @override
   State<SingleChoiceQuestion> createState() => _SingleChoiceQuestionState();
@@ -24,8 +24,8 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
   @override
   void initState() {
     super.initState();
-    if (widget.savedOption != null){
-      _selectedOption = widget.savedOption!.isNotEmpty ?  widget.savedOption : null;
+    if (widget.savedOption != null) {
+      _selectedOption = widget.savedOption!.isNotEmpty ? widget.savedOption : null;
       QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
     }
   }
