@@ -59,9 +59,6 @@ class SurveyViewModel extends ChangeNotifier {
     final questionIndex = _surveyQuestions.indexWhere((question) => question.id == questionId);
     if (questionIndex >= 0) {
       _surveyUserPreferences.setPreferencesField(questionId, response);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        notifyListeners();
-      });
     }
   }
 
@@ -95,6 +92,9 @@ class SurveyViewModel extends ChangeNotifier {
     } else {
       _notifySurveyEnded();
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });  
   }
 
   void onBackSurveyQuestion() {
