@@ -1,8 +1,11 @@
+import 'package:findmyrestaurant/src/components/cards/image_checkbox_card.dart';
+import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
+import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
+import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/src/utility/question_widgets_answers_util.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
-//TODO:Change the options to picture-options and make the checkbox uses a knife icon
 class MultipleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final List<String>? savedOptions;
@@ -19,7 +22,6 @@ class MultipleChoiceQuestion extends StatefulWidget {
 
 class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
   List<String> _selectedOptions = List.empty(growable: true);
-  
 
   @override
   void initState() {
@@ -34,18 +36,20 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
   @override
   Widget build(BuildContext context) {
     final options = widget.question.options ?? [];
+    final images = widget.question.images ?? {};
 
     return Expanded(
       child: ListView.builder(
         itemCount: options.length,
         itemBuilder: (context, index) {
           final option = options[index];
-          return CheckboxListTile(
-            title: Text(option),
-            value: _selectedOptions.contains(option),
-            onChanged: (bool? value) {
+          return ImageCheckboxCard(
+            label: option,
+            imagePath: images[option] ?? ImagesReaderService.instance.getImagePath(ImagesPathsSections.extra, ImagesNames.noImagePlaceholder),
+            isSelected: _selectedOptions.contains(option),
+            onSelected: (isSelected) {
               setState(() {
-                if (value == true) {
+                if (isSelected) {
                   _selectedOptions.add(option);
                 } else {
                   _selectedOptions.remove(option);
