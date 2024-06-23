@@ -26,8 +26,6 @@ class SurveyViewModel extends ChangeNotifier {
   final StreamController<bool> _surveyEndedController = StreamController<bool>();
   Stream<bool> get surveyEndedController => _surveyEndedController.stream;
 
-  Map<String, dynamic> _userPreferencesWithQID = {};
-
   String? _userID;
   int currentQuestionIndex = 0;
 
@@ -42,17 +40,17 @@ class SurveyViewModel extends ChangeNotifier {
     _userID = _appLaunchService.userId; // [0]
     _surveyQuestions = _surveyService.surveyQuestions; // [1]
     _surveyUserPreferences = _appLaunchService.userPreferences ?? UserPreferencesModel(); // [2]
-    _userPreferencesWithQID = _surveyUserPreferences.generateIdAnswersMap(); // [3]
-    _surveyPages = _generateSurveyQuestionPages(); // [4]
-    listenToIsQuestionAnsweredStream(); // [5]
+    _surveyPages = _generateSurveyQuestionPages(); // [3]
+    listenToIsQuestionAnsweredStream(); // [4]
     notifyListeners(); // [last]
   }
 
   List<Widget> _generateSurveyQuestionPages() {
+    final Map<String, dynamic> userPreferencesWithQID = _surveyUserPreferences.generateIdAnswersMap();
     return _surveyQuestions.map((question) {
       return SurveyQuestionItem(
         question: question,
-        answer: _userPreferencesWithQID[question.id],
+        answer: userPreferencesWithQID[question.id],
       );
     }).toList();
   }
@@ -64,12 +62,12 @@ class SurveyViewModel extends ChangeNotifier {
     }
   }
 
-  void _updateSurveyItems(String questionId) {
+  void _updateSurveyItems(String questionId, dynamic response) {
     final questionIndex = _surveyQuestions.indexWhere((question) => question.id == questionId);
     if (questionIndex >= 0) {
       _surveyPages[questionIndex] = SurveyQuestionItem(
         question: _surveyQuestions[questionIndex],
-        answer: _userPreferencesWithQID[questionId],
+        answer: response,
       );
     }
   }
@@ -77,8 +75,7 @@ class SurveyViewModel extends ChangeNotifier {
   void _updateLocalProperties(String questionId) {
     dynamic response = QuestionWidgetsAnswersUtil.getResponse(questionId);
     _updateUserResponse(questionId, response);
-    _userPreferencesWithQID[questionId] = response;
-    _updateSurveyItems(questionId);
+    _updateSurveyItems(questionId, response);
   }
 
   void _saveUserPreferences() async{
