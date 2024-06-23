@@ -38,13 +38,14 @@ class SurveyViewModel extends ChangeNotifier {
   final AppCarouselController appCarouselController = AppCarouselController();
 
   SurveyViewModel() {
-    _userID = _appLaunchService.userId;
-    _surveyQuestions = _surveyService.surveyQuestions;
-    _surveyUserPreferences = _appLaunchService.userPreferences ?? UserPreferencesModel();
-    _surveyPages = _generateSurveyQuestionPages();
-    _userPreferencesWithQID = _surveyUserPreferences.generateIdAnswersMap();
-    listenToIsQuestionAnsweredStream();
-    notifyListeners();
+    // The order here is case sensitive
+    _userID = _appLaunchService.userId; // [0]
+    _surveyQuestions = _surveyService.surveyQuestions; // [1]
+    _surveyUserPreferences = _appLaunchService.userPreferences ?? UserPreferencesModel(); // [2]
+    _userPreferencesWithQID = _surveyUserPreferences.generateIdAnswersMap(); // [3]
+    _surveyPages = _generateSurveyQuestionPages(); // [4]
+    listenToIsQuestionAnsweredStream(); // [5]
+    notifyListeners(); // [last]
   }
 
   List<Widget> _generateSurveyQuestionPages() {
