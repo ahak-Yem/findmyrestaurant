@@ -76,7 +76,7 @@ class _ImageCheckboxCardState extends State<ImageCheckboxCard> {
                     },
                     height: 150,
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.scaleDown,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
