@@ -1,8 +1,9 @@
+import 'package:findmyrestaurant/src/components/cards/image_radiobutton_card.dart';
 import 'package:findmyrestaurant/src/utility/question_widgets_answers_util.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
-//TODO:Change the options to picture-options and make the radio cicles uses an egg icon
+//TODO:Make the radio cicles uses an egg icon
 class SingleChoiceQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final String? savedOption;
@@ -38,7 +39,19 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
         itemCount: options.length,
         itemBuilder: (context, index) {
           final option = options[index];
-          return RadioListTile<String>(
+          return widget.question.options?.length == widget.question.images?.length ? 
+          ImageRadioButtonCard(
+            label: option,
+            imagePath: widget.question.images![option]!,
+            isSelected: _selectedOption == option,
+            onSelected: (isSelected) {
+              setState(() {
+                _selectedOption = isSelected ? option : null;
+                QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
+              });
+            },
+          ) : 
+          RadioListTile<String>(
             title: Text(option),
             value: option,
             groupValue: _selectedOption,
