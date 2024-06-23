@@ -64,6 +64,16 @@ class SurveyViewModel extends ChangeNotifier {
     }
   }
 
+  void _updateSurveyItems(String questionId) {
+    final questionIndex = _surveyQuestions.indexWhere((question) => question.id == questionId);
+    if (questionIndex >= 0) {
+      _surveyPages[questionIndex] = SurveyQuestionItem(
+        question: _surveyQuestions[questionIndex],
+        answer: _userPreferencesWithQID[questionId],
+      );
+    }
+  }
+
   void _saveUserPreferences() async{
     if(_userID == null){
       return;  
