@@ -76,7 +76,7 @@ class UserPreferencesModel {
     }
   }
 
-  Map<String, dynamic> generateIdOptionsMap() {
+  Map<String, dynamic> generateIdAnswersMap() {
     final Map<String, dynamic> savedOptionsMap = {};
     for (final question in SurveyQuestions.values) {
       switch (question) {

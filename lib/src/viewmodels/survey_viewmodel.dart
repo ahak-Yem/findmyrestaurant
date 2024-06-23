@@ -45,7 +45,7 @@ class SurveyViewModel extends ChangeNotifier {
   }
 
   List<Widget> _generateSurveyQuestionPages() {
-    final Map<String, dynamic> savedOptionsMap = _surveyUserPreferences.generateIdOptionsMap();
+    final Map<String, dynamic> savedOptionsMap = _surveyUserPreferences.generateIdAnswersMap();
 
     return _surveyQuestions.map((question) {
       return SurveyQuestionItem(
