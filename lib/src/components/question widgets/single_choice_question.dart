@@ -26,6 +26,7 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
     if (widget.savedOption != null) {
       _selectedOption = widget.savedOption!.isNotEmpty ? widget.savedOption : null;
       QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
+      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption?.isNotEmpty ?? false);
     }
   }
 
@@ -47,6 +48,7 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
               setState(() {
                 _selectedOption = isSelected ? option : null;
                 QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
+                QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption?.isNotEmpty ?? false);
               });
             },
           ) : 
@@ -58,6 +60,7 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
               setState(() {
                 _selectedOption = value;
                 QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
+                QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption?.isNotEmpty ?? false);
               });
             },
           );

@@ -18,6 +18,7 @@ class NumericQuestion extends StatelessWidget {
     if (answer != null) {
       controller.text = answer.toString();
       QuestionWidgetsAnswersUtil.setResponse(question.id, controller.text);
+      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(question.id, controller.text.isNotEmpty);
     }
     return controller;
   }
@@ -37,6 +38,7 @@ class NumericQuestion extends StatelessWidget {
           keyboardType: TextInputType.number,
           onSubmitted: (value) {
             QuestionWidgetsAnswersUtil.setResponse(question.id, value);
+            QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(question.id, controller.text.isNotEmpty);
           },
         ),
       ],

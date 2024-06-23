@@ -26,6 +26,7 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
     super.initState();
     _selectedOptions = widget.savedOptions != null && widget.savedOptions!.isNotEmpty ? List<String>.from(widget.savedOptions!) : [];
     QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOptions);
+    QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOptions.isNotEmpty);
   }
 
   @override
@@ -48,6 +49,7 @@ class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
                   _selectedOptions.remove(option);
                 }
                 QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOptions);
+                QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOptions.isNotEmpty);
               });
             },
           );
