@@ -1,3 +1,6 @@
+import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
+import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
+import 'package:findmyrestaurant/src/services/images_reader_service.dart';
 import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -66,6 +69,12 @@ class _ImageRadioButtonCardState extends State<ImageRadioButtonCard> {
                     height: 150,
                     width: double.infinity,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Image.asset(
+                      ImagesReaderService.instance.getImagePath(ImagesPathsSections.extra, ImagesNames.noImagePlaceholder),
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
