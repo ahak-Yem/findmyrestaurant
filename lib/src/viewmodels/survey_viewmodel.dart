@@ -17,11 +17,11 @@ class SurveyViewModel extends ChangeNotifier {
   UserPreferencesModel _surveyUserPreferences = UserPreferencesModel();
   UserPreferencesModel get surveyUserPreferences => _surveyUserPreferences;
 
-  Map<String, bool> _isQuestionAnswered = {};
-  Map<String, bool> get isQuestionAnswered => _isQuestionAnswered;
-
   List<Widget> _surveyPages = List.empty();
   List<Widget> get surveyPages => _surveyPages;
+
+  Map<String, bool> _isQuestionAnswered = {};
+  Map<String, bool> get isQuestionAnswered => _isQuestionAnswered;
 
   final StreamController<bool> _surveyEndedController = StreamController<bool>();
   Stream<bool> get surveyEndedController => _surveyEndedController.stream;
