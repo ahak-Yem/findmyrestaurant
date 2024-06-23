@@ -12,7 +12,7 @@
         "arrow_white" : "assets/icons/arrow_white.png"
       },
       "extra" : {
-        "loading placeholder" : "assets/images/loading placeholder.gif"
+        "loading placeholder" : "assets/images/extra/loading placeholder.gif"
       }
     }
   }
