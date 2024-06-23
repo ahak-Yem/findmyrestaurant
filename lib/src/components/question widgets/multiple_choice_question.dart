@@ -18,15 +18,17 @@ class MultipleChoiceQuestion extends StatefulWidget {
 }
 
 class _MultipleChoiceQuestionState extends State<MultipleChoiceQuestion> {
-  late List<String> _selectedOptions;
+  List<String> _selectedOptions = List.empty(growable: true);
   
 
   @override
   void initState() {
     super.initState();
-    _selectedOptions = widget.savedOptions != null && widget.savedOptions!.isNotEmpty ? List<String>.from(widget.savedOptions!) : [];
-    QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOptions);
-    QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOptions.isNotEmpty);
+    if (widget.savedOptions != null && _selectedOptions.isEmpty) {
+      _selectedOptions = widget.savedOptions != null && widget.savedOptions!.isNotEmpty ? List<String>.from(widget.savedOptions!) : [];
+      QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOptions);
+      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOptions.isNotEmpty);
+    }
   }
 
   @override

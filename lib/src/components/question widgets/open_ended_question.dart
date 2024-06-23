@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
-class OpenEndedQuestion extends StatelessWidget {
+class OpenEndedQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final String? answer;
 
@@ -13,34 +13,45 @@ class OpenEndedQuestion extends StatelessWidget {
     this.answer,
   }) : super(key: key);
 
-  TextEditingController init() {
-    TextEditingController controller = TextEditingController();
-    if (answer != null) {
-      controller.text = answer.toString();
-      QuestionWidgetsAnswersUtil.setResponse(question.id, controller.text);
-      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(question.id, controller.text.isNotEmpty);
+  @override
+  State<OpenEndedQuestion> createState() => _OpenEndedQuestionState();
+}
+
+class _OpenEndedQuestionState extends State<OpenEndedQuestion> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.answer != null && _controller.text.isEmpty) {
+      _controller.text = widget.answer!;
+      QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _controller.text);
+      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _controller.text.isNotEmpty);
     }
-    return controller;
   }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = init();
-    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-          controller: controller,
+          controller: _controller,
           decoration: const InputDecoration(
             labelText: AppStrings.openEndedQuestionLabelText,
           ),
           onSubmitted: (value) {
-            QuestionWidgetsAnswersUtil.setResponse(question.id, value);
-            QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(question.id, controller.text.isNotEmpty);
+            QuestionWidgetsAnswersUtil.setResponse(widget.question.id, value);
+            QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, value.isNotEmpty);
           },
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

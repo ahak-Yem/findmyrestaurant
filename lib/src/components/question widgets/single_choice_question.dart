@@ -18,15 +18,15 @@ class SingleChoiceQuestion extends StatefulWidget {
 }
 
 class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
-  String? _selectedOption;
+  String _selectedOption = '';
 
   @override
   void initState() {
     super.initState();
-    if (widget.savedOption != null) {
-      _selectedOption = widget.savedOption!.isNotEmpty ? widget.savedOption : null;
+    if (widget.savedOption != null && _selectedOption.isEmpty) {
+      _selectedOption = widget.savedOption!.isNotEmpty ? widget.savedOption! : "";
       QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
-      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption?.isNotEmpty ?? false);
+      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption.isNotEmpty);
     }
   }
 
@@ -46,9 +46,9 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
             isSelected: _selectedOption == option,
             onSelected: (isSelected) {
               setState(() {
-                _selectedOption = isSelected ? option : null;
+                _selectedOption = isSelected ? option : "";
                 QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
-                QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption?.isNotEmpty ?? false);
+                QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption.isNotEmpty);
               });
             },
           ) : 
@@ -58,9 +58,9 @@ class _SingleChoiceQuestionState extends State<SingleChoiceQuestion> {
             groupValue: _selectedOption,
             onChanged: (String? value) {
               setState(() {
-                _selectedOption = value;
+                _selectedOption = value ?? "";
                 QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _selectedOption);
-                QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption?.isNotEmpty ?? false);
+                QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _selectedOption.isNotEmpty);
               });
             },
           );

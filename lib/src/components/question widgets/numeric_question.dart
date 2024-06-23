@@ -3,45 +3,56 @@ import 'package:findmyrestaurant/strings/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyrestaurant/src/models/dietary_survey_questions_model.dart';
 
-class NumericQuestion extends StatelessWidget {
+class NumericQuestion extends StatefulWidget {
   final DietarySurveyQuestionsModel question;
   final int? answer;
 
   const NumericQuestion({
-    super.key,
+    Key? key,
     required this.question,
     this.answer,
-  });
-  
-  TextEditingController init() {
-    TextEditingController controller = TextEditingController();
-    if (answer != null) {
-      controller.text = answer.toString();
-      QuestionWidgetsAnswersUtil.setResponse(question.id, controller.text);
-      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(question.id, controller.text.isNotEmpty);
+  }) : super(key: key);
+
+  @override
+  State<NumericQuestion> createState() => _NumericQuestionState();
+}
+
+class _NumericQuestionState extends State<NumericQuestion> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState(); 
+    if (widget.answer != null && _controller.text.isEmpty) {
+      _controller.text = widget.answer.toString();
+      QuestionWidgetsAnswersUtil.setResponse(widget.question.id, _controller.text);
+      QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, _controller.text.isNotEmpty);
     }
-    return controller;
   }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controller = init();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-          controller: controller,
+          controller: _controller,
           decoration: const InputDecoration(
             labelText: AppStrings.numericQuestionLabelText,
           ),
           keyboardType: TextInputType.number,
           onSubmitted: (value) {
-            QuestionWidgetsAnswersUtil.setResponse(question.id, value);
-            QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(question.id, controller.text.isNotEmpty);
+            QuestionWidgetsAnswersUtil.setResponse(widget.question.id, value);
+            QuestionWidgetsAnswersUtil.notifyIsQuestionAnswered(widget.question.id, value.isNotEmpty);
           },
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
