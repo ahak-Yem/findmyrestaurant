@@ -1,6 +1,7 @@
 import 'package:findmyrestaurant/src/enums/images%20enums/images_names.dart';
 import 'package:findmyrestaurant/src/enums/images%20enums/images_paths_sections_enum.dart';
 import 'package:findmyrestaurant/src/services/images_reader_service.dart';
+import 'package:findmyrestaurant/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ArrowButton extends StatelessWidget {
@@ -8,6 +9,8 @@ class ArrowButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color containerColor;
   final double iconSize;
+  final bool active;
+
   final String _iconPath = ImagesReaderService.instance.getImagePath(ImagesPathsSections.icons, ImagesNames.arrowWhite);
 
   ArrowButton({
@@ -15,7 +18,8 @@ class ArrowButton extends StatelessWidget {
     required this.direction,
     required this.containerColor,
     required this.onPressed,
-    required this.iconSize
+    required this.iconSize,
+    required this.active
   }) : super(key: key);
 
   @override
@@ -23,7 +27,7 @@ class ArrowButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: containerColor,
+        color: active ? containerColor : AppColors.disabledBtnColor,
       ),
       child: IconButton(
         iconSize: iconSize,
@@ -32,7 +36,7 @@ class ArrowButton extends StatelessWidget {
           angle: direction.angle,
           child: Image.asset(_iconPath),
         ),
-        onPressed: onPressed,
+        onPressed: active ? onPressed : null,
       ),
     );
   }
