@@ -1,0 +1,20 @@
+{
+    "imagePaths": {
+      "getStarted": {
+        "muesli" : "assets/images/getstarted/muesli.png",
+        "egg sandwish" : "assets/images/getstarted/egg sandwish.png",
+        "salad" : "assets/images/getstarted/salad.png",
+        "salmon eggs" : "assets/images/getstarted/salmon eggs.png",
+        "tomatoes pesto" : "assets/images/getstarted/tomatoes pesto.png"
+      },
+      "icons" : {
+        "arrow_primary" : "assets/icons/arrow_primary.png",
+        "arrow_white" : "assets/icons/arrow_white.png"
+      },
+      "extra" : {
+        "loading placeholder" : "assets/images/extra/loading placeholder.gif",
+        "no image placeholder" : "assets/images/extra/no image placeholder.png"
+      }
+    }
+  }
+  
