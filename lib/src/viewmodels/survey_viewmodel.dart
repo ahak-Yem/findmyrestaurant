@@ -26,6 +26,8 @@ class SurveyViewModel extends ChangeNotifier {
   final StreamController<bool> _surveyEndedController = StreamController<bool>();
   Stream<bool> get surveyEndedController => _surveyEndedController.stream;
 
+  Map<String, dynamic> _userPreferencesWithQID = {};
+
   String? _userID;
   int currentQuestionIndex = 0;
 
@@ -40,17 +42,16 @@ class SurveyViewModel extends ChangeNotifier {
     _surveyQuestions = _surveyService.surveyQuestions;
     _surveyUserPreferences = _appLaunchService.userPreferences ?? UserPreferencesModel();
     _surveyPages = _generateSurveyQuestionPages();
+    _userPreferencesWithQID = _surveyUserPreferences.generateIdAnswersMap();
     listenToIsQuestionAnsweredStream();
     notifyListeners();
   }
 
   List<Widget> _generateSurveyQuestionPages() {
-    final Map<String, dynamic> savedOptionsMap = _surveyUserPreferences.generateIdAnswersMap();
-
     return _surveyQuestions.map((question) {
       return SurveyQuestionItem(
         question: question,
-        answer: savedOptionsMap[question.id],
+        answer: _userPreferencesWithQID[question.id],
       );
     }).toList();
   }
