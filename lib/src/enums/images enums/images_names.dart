@@ -7,6 +7,7 @@ enum ImagesNames {
   salmonEggs,
   tomatoesPesto,
   loadingPlaceholder,
+  noImagePlaceholder,
   arrowPrimary,
   arrowWhite,
 }
@@ -26,6 +27,8 @@ extension ImagesNamesExtension on ImagesNames {
         return 'tomatoes pesto';
       case ImagesNames.loadingPlaceholder:
         return 'loading placeholder';
+      case ImagesNames.noImagePlaceholder:
+        return 'no image placeholder';
       case ImagesNames.arrowPrimary:
         return 'arrow_primary';
       case ImagesNames.arrowWhite:
@@ -42,6 +45,7 @@ extension ImagesNamesExtension on ImagesNames {
       case ImagesNames.tomatoesPesto:
         return ImagesPathsSections.getStarted;
       case ImagesNames.loadingPlaceholder:
+      case ImagesNames.noImagePlaceholder:
         return ImagesPathsSections.extra;
       case ImagesNames.arrowPrimary:
       case ImagesNames.arrowWhite:
